@@ -1,0 +1,98 @@
+/* 
+ * ============================================
+ * SPK ARAS - Custom Styles
+ * ============================================
+ * Custom CSS untuk melengkapi Tailwind CSS.
+ * Fokus pada scrollbar, animasi khusus, dan utilitas.
+ * ============================================
+ */
+
+/* ===== SCROLLBAR STYLING ===== */
+::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #cbd5e1; /* slate-300 */
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #94a3b8; /* slate-400 */
+}
+
+/* Dark mode scrollbar */
+.dark ::-webkit-scrollbar-thumb {
+    background: #475569; /* slate-600 */
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+    background: #64748b; /* slate-500 */
+}
+
+/* ===== UTILITIES & ANIMATIONS ===== */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Hide number input arrows */
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+    -webkit-appearance: none; 
+    margin: 0; 
+}
+input[type=number] {
+    -moz-appearance: textfield;
+}
+
+/* Custom range slider thumb styling (Tailwind accent-color handles most of it, but for cross-browser consistency) */
+input[type=range] {
+    -webkit-appearance: none;
+    background: transparent;
+}
+
+input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    height: 16px;
+    width: 16px;
+    border-radius: 50%;
+    background: #6366f1; /* primary-500 */
+    cursor: pointer;
+    margin-top: -4px;
+    box-shadow: 0 2px 4px rgba(99, 102, 241, 0.4);
+}
+
+input[type=range]::-webkit-slider-runnable-track {
+    width: 100%;
+    height: 8px;
+    cursor: pointer;
+    background: #e2e8f0; /* slate-200 */
+    border-radius: 4px;
+}
+
+/* Dark mode range slider */
+.dark input[type=range]::-webkit-slider-runnable-track {
+    background: #334155; /* slate-700 */
+}
+
+/* Animation classes not covered by Tailwind config */
+.animate-delay-100 { animation-delay: 100ms; }
+.animate-delay-200 { animation-delay: 200ms; }
+.animate-delay-300 { animation-delay: 300ms; }
+
+/* Table sticky header for better UX on long tables */
+th {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+/* Fix chart container aspect ratio on smaller screens */
+canvas {
+    max-width: 100%;
+}

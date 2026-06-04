@@ -9,7 +9,7 @@ Memberikan panduan yang jelas dan mudah dipahami agar semua anggota tim bisa ber
 3. Clone repository ke komputer masing-masing:
 
 ```bash
-git clone https://github.com/username/LaptopARAS.git   # proses "menyalin" project dari GitHub ke komputer lokal.
+git clone https://github.com/zulfarida0107-crypto/ci4-aras-metode.git  # proses "menyalin" project dari GitHub ke komputer lokal.
 cd LaptopARAS
 ```
 

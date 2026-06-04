@@ -1,322 +1,381 @@
-<!-- ============================================
-     Tab 1: Dashboard
-     Ringkasan sistem, statistik 26 responden,
-     Top 3 laptop terbaik dari survei, chart visualisasi,
-     dan CTA menuju Eksperimen Mandiri.
-     ============================================ -->
-
-<!-- ===== HERO WELCOME SECTION ===== -->
-<section class="animate-fade-in mb-8">
-    <div class="relative overflow-hidden rounded-2xl bg-gradient-to-br from-primary-600 via-violet-600 to-purple-700 p-8 lg:p-10 text-white shadow-2xl shadow-primary-500/20">
-        <!-- Decorative shapes -->
-        <div class="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full -translate-y-1/2 translate-x-1/4 blur-2xl"></div>
-        <div class="absolute bottom-0 left-0 w-48 h-48 bg-white/5 rounded-full translate-y-1/2 -translate-x-1/4 blur-2xl"></div>
-        <div class="absolute top-1/2 right-1/4 w-32 h-32 bg-cyan-400/10 rounded-full blur-xl"></div>
-
-        <div class="relative z-10">
-            <div class="flex items-center gap-2 mb-3">
-                <span class="px-3 py-1 rounded-full bg-white/15 text-xs font-semibold backdrop-blur-sm">
-                    🎮 Sistem Pendukung Keputusan
-                </span>
-            </div>
-            <h2 class="text-3xl lg:text-4xl font-extrabold mb-3 leading-tight">
-                Selamat Datang di <br class="hidden sm:block"><span class="text-cyan-300">SPK ARAS</span> Laptop Gaming
-            </h2>
-            <p class="text-white/80 max-w-2xl text-sm lg:text-base leading-relaxed">
-                Sistem Pendukung Keputusan Pemilihan Laptop Gaming menggunakan Metode 
-                <span class="font-semibold text-white">Additive Ratio Assessment (ARAS)</span>. 
-                Analisis berdasarkan data <span class="font-semibold text-cyan-300">26 responden</span> 
-                atau buat eksperimen Anda sendiri.
-            </p>
-            <div class="flex flex-wrap gap-3 mt-6">
-                <a href="<?= base_url('/eksperimen') ?>" 
-                   class="inline-flex items-center gap-2 px-6 py-2.5 bg-white text-primary-700 rounded-xl font-semibold text-sm hover:bg-cyan-50 transition-all duration-200 shadow-lg hover:shadow-xl hover:scale-105">
-                    <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M9.75 3.104v5.714a2.25 2.25 0 01-.659 1.591L5 14.5M9.75 3.104c-.251.023-.501.05-.75.082m.75-.082a24.301 24.301 0 014.5 0m0 0v5.714c0 .597.237 1.17.659 1.591L19.8 15.3M14.25 3.104c.251.023.501.05.75.082"/>
-                    </svg>
-                    Coba Eksperimen Mandiri
-                </a>
-                <a href="<?= base_url('/panduan') ?>" 
-                   class="inline-flex items-center gap-2 px-6 py-2.5 bg-white/15 text-white rounded-xl font-medium text-sm hover:bg-white/25 transition-all duration-200 backdrop-blur-sm">
-                    <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25"/>
-                    </svg>
-                    Pelajari Metode ARAS
-                </a>
-            </div>
-        </div>
-    </div>
+<!-- Main Content Area -->
+<main class="pt-[68px] pb-[52px] lg:ml-[240px] px-6 py-6 max-w-full">
+<!-- Hero Section -->
+<section class="bg-primary-container rounded-2xl p-10 mb-6 flex flex-col md:flex-row items-center justify-between gap-10 overflow-hidden relative text-white">
+<div class="absolute inset-0 bg-white/5 pointer-events-none"></div>
+<div class="z-10 max-w-xl">
+<h1 class="text-4xl font-extrabold mb-4 leading-tight">Temukan Laptop Gaming Terbaik Sesuai Preferensimu</h1>
+<p class="text-on-primary-container/80 text-lg mb-8">Sistem Pendukung Keputusan berbasis metode ARAS untuk memilih hardware gaming yang tepat berdasarkan kriteria teknis dan anggaran Anda.</p>
+<div class="flex flex-wrap gap-4">
+<a href="<?= base_url('responden') ?>" class="bg-white text-primary font-bold px-8 py-3 rounded-xl shadow-md hover:bg-surface-container-lowest transition-colors flex items-center gap-2">
+<span class="material-symbols-outlined">assignment</span> Survei Laptop
+</a>
+<a href="<?= base_url('eksperimen') ?>" class="bg-benefit text-white font-bold px-8 py-3 rounded-xl shadow-md hover:brightness-110 transition-colors flex items-center gap-2">
+<span class="material-symbols-outlined">science</span> Eksperimen Mandiri
+</a>
+</div>
+</div>
+<div class="relative w-full md:w-1/3 aspect-[4/3] rounded-xl overflow-hidden shadow-2xl border-4 border-white/10">
+<img alt="Hero Image" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB6W9298eDRa_lP3jcmprBVjxpdEtzxVi_WUnl6kv87H1QwZ2dpKHn4TSVoMuB61lAvFW16X65kt9zKws6-g9WLxUnGYaIhdimyGrumgmXTo4FCQ-QUI_codfLzx9mVmaT5bBppC_kDojsTI_o1vtaa--IJIrzFTL0B-7SzT2mWLMxtaTLVKlvwdnjUn7cm2EYHWaj3Wh3Sa1bRqCUICI17CAZHsrkC-WeVcCzOLUl9QpA6G1k-6vxOrqJ7ojQBNHNhra5NOBoTDJU">
+</div>
 </section>
-
-<!-- ===== STATISTICS CARDS ===== -->
-<section class="animate-slide-up mb-8">
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-        <?php
-        $stats = [
-            ['value' => '26', 'label' => 'Total Responden', 'color' => 'from-blue-500 to-blue-600', 'shadow' => 'shadow-blue-500/20',
-             'icon' => '<path stroke-linecap="round" stroke-linejoin="round" d="M15 19.128a9.38 9.38 0 002.625.372 9.337 9.337 0 004.121-.952 4.125 4.125 0 00-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 018.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0111.964-3.07M12 6.375a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zm8.25 2.25a2.625 2.625 0 11-5.25 0 2.625 2.625 0 015.25 0z"/>'],
-            ['value' => '6', 'label' => 'Jumlah Kriteria', 'color' => 'from-emerald-500 to-emerald-600', 'shadow' => 'shadow-emerald-500/20',
-             'icon' => '<path stroke-linecap="round" stroke-linejoin="round" d="M9 12h3.75M9 15h3.75M9 18h3.75m3 .75H18a2.25 2.25 0 002.25-2.25V6.108c0-1.135-.845-2.098-1.976-2.192a48.424 48.424 0 00-1.123-.08m-5.801 0c-.065.21-.1.433-.1.664 0 .414.336.75.75.75h4.5a.75.75 0 00.75-.75 2.25 2.25 0 00-.1-.664m-5.8 0A2.251 2.251 0 0113.5 2.25H15c1.012 0 1.867.668 2.15 1.586m-5.8 0c-.376.023-.75.05-1.124.08C9.095 4.01 8.25 4.973 8.25 6.108V8.25m0 0H4.875c-.621 0-1.125.504-1.125 1.125v11.25c0 .621.504 1.125 1.125 1.125h9.75c.621 0 1.125-.504 1.125-1.125V9.375c0-.621-.504-1.125-1.125-1.125H8.25zM6.75 12h.008v.008H6.75V12zm0 3h.008v.008H6.75V15zm0 3h.008v.008H6.75V18z"/>'],
-            ['value' => '5', 'label' => 'Alternatif Laptop', 'color' => 'from-violet-500 to-violet-600', 'shadow' => 'shadow-violet-500/20',
-             'icon' => '<path stroke-linecap="round" stroke-linejoin="round" d="M9 17.25v1.007a3 3 0 01-.879 2.122L7.5 21h9l-.621-.621A3 3 0 0115 18.257V17.25m6-12V15a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 15V5.25m18 0A2.25 2.25 0 0018.75 3H5.25A2.25 2.25 0 003 5.25m18 0V12a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 12V5.25"/>'],
-            ['value' => 'ARAS', 'label' => 'Metode SPK', 'color' => 'from-amber-500 to-orange-500', 'shadow' => 'shadow-amber-500/20',
-             'icon' => '<path stroke-linecap="round" stroke-linejoin="round" d="M15.75 15.75V18m-7.5-6.75h.008v.008H8.25v-.008zm0 2.25h.008v.008H8.25V13.5zm0 2.25h.008v.008H8.25v-.008zm0 2.25h.008v.008H8.25V18zm2.498-6.75h.007v.008h-.007v-.008zm0 2.25h.007v.008h-.007V13.5zm0 2.25h.007v.008h-.007v-.008zm0 2.25h.007v.008h-.007V18zm2.504-6.75h.008v.008h-.008v-.008zm0 2.25h.008v.008h-.008V13.5zM8.25 6h7.5v2.25h-7.5V6zM12 2.25c-1.892 0-3.758.11-5.593.322C5.307 2.7 4.5 3.65 4.5 4.757V19.5a2.25 2.25 0 002.25 2.25h10.5a2.25 2.25 0 002.25-2.25V4.757c0-1.108-.806-2.057-1.907-2.185A48.507 48.507 0 0012 2.25z"/>'],
-        ];
-        foreach ($stats as $i => $stat): ?>
-        <div class="group bg-white dark:bg-surface-800 rounded-2xl p-5 border border-slate-200/60 dark:border-slate-700/50 shadow-sm hover:shadow-lg <?= $stat['shadow'] ?> transition-all duration-300 hover:-translate-y-1" style="animation-delay: <?= $i * 100 ?>ms">
-            <div class="flex items-center gap-4">
-                <div class="w-12 h-12 rounded-xl bg-gradient-to-br <?= $stat['color'] ?> flex items-center justify-center shadow-lg <?= $stat['shadow'] ?>">
-                    <svg class="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><?= $stat['icon'] ?></svg>
-                </div>
-                <div>
-                    <p class="text-2xl font-extrabold text-slate-800 dark:text-white"><?= $stat['value'] ?></p>
-                    <p class="text-xs font-medium text-slate-500 dark:text-slate-400"><?= $stat['label'] ?></p>
-                </div>
-            </div>
-        </div>
-        <?php endforeach; ?>
-    </div>
-</section>
-
-<!-- ===== TOP 3 LAPTOP TERBAIK ===== -->
-<section class="mb-8">
-    <h3 class="text-xl font-bold text-slate-800 dark:text-white mb-5 flex items-center gap-2">
-        🏆 Top 3 Laptop Gaming Terbaik
-        <span class="text-xs font-medium px-2.5 py-1 rounded-full bg-amber-100 dark:bg-amber-900/30 text-amber-700 dark:text-amber-400">Hasil Survei</span>
-    </h3>
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
-        <?php
-        $topLaptops = [
-            ['rank' => 1, 'name' => 'ASUS ROG Strix G16', 'ki' => 0.9247, 'medal' => '🥇', 'color' => 'from-amber-400 to-yellow-500', 'border' => 'border-amber-300 dark:border-amber-600', 'shadow' => 'shadow-amber-500/20',
-             'specs' => ['i7-13650HX', 'RTX 4060', '16GB DDR5', '512GB SSD']],
-            ['rank' => 2, 'name' => 'Lenovo Legion 5 Pro', 'ki' => 0.8731, 'medal' => '🥈', 'color' => 'from-slate-300 to-slate-400', 'border' => 'border-slate-300 dark:border-slate-500', 'shadow' => 'shadow-slate-400/20',
-             'specs' => ['Ryzen 7 7745HX', 'RTX 4070', '16GB DDR5', '1TB SSD']],
-            ['rank' => 3, 'name' => 'Acer Nitro V 15', 'ki' => 0.8214, 'medal' => '🥉', 'color' => 'from-orange-400 to-amber-600', 'border' => 'border-orange-300 dark:border-orange-600', 'shadow' => 'shadow-orange-400/20',
-             'specs' => ['i5-13420H', 'RTX 4050', '16GB DDR5', '512GB SSD']],
-        ];
-        foreach ($topLaptops as $laptop): ?>
-        <div class="group relative bg-white dark:bg-surface-800 rounded-2xl border-2 <?= $laptop['border'] ?> p-6 shadow-sm hover:shadow-xl <?= $laptop['shadow'] ?> transition-all duration-300 hover:-translate-y-1 <?= $laptop['rank'] === 1 ? 'md:-translate-y-2 md:scale-105 md:z-10' : '' ?>">
-            <!-- Rank Badge -->
-            <div class="absolute -top-3 -left-2 flex items-center gap-1.5 px-3 py-1 rounded-full bg-gradient-to-r <?= $laptop['color'] ?> text-white text-xs font-bold shadow-lg">
-                <span class="text-base"><?= $laptop['medal'] ?></span>
-                Peringkat #<?= $laptop['rank'] ?>
-            </div>
-
-            <!-- Laptop Icon -->
-            <div class="flex justify-center mt-3 mb-4">
-                <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-slate-100 to-slate-200 dark:from-surface-700 dark:to-surface-600 flex items-center justify-center">
-                    <svg class="w-8 h-8 text-slate-500 dark:text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M9 17.25v1.007a3 3 0 01-.879 2.122L7.5 21h9l-.621-.621A3 3 0 0115 18.257V17.25m6-12V15a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 15V5.25m18 0A2.25 2.25 0 0018.75 3H5.25A2.25 2.25 0 003 5.25m18 0V12a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 12V5.25"/>
-                    </svg>
-                </div>
-            </div>
-
-            <!-- Laptop Name -->
-            <h4 class="text-center text-lg font-bold text-slate-800 dark:text-white mb-2"><?= $laptop['name'] ?></h4>
-
-            <!-- Ki Score -->
-            <div class="text-center mb-3">
-                <span class="text-3xl font-extrabold bg-gradient-to-r <?= $laptop['color'] ?> bg-clip-text text-transparent">
-                    <?= number_format($laptop['ki'], 4) ?>
-                </span>
-                <p class="text-[10px] font-medium text-slate-500 dark:text-slate-400 mt-1">Nilai Ki (Utility)</p>
-            </div>
-
-            <!-- Progress Bar -->
-            <div class="w-full bg-slate-100 dark:bg-surface-700 rounded-full h-2.5 mb-4">
-                <div class="h-2.5 rounded-full bg-gradient-to-r <?= $laptop['color'] ?> transition-all duration-1000" style="width: <?= $laptop['ki'] * 100 ?>%"></div>
-            </div>
-
-            <!-- Specs Badges -->
-            <div class="flex flex-wrap justify-center gap-1.5">
-                <?php foreach ($laptop['specs'] as $spec): ?>
-                <span class="px-2 py-0.5 text-[10px] font-medium rounded-full bg-slate-100 dark:bg-surface-700 text-slate-600 dark:text-slate-400"><?= $spec ?></span>
-                <?php endforeach; ?>
-            </div>
-        </div>
-        <?php endforeach; ?>
-    </div>
-</section>
-
-<!-- ===== CHARTS SECTION ===== -->
-<section class="mb-8">
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <!-- Chart: Distribusi Status Responden -->
-        <div class="bg-white dark:bg-surface-800 rounded-2xl p-6 border border-slate-200/60 dark:border-slate-700/50 shadow-sm">
-            <h4 class="text-base font-bold text-slate-800 dark:text-white mb-4 flex items-center gap-2">
-                <span class="w-8 h-8 rounded-lg bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center">
-                    <svg class="w-4 h-4 text-blue-600 dark:text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 6a7.5 7.5 0 107.5 7.5h-7.5V6z"/>
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 10.5H21A7.5 7.5 0 0013.5 3v7.5z"/>
-                    </svg>
-                </span>
-                Distribusi Status Responden
-            </h4>
-            <div class="relative" style="height: 280px;">
-                <canvas id="chartStatusResponden"></canvas>
-            </div>
-        </div>
-
-        <!-- Chart: Rata-rata Bobot Kriteria -->
-        <div class="bg-white dark:bg-surface-800 rounded-2xl p-6 border border-slate-200/60 dark:border-slate-700/50 shadow-sm">
-            <h4 class="text-base font-bold text-slate-800 dark:text-white mb-4 flex items-center gap-2">
-                <span class="w-8 h-8 rounded-lg bg-violet-100 dark:bg-violet-900/30 flex items-center justify-center">
-                    <svg class="w-4 h-4 text-violet-600 dark:text-violet-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 013 19.875v-6.75z"/>
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V8.625z"/>
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V4.125z"/>
-                    </svg>
-                </span>
-                Rata-rata Bobot Kriteria
-            </h4>
-            <div class="relative" style="height: 280px;">
-                <canvas id="chartBobotKriteria"></canvas>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- ===== CTA: EKSPERIMEN MANDIRI ===== -->
-<section class="mb-8">
-    <div class="relative overflow-hidden rounded-2xl bg-gradient-to-r from-primary-600 via-violet-600 to-purple-600 p-8 text-white shadow-2xl">
-        <div class="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg%20width%3D%2260%22%20height%3D%2260%22%20viewBox%3D%220%200%2060%2060%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cg%20fill%3D%22%23ffffff%22%20fill-opacity%3D%220.05%22%3E%3Cpath%20d%3D%22M36%2034v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6%2034v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6%204V0H4v4H0v2h4v4h2V6h4V4H6z%22/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')] opacity-50"></div>
-        <div class="relative z-10 flex flex-col md:flex-row items-center gap-6">
-            <div class="flex-1">
-                <h3 class="text-2xl font-extrabold mb-2">🧪 Coba Eksperimen Mandiri</h3>
-                <p class="text-white/80 text-sm max-w-xl">
-                    Tentukan sendiri bobot dan kriteria Anda, masukkan spesifikasi laptop, lalu lihat laptop gaming mana yang paling sesuai dengan kebutuhan Anda!
+<!-- Summary Cards (4 cols) -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
+<div class="bg-white p-6 rounded-2xl border border-outline-variant shadow-sm">
+<div class="flex items-center gap-3 mb-4">
+<div class="w-10 h-10 rounded-lg bg-secondary-container/30 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">groups</span>
+</div>
+<span class="text-xs font-bold text-on-surface-variant uppercase tracking-wider">Total Responden</span>
+</div>
+<p class="text-3xl font-extrabold text-on-surface"><?= esc($totalResponden) ?></p>
+<p class="text-benefit text-xs font-bold flex items-center gap-1 mt-2">
+<span class="material-symbols-outlined text-sm">trending_up</span> Data Aktif
                 </p>
+</div>
+<div class="bg-white p-6 rounded-2xl border border-outline-variant shadow-sm">
+<div class="flex items-center gap-3 mb-4">
+<div class="w-10 h-10 rounded-lg bg-tertiary-container/10 flex items-center justify-center text-tertiary">
+<span class="material-symbols-outlined">calendar_month</span>
+</div>
+<span class="text-xs font-bold text-on-surface-variant uppercase tracking-wider">Rata Usia</span>
+</div>
+<p class="text-3xl font-extrabold text-on-surface"><?= esc($rataUsia) ?> <span class="text-base font-medium text-on-surface-variant">Thn</span></p>
+<p class="text-on-surface-variant text-xs mt-2">Rentang: <?= esc($minUsia) ?> - <?= esc($maxUsia) ?> thn</p>
+</div>
+<div class="bg-white p-6 rounded-2xl border border-outline-variant shadow-sm">
+<div class="flex items-center gap-3 mb-4">
+<div class="w-10 h-10 rounded-lg bg-surface-container flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined">school</span>
+</div>
+<span class="text-xs font-bold text-on-surface-variant uppercase tracking-wider">Status Terbanyak</span>
+</div>
+<p class="text-3xl font-extrabold text-on-surface truncate" title="<?= esc($statusTerbanyak['status']) ?>"><?= esc($statusTerbanyak['status']) ?></p>
+<p class="text-on-surface-variant text-xs mt-2"><?= esc($statusTerbanyak['persen']) ?>% dari total data</p>
+</div>
+<div class="bg-white p-6 rounded-2xl border border-outline-variant shadow-sm">
+<div class="flex items-center gap-3 mb-4">
+<div class="w-10 h-10 rounded-lg bg-benefit/10 flex items-center justify-center text-benefit">
+<span class="material-symbols-outlined">memory</span>
+</div>
+<span class="text-xs font-bold text-on-surface-variant uppercase tracking-wider">Kriteria Utama</span>
+</div>
+<p class="text-3xl font-extrabold text-on-surface"><?= esc($kriteriaTertinggi['nama']) ?></p>
+<p class="text-benefit text-xs font-bold mt-2">Bobot Rata-rata: <?= esc($kriteriaTertinggi['nilai']) ?>%</p>
+</div>
+</div>
+<!-- Visuals Section -->
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
+<div class="bg-white p-8 rounded-2xl border border-outline-variant shadow-sm">
+<div class="flex justify-between items-center mb-8">
+<h3 class="text-lg font-bold text-on-surface">Distribusi Status Responden</h3>
+<span class="material-symbols-outlined text-on-surface-variant">donut_large</span>
+</div>
+<div class="flex flex-col sm:flex-row items-center justify-center gap-10">
+<div class="relative w-40 h-40">
+<svg class="w-full h-full transform -rotate-90" viewBox="0 0 36 36">
+<circle cx="18" cy="18" fill="transparent" r="15.915" stroke="#e1e2ed" stroke-width="4"></circle>
+<?php 
+$offset = 0;
+$colors = ['#004ac6', '#737686', '#c3c6d7']; 
+foreach($statusData as $index => $stat): 
+    $dash = $stat['persen'] . " " . (100 - $stat['persen']);
+?>
+<circle cx="18" cy="18" fill="transparent" r="15.915" stroke="<?= $colors[$index % count($colors)] ?>" stroke-dasharray="<?= $dash ?>" stroke-dashoffset="-<?= $offset ?>" stroke-width="4"></circle>
+<?php 
+    $offset += $stat['persen'];
+endforeach; 
+?>
+</svg>
+<div class="absolute inset-0 flex flex-col items-center justify-center">
+<span class="text-3xl font-extrabold text-on-surface"><?= esc($totalResponden) ?></span>
+<span class="text-[10px] text-on-surface-variant font-bold uppercase tracking-widest">Total</span>
+</div>
+</div>
+<div class="space-y-3">
+<?php foreach($statusData as $index => $stat): ?>
+<div class="flex items-center gap-3">
+<div class="w-3 h-3 rounded-full" style="background-color: <?= $colors[$index % count($colors)] ?>"></div>
+<span class="text-sm font-medium text-on-surface-variant"><?= esc($stat['name']) ?> (<?= esc($stat['total']) ?>)</span>
+</div>
+<?php endforeach; ?>
+</div>
+</div>
+</div>
+<div class="bg-white p-8 rounded-2xl border border-outline-variant shadow-sm">
+<div class="flex justify-between items-center mb-8">
+<h3 class="text-lg font-bold text-on-surface">Rata-rata Bobot Kriteria</h3>
+<span class="material-symbols-outlined text-on-surface-variant">align_horizontal_left</span>
+</div>
+<div class="space-y-5">
+<?php 
+foreach($bobotDisplay as $key => $bk): 
+    $barColor = ($bk['type'] == 'Benefit') ? 'bg-benefit' : 'bg-cost';
+    $labelTampil = ($bk['label'] == 'Baterai') ? 'Baterai untuk ketahanan/jam' : $bk['label'];
+?>
+<div class="space-y-2">
+<div class="flex justify-between text-xs font-bold text-on-surface-variant">
+<span class=""><?= esc($labelTampil) ?></span>
+<span class=""><?= esc($bk['persen']) ?>%</span>
+</div>
+<div class="h-2 w-full bg-surface-container rounded-full overflow-hidden">
+<div class="h-full <?= $barColor ?> rounded-full" style="width: <?= esc($bk['width']) ?>%; transition: width 1.2s cubic-bezier(0.34, 1.56, 0.64, 1);"></div>
+</div>
+</div>
+<?php 
+endforeach; 
+?>
+</div>
+</div>
+</div>
+<!-- ARAS Flow: 8-stage horizontal infographic -->
+<div class="bg-white p-6 rounded-2xl border border-outline-variant shadow-sm mb-6 overflow-x-auto">
+<h3 class="text-sm font-bold text-on-surface-variant uppercase tracking-wider mb-8 text-center">ARAS Decision Matrix Lifecycle</h3>
+<div class="flex items-center justify-between min-w-[800px] px-4 relative">
+<div class="absolute top-6 left-10 right-10 h-0.5 bg-outline-variant/30 -z-10"></div>
+<!-- Step 1 -->
+<div class="flex flex-col items-center gap-3">
+<div class="w-12 h-12 rounded-full bg-surface-container flex items-center justify-center text-primary border-2 border-white shadow-sm">
+<span class="material-symbols-outlined text-lg">data_table</span>
+</div>
+<span class="text-[10px] font-bold text-on-surface text-center">Decision Matrix</span>
+</div>
+<!-- Step 2 -->
+<div class="flex flex-col items-center gap-3">
+<div class="w-12 h-12 rounded-full bg-surface-container flex items-center justify-center text-primary border-2 border-white shadow-sm">
+<span class="material-symbols-outlined text-lg">grade</span>
+</div>
+<span class="text-[10px] font-bold text-on-surface text-center">Optimal Solution</span>
+</div>
+<!-- Step 3 -->
+<div class="flex flex-col items-center gap-3">
+<div class="w-12 h-12 rounded-full bg-surface-container flex items-center justify-center text-primary border-2 border-white shadow-sm">
+<span class="material-symbols-outlined text-lg">rule</span>
+</div>
+<span class="text-[10px] font-bold text-on-surface text-center">Normalization</span>
+</div>
+<!-- Step 4 -->
+<div class="flex flex-col items-center gap-3">
+<div class="w-12 h-12 rounded-full bg-surface-container flex items-center justify-center text-primary border-2 border-white shadow-sm">
+<span class="material-symbols-outlined text-lg">balance</span>
+</div>
+<span class="text-[10px] font-bold text-on-surface text-center">Weighting</span>
+</div>
+<!-- Step 5 -->
+<div class="flex flex-col items-center gap-3">
+<div class="w-12 h-12 rounded-full bg-surface-container flex items-center justify-center text-primary border-2 border-white shadow-sm">
+<span class="material-symbols-outlined text-lg">functions</span>
+</div>
+<span class="text-[10px] font-bold text-on-surface text-center">Optimality Fn</span>
+</div>
+<!-- Step 6 -->
+<div class="flex flex-col items-center gap-3">
+<div class="w-12 h-12 rounded-full bg-surface-container flex items-center justify-center text-primary border-2 border-white shadow-sm">
+<span class="material-symbols-outlined text-lg">analytics</span>
+</div>
+<span class="text-[10px] font-bold text-on-surface text-center">Degree of Utility</span>
+</div>
+<!-- Step 7 -->
+<div class="flex flex-col items-center gap-3">
+<div class="w-12 h-12 rounded-full bg-surface-container flex items-center justify-center text-primary border-2 border-white shadow-sm">
+<span class="material-symbols-outlined text-lg">format_list_numbered</span>
+</div>
+<span class="text-[10px] font-bold text-on-surface text-center">Final Ranking</span>
+</div>
+<!-- Step 8 -->
+<div class="flex flex-col items-center gap-3">
+<div class="w-12 h-12 rounded-full bg-benefit/20 flex items-center justify-center text-benefit border-2 border-benefit/20 shadow-sm">
+<span class="material-symbols-outlined text-lg">verified</span>
+</div>
+<span class="text-[10px] font-bold text-benefit text-center">Best Selection</span>
+</div>
+</div>
+</div>
+<!-- Top 3 Ranking Section -->
+<div class="mb-8">
+<div class="flex items-center justify-between mb-6">
+<h3 class="text-xl font-extrabold text-on-surface">Top 3 Peringkat (ARAS)</h3>
+<a class="text-sm font-bold text-primary hover:underline flex items-center gap-1" href="<?= base_url('aras') ?>">
+                    Lihat Hasil Lengkap <span class="material-symbols-outlined text-base">chevron_right</span>
+</a>
+</div>
+<div class="space-y-4">
+<?php foreach($top3 as $laptop): ?>
+<div class="bg-white p-6 rounded-2xl border <?= $laptop['is_optimal'] ? 'border-l-4 border-l-primary' : '' ?> border-outline-variant shadow-sm hover:shadow-md transition-all flex items-center gap-6 group">
+<div class="w-14 h-14 <?= $laptop['bg'] ?> <?= $laptop['text'] ?> font-black text-2xl flex items-center justify-center rounded-full shrink-0 shadow-inner"><?= $laptop['icon'] ?></div>
+<div class="flex-grow">
+<div class="flex items-center gap-3 mb-1">
+<h4 class="text-lg font-bold text-on-surface"><?= esc($laptop['nama']) ?></h4>
+<?php if($laptop['is_optimal']): ?>
+<span class="bg-benefit/10 text-benefit text-[10px] font-black px-2 py-0.5 rounded-full uppercase">Optimal Selection</span>
+<?php endif; ?>
+</div>
+<p class="text-on-surface-variant text-sm mb-4"><?= esc($laptop['spek']) ?></p>
+<div class="flex items-center gap-4">
+<div class="flex-grow h-2 bg-surface-container rounded-full overflow-hidden">
+<div class="<?= $laptop['is_optimal'] ? 'ki-progress-gradient' : ($laptop['rank']==2 ? 'bg-outline' : 'bg-outline-variant') ?> h-full rounded-full" style="width: <?= $laptop['ki'] * 100 ?>%; transition: width 1.2s cubic-bezier(0.34, 1.56, 0.64, 1);"></div>
+</div>
+<span class="<?= $laptop['is_optimal'] ? 'text-primary' : 'text-on-surface-variant' ?> font-mono-data text-sm font-bold">Ki: <?= esc($laptop['ki']) ?></span>
+</div>
+</div>
+<button onclick="document.getElementById('modal-<?= $laptop['id'] ?>').classList.remove('hidden');" class="bg-surface-container-low group-hover:bg-primary group-hover:text-white px-6 py-2.5 rounded-xl text-sm font-bold transition-all">Detail</button>
+
+<div id="modal-<?= $laptop['id'] ?>" class="hidden fixed inset-0 z-[100] flex items-center justify-center bg-black/50 backdrop-blur-sm transition-all p-4">
+    <div class="bg-white rounded-3xl w-full max-w-lg shadow-2xl overflow-hidden border border-outline-variant transform transition-all">
+        <div class="p-6 border-b border-outline-variant flex justify-between items-center <?= $laptop['bg'] ?>">
+            <div class="flex items-center gap-3">
+                <div class="w-12 h-12 <?= $laptop['text'] ?> bg-white rounded-full flex items-center justify-center font-black text-2xl shadow-sm"><?= $laptop['icon'] ?></div>
+                <div>
+                    <h3 class="text-xl font-extrabold text-on-surface"><?= esc($laptop['nama']) ?></h3>
+                    <p class="text-xs font-bold <?= $laptop['text'] ?>">Peringkat <?= $laptop['rank'] ?></p>
+                </div>
             </div>
-            <a href="<?= base_url('/eksperimen') ?>" 
-               class="flex-shrink-0 inline-flex items-center gap-2 px-8 py-3.5 bg-white text-primary-700 rounded-xl font-bold text-sm hover:bg-cyan-50 transition-all duration-200 shadow-xl hover:shadow-2xl hover:scale-105">
-                <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/>
-                </svg>
-                Mulai Eksperimen
-            </a>
+            <button onclick="document.getElementById('modal-<?= $laptop['id'] ?>').classList.add('hidden');" class="text-on-surface-variant hover:text-error transition-colors p-2 rounded-full hover:bg-surface-container"><span class="material-symbols-outlined">close</span></button>
+        </div>
+        <div class="p-6 space-y-4">
+            <p class="text-sm font-bold text-on-surface-variant uppercase tracking-wider mb-2">Spesifikasi Lengkap</p>
+            <div class="grid grid-cols-2 gap-4">
+                <div class="bg-surface-container-lowest p-3 rounded-xl border border-outline-variant/50">
+                    <p class="text-xs text-on-surface-variant font-medium">Harga</p>
+                    <p class="text-sm font-bold text-on-surface truncate" title="<?= esc($laptop['labels']['harga']) ?>"><?= esc($laptop['labels']['harga']) ?></p>
+                </div>
+                <div class="bg-surface-container-lowest p-3 rounded-xl border border-outline-variant/50">
+                    <p class="text-xs text-on-surface-variant font-medium">Berat</p>
+                    <p class="text-sm font-bold text-on-surface truncate" title="<?= esc($laptop['labels']['berat']) ?>"><?= esc($laptop['labels']['berat']) ?></p>
+                </div>
+                <div class="bg-surface-container-lowest p-3 rounded-xl border border-outline-variant/50">
+                    <p class="text-xs text-on-surface-variant font-medium">RAM</p>
+                    <p class="text-sm font-bold text-on-surface truncate" title="<?= esc($laptop['labels']['ram']) ?>"><?= esc($laptop['labels']['ram']) ?></p>
+                </div>
+                <div class="bg-surface-container-lowest p-3 rounded-xl border border-outline-variant/50">
+                    <p class="text-xs text-on-surface-variant font-medium">Penyimpanan</p>
+                    <p class="text-sm font-bold text-on-surface truncate" title="<?= esc($laptop['labels']['storage']) ?>"><?= esc($laptop['labels']['storage']) ?></p>
+                </div>
+                <div class="bg-surface-container-lowest p-3 rounded-xl border border-outline-variant/50">
+                    <p class="text-xs text-on-surface-variant font-medium">Prosesor</p>
+                    <p class="text-sm font-bold text-on-surface truncate" title="<?= esc($laptop['labels']['processor']) ?>"><?= esc($laptop['labels']['processor']) ?></p>
+                </div>
+                <div class="bg-surface-container-lowest p-3 rounded-xl border border-outline-variant/50">
+                    <p class="text-xs text-on-surface-variant font-medium">Baterai (Ketahanan)</p>
+                    <p class="text-sm font-bold text-on-surface truncate" title="<?= esc($laptop['labels']['baterai']) ?>"><?= esc($laptop['labels']['baterai']) ?></p>
+                </div>
+            </div>
+            <div class="mt-4 pt-4 border-t border-outline-variant flex justify-between items-center">
+                <span class="text-sm font-bold text-on-surface-variant">Skor Optimalitas (Ki)</span>
+                <span class="text-3xl font-black <?= $laptop['text'] ?>"><?= esc($laptop['ki']) ?></span>
+            </div>
+            
+            <div class="mt-6 border-t border-outline-variant pt-4">
+                <button onclick="document.getElementById('aras-detail-<?= $laptop['id'] ?>').classList.toggle('hidden')" class="w-full flex justify-between items-center text-sm font-bold text-primary hover:text-primary-container transition-colors py-2">
+                    <span>Lihat Langkah Perhitungan ARAS (Detail Matematis)</span>
+                    <span class="material-symbols-outlined">expand_more</span>
+                </button>
+                <div id="aras-detail-<?= $laptop['id'] ?>" class="hidden mt-4 space-y-6 max-h-[350px] overflow-y-auto pr-2 pb-2">
+                    
+                    <!-- Tahap 1 -->
+                    <div>
+                        <p class="text-xs font-bold text-on-surface-variant uppercase tracking-wider mb-2">1. Matriks Keputusan (X)</p>
+                        <div class="grid grid-cols-3 gap-2">
+                            <?php foreach(['harga'=>'Harga', 'berat'=>'Berat', 'ram'=>'RAM', 'storage'=>'Penyimpanan', 'processor'=>'Prosesor', 'baterai'=>'Baterai'] as $k => $l): ?>
+                            <div class="bg-surface-container-lowest p-2 rounded-xl border border-outline-variant/50 text-center">
+                                <p class="text-[10px] text-on-surface-variant font-medium"><?= $l ?></p>
+                                <p class="text-sm font-bold text-on-surface"><?= $laptop['scores'][$k] ?></p>
+                            </div>
+                            <?php endforeach; ?>
+                        </div>
+                    </div>
+
+                    <!-- Tahap 2 -->
+                    <div>
+                        <p class="text-xs font-bold text-on-surface-variant uppercase tracking-wider mb-2">2. Alternatif Optimal (A0)</p>
+                        <div class="grid grid-cols-3 gap-2">
+                            <?php foreach(['harga'=>'Harga (Min)', 'berat'=>'Berat (Min)', 'ram'=>'RAM (Max)', 'storage'=>'Penyimpanan (Max)', 'processor'=>'Prosesor (Max)', 'baterai'=>'Baterai (Max)'] as $k => $l): ?>
+                            <div class="bg-surface-container-lowest p-2 rounded-xl border border-outline-variant/50 text-center">
+                                <p class="text-[10px] text-on-surface-variant font-medium"><?= $l ?></p>
+                                <p class="text-sm font-bold text-on-surface"><?= $laptop['A0'][$k] ?></p>
+                            </div>
+                            <?php endforeach; ?>
+                        </div>
+                    </div>
+
+                    <!-- Tahap 3 -->
+                    <div>
+                        <p class="text-xs font-bold text-on-surface-variant uppercase tracking-wider mb-2">3. Normalisasi Matriks (R)</p>
+                        <div class="grid grid-cols-3 gap-2">
+                            <?php 
+                            $cost = ['harga', 'berat'];
+                            foreach(['harga'=>'Harga', 'berat'=>'Berat', 'ram'=>'RAM', 'storage'=>'Penyimpanan', 'processor'=>'Prosesor', 'baterai'=>'Baterai'] as $k => $l): 
+                                $isCost = in_array($k, $cost);
+                                $x = $laptop['scores'][$k];
+                                $sum = round($laptop['sumR'][$k], 3);
+                                $formula = $isCost ? "(1/$x) / $sum" : "$x / $sum";
+                            ?>
+                            <div class="bg-surface-container-lowest p-2 rounded-xl border border-outline-variant/50 text-center">
+                                <p class="text-[10px] text-on-surface-variant font-medium mb-1"><?= $l ?></p>
+                                <p class="text-[9px] text-primary bg-primary/10 rounded px-1 mb-1 font-mono" title="Rumus: <?= $formula ?>"><?= $formula ?></p>
+                                <p class="text-sm font-bold text-on-surface"><?= round($laptop['R'][$k], 4) ?></p>
+                            </div>
+                            <?php endforeach; ?>
+                        </div>
+                    </div>
+
+                    <!-- Tahap 4 -->
+                    <div>
+                        <p class="text-xs font-bold text-on-surface-variant uppercase tracking-wider mb-2">4. Matriks Terbobot (D)</p>
+                        <div class="grid grid-cols-3 gap-2">
+                            <?php 
+                            foreach(['harga'=>'Harga', 'berat'=>'Berat', 'ram'=>'RAM', 'storage'=>'Penyimpanan', 'processor'=>'Prosesor', 'baterai'=>'Baterai'] as $k => $l): 
+                                $r = round($laptop['R'][$k], 4);
+                                $w = round($laptop['W'][$k], 3);
+                            ?>
+                            <div class="bg-surface-container-lowest p-2 rounded-xl border border-outline-variant/50 text-center">
+                                <p class="text-[10px] text-on-surface-variant font-medium mb-1"><?= $l ?></p>
+                                <p class="text-[9px] text-primary bg-primary/10 rounded px-1 mb-1 font-mono" title="R × W = <?= $r ?> × <?= $w ?>"><?= $r ?> × <?= $w ?></p>
+                                <p class="text-sm font-bold text-on-surface"><?= round($laptop['D'][$k], 4) ?></p>
+                            </div>
+                            <?php endforeach; ?>
+                        </div>
+                    </div>
+
+                    <!-- Tahap 5 & 6 -->
+                    <div>
+                        <p class="text-xs font-bold text-on-surface-variant uppercase tracking-wider mb-2">5 & 6. Fungsi Optimalitas</p>
+                        <div class="grid grid-cols-2 gap-3">
+                            <div class="bg-surface-container-lowest p-3 rounded-xl border border-outline-variant/50 flex flex-col justify-center">
+                                <p class="text-[10px] text-on-surface-variant font-medium mb-1">Si (Total D alternatif)</p>
+                                <p class="text-[9px] text-primary bg-primary/10 rounded px-1 mb-1 font-mono w-max">Σ D (seluruh kriteria)</p>
+                                <p class="text-lg font-bold text-on-surface"><?= round($laptop['Si'], 4) ?></p>
+                            </div>
+                            <div class="bg-surface-container-lowest p-3 rounded-xl border border-outline-variant/50 flex flex-col justify-center">
+                                <p class="text-[10px] text-on-surface-variant font-medium mb-1">S0 (Total D optimal)</p>
+                                <p class="text-[9px] text-primary bg-primary/10 rounded px-1 mb-1 font-mono w-max">Σ D (dari A0)</p>
+                                <p class="text-lg font-bold text-on-surface"><?= round($laptop['S0'], 4) ?></p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tahap 7 & 8 -->
+                    <div>
+                        <p class="text-xs font-bold text-on-surface-variant uppercase tracking-wider mb-2">7 & 8. Hasil Akhir</p>
+                        <div class="grid grid-cols-2 gap-3">
+                            <div class="bg-primary/10 p-3 rounded-xl border border-primary/20 flex flex-col justify-center">
+                                <p class="text-[10px] text-primary font-bold mb-1">Tingkat Utilitas (Ki)</p>
+                                <p class="text-[10px] text-primary bg-white/50 rounded px-1 mb-1 font-mono w-max"><?= round($laptop['Si'], 4) ?> / <?= round($laptop['S0'], 4) ?></p>
+                                <p class="text-2xl font-black text-primary"><?= esc($laptop['ki']) ?></p>
+                            </div>
+                            <div class="bg-surface-container-lowest p-3 rounded-xl border border-outline-variant/50 flex flex-col justify-center">
+                                <p class="text-[10px] text-on-surface-variant font-medium mb-1">Ranking Akhir</p>
+                                <p class="text-xl font-black text-on-surface">Ke-<?= esc($laptop['rank']) ?></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-</section>
-
-<!-- ===== QUICK INFO CARDS ===== -->
-<section class="mb-4">
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-        <div class="bg-white dark:bg-surface-800 rounded-2xl p-5 border border-slate-200/60 dark:border-slate-700/50 shadow-sm">
-            <div class="w-10 h-10 rounded-xl bg-emerald-100 dark:bg-emerald-900/30 flex items-center justify-center mb-3">
-                <svg class="w-5 h-5 text-emerald-600 dark:text-emerald-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 12h3.75M9 15h3.75M9 18h3.75m3 .75H18a2.25 2.25 0 002.25-2.25V6.108c0-1.135-.845-2.098-1.976-2.192a48.424 48.424 0 00-1.123-.08m-5.801 0c-.065.21-.1.433-.1.664 0 .414.336.75.75.75h4.5a.75.75 0 00.75-.75 2.25 2.25 0 00-.1-.664m-5.8 0A2.251 2.251 0 0113.5 2.25H15c1.012 0 1.867.668 2.15 1.586m-5.8 0c-.376.023-.75.05-1.124.08C9.095 4.01 8.25 4.973 8.25 6.108V8.25m0 0H4.875c-.621 0-1.125.504-1.125 1.125v11.25c0 .621.504 1.125 1.125 1.125h9.75c.621 0 1.125-.504 1.125-1.125V9.375c0-.621-.504-1.125-1.125-1.125H8.25z"/>
-                </svg>
-            </div>
-            <h4 class="font-bold text-slate-800 dark:text-white text-sm mb-1.5">6 Kriteria Penilaian</h4>
-            <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">Harga, Berat, RAM, Storage, Processor, dan Baterai — masing-masing dengan tipe Cost atau Benefit.</p>
-        </div>
-
-        <div class="bg-white dark:bg-surface-800 rounded-2xl p-5 border border-slate-200/60 dark:border-slate-700/50 shadow-sm">
-            <div class="w-10 h-10 rounded-xl bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center mb-3">
-                <svg class="w-5 h-5 text-blue-600 dark:text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M7.5 21L3 16.5m0 0L7.5 12M3 16.5h13.5m0-13.5L21 7.5m0 0L16.5 12M21 7.5H7.5"/>
-                </svg>
-            </div>
-            <h4 class="font-bold text-slate-800 dark:text-white text-sm mb-1.5">2 Mode Perhitungan</h4>
-            <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">Mode Survei menggunakan data 26 responden, Mode Eksperimen memberi kebebasan penuh kepada pengguna.</p>
-        </div>
-
-        <div class="bg-white dark:bg-surface-800 rounded-2xl p-5 border border-slate-200/60 dark:border-slate-700/50 shadow-sm">
-            <div class="w-10 h-10 rounded-xl bg-violet-100 dark:bg-violet-900/30 flex items-center justify-center mb-3">
-                <svg class="w-5 h-5 text-violet-600 dark:text-violet-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 12h16.5m-16.5 3.75h16.5M3.75 19.5h16.5M5.625 4.5h12.75a1.875 1.875 0 010 3.75H5.625a1.875 1.875 0 010-3.75z"/>
-                </svg>
-            </div>
-            <h4 class="font-bold text-slate-800 dark:text-white text-sm mb-1.5">8 Tahap ARAS</h4>
-            <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">Dari pembentukan matriks keputusan, normalisasi, pembobotan, hingga penentuan ranking akhir.</p>
-        </div>
-    </div>
-</section>
-
-<!-- ===== CHART.JS SCRIPTS ===== -->
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-    // Deteksi dark mode untuk warna teks
-    const isDark = document.documentElement.classList.contains('dark');
-    const textColor = isDark ? '#94a3b8' : '#64748b';
-    const gridColor = isDark ? 'rgba(148,163,184,0.1)' : 'rgba(0,0,0,0.06)';
-
-    // Chart 1: Distribusi Status Responden (Doughnut)
-    const ctxStatus = document.getElementById('chartStatusResponden');
-    if (ctxStatus) {
-        new Chart(ctxStatus, {
-            type: 'doughnut',
-            data: {
-                labels: ['Mahasiswa', 'Bekerja', 'Lainnya'],
-                datasets: [{
-                    data: [18, 6, 2],
-                    backgroundColor: [
-                        'rgba(99, 102, 241, 0.85)',
-                        'rgba(16, 185, 129, 0.85)',
-                        'rgba(245, 158, 11, 0.85)'
-                    ],
-                    borderColor: isDark ? '#1e293b' : '#ffffff',
-                    borderWidth: 3,
-                    hoverOffset: 10
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                cutout: '65%',
-                plugins: {
-                    legend: {
-                        position: 'bottom',
-                        labels: { color: textColor, padding: 16, usePointStyle: true, pointStyleWidth: 10, font: { size: 12, family: 'Inter' } }
-                    }
-                }
-            }
-        });
-    }
-
-    // Chart 2: Rata-rata Bobot Kriteria (Bar)
-    const ctxBobot = document.getElementById('chartBobotKriteria');
-    if (ctxBobot) {
-        new Chart(ctxBobot, {
-            type: 'bar',
-            data: {
-                labels: ['Harga', 'Berat', 'RAM', 'Storage', 'Processor', 'Baterai'],
-                datasets: [{
-                    label: 'Rata-rata Bobot',
-                    data: [2.35, 1.88, 2.62, 2.27, 2.73, 2.04],
-                    backgroundColor: [
-                        'rgba(239, 68, 68, 0.8)',
-                        'rgba(245, 158, 11, 0.8)',
-                        'rgba(16, 185, 129, 0.8)',
-                        'rgba(6, 182, 212, 0.8)',
-                        'rgba(99, 102, 241, 0.8)',
-                        'rgba(168, 85, 247, 0.8)'
-                    ],
-                    borderRadius: 8,
-                    borderSkipped: false,
-                    barPercentage: 0.6
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                scales: {
-                    y: {
-                        beginAtZero: true,
-                        max: 3,
-                        ticks: { color: textColor, stepSize: 1, font: { size: 11, family: 'Inter' } },
-                        grid: { color: gridColor }
-                    },
-                    x: {
-                        ticks: { color: textColor, font: { size: 11, family: 'Inter' } },
-                        grid: { display: false }
-                    }
-                },
-                plugins: {
-                    legend: { display: false }
-                }
-            }
-        });
-    }
-});
-</script>
+</div>
+</div>
+<?php endforeach; ?>
+</div>
+</div>
+</main>

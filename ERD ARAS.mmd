@@ -1,0 +1,52 @@
+---
+references:
+  - "File: /database/spk_aras.sql"
+generationTime: 2026-05-29T20:27:28.722Z
+---
+erDiagram
+    RESPONDEN ||--o{ BOBOT_KRITERIA : has
+    RESPONDEN ||--o{ SKOR_LAPTOP : has
+    RESPONDEN {
+        int id PK
+        date timestamp
+        string nama
+        int usia
+        string status
+        date created_at
+        date updated_at
+    }
+    BOBOT_KRITERIA {
+        int id PK
+        int responden_id FK
+        int harga
+        int berat
+        int ram
+        int storage
+        int processor
+        int baterai
+    }
+    SKOR_LAPTOP {
+        int id PK
+        int responden_id FK
+        string harga_label
+        int harga_skor
+        string berat_label
+        int berat_skor
+        string ram_label
+        int ram_skor
+        string storage_label
+        int storage_skor
+        string processor_label
+        int processor_skor
+        string baterai_label
+        int baterai_skor
+    }
+    EKSPERIMEN_HASIL {
+        int id PK
+        string nama_eksperimen
+        string bobot_json
+        string criteria_types_json
+        string alternatives_json
+        string hasil_json
+        date created_at
+    }

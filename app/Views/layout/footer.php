@@ -12,20 +12,3 @@
 </nav>
 </div>
 </footer>
-<script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const bars = document.querySelectorAll('.ki-progress-gradient, .bg-benefit, .bg-cost, .bg-outline, .bg-outline-variant');
-            bars.forEach(bar => {
-                const finalWidth = bar.style.width;
-                if (finalWidth) {
-                    bar.style.width = '0%';
-                    setTimeout(() => {
-                        bar.style.transition = 'width 1.2s cubic-bezier(0.34, 1.56, 0.64, 1)';
-                        bar.style.width = finalWidth;
-                    }, 300);
-                }
-            });
-        });
-    </script>
-</body>
-</html>

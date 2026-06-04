@@ -13,9 +13,6 @@ class ArasController extends BaseController
             'pageTitle' => 'Hasil ARAS Survei'
         ];
 
-        return view('layout/header', $data) . 
-               view('layout/sidebar', $data) . 
-               view('aras/index', $data) . 
-               view('layout/footer', $data);
+        return view('aras/index', $data);
     }
 }

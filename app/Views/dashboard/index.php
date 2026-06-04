@@ -1,5 +1,7 @@
+<?= $this->extend('layout/main') ?>
+<?= $this->section('content') ?>
 <!-- Main Content Area -->
-<main class="pt-[68px] pb-[52px] lg:ml-[240px] px-6 py-6 max-w-full">
+<main class="max-w-full px-6 py-6">
 <!-- Hero Section -->
 <section class="bg-primary-container rounded-2xl p-10 mb-6 flex flex-col md:flex-row items-center justify-between gap-10 overflow-hidden relative text-white">
 <div class="absolute inset-0 bg-white/5 pointer-events-none"></div>
@@ -20,7 +22,7 @@
 </div>
 </section>
 <!-- Summary Cards (4 cols) -->
-<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-6">
 <div class="bg-white p-6 rounded-2xl border border-outline-variant shadow-sm">
 <div class="flex items-center gap-3 mb-4">
 <div class="w-10 h-10 rounded-lg bg-secondary-container/30 flex items-center justify-center text-primary">
@@ -52,16 +54,6 @@
 </div>
 <p class="text-3xl font-extrabold text-on-surface truncate" title="<?= esc($statusTerbanyak['status']) ?>"><?= esc($statusTerbanyak['status']) ?></p>
 <p class="text-on-surface-variant text-xs mt-2"><?= esc($statusTerbanyak['persen']) ?>% dari total data</p>
-</div>
-<div class="bg-white p-6 rounded-2xl border border-outline-variant shadow-sm">
-<div class="flex items-center gap-3 mb-4">
-<div class="w-10 h-10 rounded-lg bg-benefit/10 flex items-center justify-center text-benefit">
-<span class="material-symbols-outlined">memory</span>
-</div>
-<span class="text-xs font-bold text-on-surface-variant uppercase tracking-wider">Kriteria Utama</span>
-</div>
-<p class="text-3xl font-extrabold text-on-surface"><?= esc($kriteriaTertinggi['nama']) ?></p>
-<p class="text-benefit text-xs font-bold mt-2">Bobot Rata-rata: <?= esc($kriteriaTertinggi['nilai']) ?>%</p>
 </div>
 </div>
 <!-- Visuals Section -->
@@ -110,7 +102,7 @@ endforeach;
 <div class="space-y-5">
 <?php 
 foreach($bobotDisplay as $key => $bk): 
-    $barColor = ($bk['type'] == 'Benefit') ? 'bg-benefit' : 'bg-cost';
+    $barColor = 'bg-benefit';
     $labelTampil = ($bk['label'] == 'Baterai') ? 'Baterai untuk ketahanan/jam' : $bk['label'];
 ?>
 <div class="space-y-2">
@@ -379,3 +371,4 @@ endforeach;
 </div>
 </div>
 </main>
+<?= $this->endSection() ?>

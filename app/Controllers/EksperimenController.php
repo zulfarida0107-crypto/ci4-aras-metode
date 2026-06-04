@@ -13,9 +13,6 @@ class EksperimenController extends BaseController
             'pageTitle' => 'Eksperimen Mandiri'
         ];
 
-        return view('layout/header', $data) . 
-               view('layout/sidebar', $data) . 
-               view('eksperimen/index', $data) . 
-               view('layout/footer', $data);
+        return view('eksperimen/index', $data);
     }
 }

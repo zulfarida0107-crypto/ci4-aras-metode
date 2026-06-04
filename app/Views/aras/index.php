@@ -1,3 +1,6 @@
+<?= $this->extend('layout/main') ?>
+<?= $this->section('content') ?>
+<main class="flex-1 overflow-y-auto bg-background p-6">
 <!-- ============================================
      Tab 3: Hasil ARAS Survei
      Menampilkan hasil perhitungan ARAS statis
@@ -140,3 +143,5 @@
         </div>
     </div>
 </section>
+</main>
+<?= $this->endSection() ?>

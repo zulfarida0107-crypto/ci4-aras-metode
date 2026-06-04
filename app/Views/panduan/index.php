@@ -4,6 +4,9 @@
      glosarium, dan FAQ.
      ============================================ -->
 
+<?= $this->extend('layout/main') ?>
+<?= $this->section('content') ?>
+<main class="flex-1 overflow-y-auto bg-background p-6">
 <!-- ===== PAGE HEADER ===== -->
 <section class="mb-8 animate-fade-in">
     <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
@@ -306,3 +309,5 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 </script>
+</main>
+<?= $this->endSection() ?>

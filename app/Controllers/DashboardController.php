@@ -187,9 +187,6 @@ class DashboardController extends BaseController
             'top3' => $top3
         ];
 
-        return view('layout/header', $data) . 
-               view('layout/sidebar', $data) . 
-               view('dashboard/index', $data) . 
-               view('layout/footer', $data);
+        return view('dashboard/index', $data);
     }
 }

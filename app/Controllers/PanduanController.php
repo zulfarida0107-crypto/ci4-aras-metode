@@ -13,9 +13,6 @@ class PanduanController extends BaseController
             'pageTitle' => 'Panduan Metode ARAS'
         ];
 
-        return view('layout/header', $data) . 
-               view('layout/sidebar', $data) . 
-               view('panduan/index', $data) . 
-               view('layout/footer', $data);
+        return view('panduan/index', $data);
     }
 }

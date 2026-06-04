@@ -1,349 +1,360 @@
-<!-- ============================================
-     Tab 2: Data Responden
-     Tabel identitas responden (nama, usia, status),
-     bobot kriteria, penilaian laptop dengan
-     toggle Label/Skor, filter & pencarian.
-     ============================================ -->
-
-<!-- ===== PAGE HEADER ===== -->
-<section class="mb-6 animate-fade-in">
-    <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-        <div>
-            <h2 class="text-2xl font-extrabold text-slate-800 dark:text-white flex items-center gap-3">
-                <span class="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center shadow-lg shadow-blue-500/25">
-                    <svg class="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M15 19.128a9.38 9.38 0 002.625.372 9.337 9.337 0 004.121-.952 4.125 4.125 0 00-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 018.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0111.964-3.07M12 6.375a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zm8.25 2.25a2.625 2.625 0 11-5.25 0 2.625 2.625 0 015.25 0z"/>
-                    </svg>
-                </span>
-                Data Responden
-            </h2>
-            <p class="text-sm text-slate-500 dark:text-slate-400 mt-1">Data lengkap 26 responden dari kuesioner pemilihan laptop gaming</p>
-        </div>
-        <span class="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-primary-100 dark:bg-primary-900/30 text-primary-700 dark:text-primary-400 text-sm font-semibold">
-            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19.128a9.38 9.38 0 002.625.372 9.337 9.337 0 004.121-.952 4.125 4.125 0 00-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 018.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0111.964-3.07M12 6.375a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zm8.25 2.25a2.625 2.625 0 11-5.25 0 2.625 2.625 0 015.25 0z"/></svg>
-            26 Responden
-        </span>
-    </div>
-</section>
-
-<!-- ===== FILTER & SEARCH BAR ===== -->
-<section class="mb-6">
-    <div class="bg-white dark:bg-surface-800 rounded-2xl p-4 border border-slate-200/60 dark:border-slate-700/50 shadow-sm">
-        <div class="flex flex-col sm:flex-row flex-wrap gap-3 items-end">
-            <!-- Search -->
-            <div class="flex-1 min-w-[200px]">
-                <label class="block text-xs font-medium text-slate-500 dark:text-slate-400 mb-1">Cari Nama</label>
-                <div class="relative">
-                    <svg class="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"/></svg>
-                    <input type="text" id="search-nama" placeholder="Ketik nama responden..." 
-                           class="w-full pl-10 pr-4 py-2 text-sm rounded-xl border border-slate-200 dark:border-slate-600 bg-slate-50 dark:bg-surface-700 text-slate-800 dark:text-slate-200 focus:ring-2 focus:ring-primary-500/50 focus:border-primary-500 transition-all outline-none">
+<?= $this->extend('layout/main') ?>
+<?= $this->section('content') ?>
+<main class="flex-1 overflow-y-auto bg-background p-6">
+<header class="mb-8 mt-6">
+<div class="flex items-center gap-2 mb-2">
+<span class="px-2 py-0.5 bg-primary/10 text-primary rounded text-[10px] font-bold tracking-wider uppercase">SQA-v1.0 Blueprint</span>
+</div>
+<h1 class="font-headline-lg text-headline-lg text-on-surface"><?= esc($pageTitle) ?></h1>
+<p class="text-on-surface-variant font-body-md text-body-md max-w-3xl mt-2">Manajemen data survei dan preferensi kriteria dari responden terverifikasi untuk proses analisis MCDM.</p>
+</header>
+<div class="flex flex-col lg:flex-row gap-8">
+    <!-- Filter Sidebar -->
+    <aside class="w-full lg:w-72 flex-shrink-0">
+        <div class="bg-surface-container-low border border-outline-variant rounded-2xl p-6 sticky top-24">
+            <div class="flex items-center justify-between mb-6">
+                <h3 class="font-bold text-on-surface text-lg">Filter Data</h3>
+                <span class="material-symbols-outlined text-primary">filter_list</span>
+            </div>
+            <form action="<?= base_url('responden') ?>" method="GET">
+                <!-- Pencarian -->
+                <div class="mb-6">
+                    <label class="block text-xs font-bold text-on-surface-variant mb-2 uppercase tracking-wider">Pencarian</label>
+                    <div class="relative">
+                        <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline">search</span>
+                        <input type="text" name="search" value="<?= isset($_GET['search']) ? esc($_GET['search']) : '' ?>" placeholder="Nama responden..." class="w-full pl-10 pr-4 py-2 bg-white border border-outline-variant rounded-lg text-sm focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all">
+                    </div>
                 </div>
-            </div>
-            <!-- Filter Status -->
-            <div class="min-w-[150px]">
-                <label class="block text-xs font-medium text-slate-500 dark:text-slate-400 mb-1">Status</label>
-                <select id="filter-status" class="w-full px-3 py-2 text-sm rounded-xl border border-slate-200 dark:border-slate-600 bg-slate-50 dark:bg-surface-700 text-slate-800 dark:text-slate-200 focus:ring-2 focus:ring-primary-500/50 focus:border-primary-500 transition-all outline-none">
-                    <option value="">Semua</option>
-                    <option value="Mahasiswa">Mahasiswa</option>
-                    <option value="Bekerja">Bekerja</option>
-                    <option value="Lainnya">Lainnya</option>
-                </select>
-            </div>
-            <!-- Filter Usia -->
-            <div class="min-w-[150px]">
-                <label class="block text-xs font-medium text-slate-500 dark:text-slate-400 mb-1">Rentang Usia</label>
-                <select id="filter-usia" class="w-full px-3 py-2 text-sm rounded-xl border border-slate-200 dark:border-slate-600 bg-slate-50 dark:bg-surface-700 text-slate-800 dark:text-slate-200 focus:ring-2 focus:ring-primary-500/50 focus:border-primary-500 transition-all outline-none">
-                    <option value="">Semua</option>
-                    <option value="18-21">18 – 21 tahun</option>
-                    <option value="22-25">22 – 25 tahun</option>
-                    <option value="26+">26+ tahun</option>
-                </select>
-            </div>
-            <!-- Toggle Label/Skor -->
-            <div class="min-w-[180px]">
-                <label class="block text-xs font-medium text-slate-500 dark:text-slate-400 mb-1">Tampilan Penilaian</label>
-                <div class="flex items-center gap-2 px-3 py-2 rounded-xl bg-slate-50 dark:bg-surface-700 border border-slate-200 dark:border-slate-600">
-                    <span id="label-mode-text" class="text-xs font-semibold text-primary-600 dark:text-primary-400">Label</span>
-                    <button id="toggle-label-skor" type="button" class="relative w-11 h-6 rounded-full bg-primary-500 transition-colors focus:outline-none focus:ring-2 focus:ring-primary-500/50">
-                        <span id="toggle-knob" class="absolute left-0.5 top-0.5 w-5 h-5 rounded-full bg-white shadow-md transition-transform duration-300"></span>
+                
+                <!-- Status Responden -->
+                <div class="mb-6">
+                    <label class="block text-xs font-bold text-on-surface-variant mb-3 uppercase tracking-wider">Status Responden</label>
+                    <div class="space-y-3">
+                        <label class="flex items-center gap-3 cursor-pointer group">
+                            <input type="checkbox" name="status[]" value="Mahasiswa" <?= (isset($_GET['status']) && in_array('Mahasiswa', (array)$_GET['status'])) ? 'checked' : '' ?> class="w-4 h-4 rounded text-primary border-outline-variant focus:ring-primary">
+                            <span class="text-sm text-on-surface group-hover:text-primary transition-colors">Mahasiswa</span>
+                        </label>
+                        <label class="flex items-center gap-3 cursor-pointer group">
+                            <input type="checkbox" name="status[]" value="Bekerja" <?= (isset($_GET['status']) && in_array('Bekerja', (array)$_GET['status'])) ? 'checked' : '' ?> class="w-4 h-4 rounded text-primary border-outline-variant focus:ring-primary">
+                            <span class="text-sm text-on-surface group-hover:text-primary transition-colors">Bekerja / Profesional</span>
+                        </label>
+                        <label class="flex items-center gap-3 cursor-pointer group">
+                            <input type="checkbox" name="status[]" value="Lainnya" <?= (isset($_GET['status']) && in_array('Lainnya', (array)$_GET['status'])) ? 'checked' : '' ?> class="w-4 h-4 rounded text-primary border-outline-variant focus:ring-primary">
+                            <span class="text-sm text-on-surface group-hover:text-primary transition-colors">Lainnya (Gamer, dll)</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Rentang Usia -->
+                <div class="mb-8">
+                    <label class="block text-xs font-bold text-on-surface-variant mb-2 uppercase tracking-wider">Rentang Usia</label>
+                    <select name="usia" class="w-full px-4 py-2 bg-white border border-outline-variant rounded-lg text-sm focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all">
+                        <option value="">Semua Usia</option>
+                        <option value="18-22" <?= (isset($_GET['usia']) && $_GET['usia'] == '18-22') ? 'selected' : '' ?>>18 - 22 Tahun</option>
+                        <option value="23-30" <?= (isset($_GET['usia']) && $_GET['usia'] == '23-30') ? 'selected' : '' ?>>23 - 30 Tahun</option>
+                        <option value=">30" <?= (isset($_GET['usia']) && $_GET['usia'] == '>30') ? 'selected' : '' ?>>Di atas 30 Tahun</option>
+                    </select>
+                </div>
+
+                <div class="flex flex-col gap-3">
+                    <button type="submit" class="w-full py-2 bg-primary hover:bg-primary-container text-white text-sm font-bold rounded-lg transition-colors shadow-sm">
+                        Terapkan Filter
                     </button>
-                    <span id="skor-mode-text" class="text-xs font-medium text-slate-400">Skor</span>
+                    <?php if(!empty($_GET)): ?>
+                    <a href="<?= base_url('responden') ?>" class="w-full py-2 bg-white border border-outline-variant text-on-surface-variant hover:text-on-surface text-sm font-bold rounded-lg text-center transition-colors">
+                        Reset Filter
+                    </a>
+                    <?php endif; ?>
                 </div>
-            </div>
+            </form>
         </div>
-    </div>
-</section>
+    </aside>
 
-<!-- ===== TABLE 1: IDENTITAS RESPONDEN ===== -->
-<section class="mb-8">
-    <h3 class="text-lg font-bold text-slate-800 dark:text-white mb-4 flex items-center gap-2">
-        📋 Identitas Responden
-    </h3>
-    <div class="bg-white dark:bg-surface-800 rounded-2xl border border-slate-200/60 dark:border-slate-700/50 shadow-sm overflow-hidden">
-        <div class="overflow-x-auto">
-            <table class="w-full text-sm" id="tabel-identitas">
-                <thead>
-                    <tr class="bg-slate-50 dark:bg-surface-700/50 text-left">
-                        <th class="px-4 py-3 text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider w-12">No</th>
-                        <th class="px-4 py-3 text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Nama</th>
-                        <th class="px-4 py-3 text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider w-20">Usia</th>
-                        <th class="px-4 py-3 text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider w-32">Status</th>
-                    </tr>
-                </thead>
-                <tbody id="tbody-identitas" class="divide-y divide-slate-100 dark:divide-slate-700/50">
-                </tbody>
-            </table>
-        </div>
-    </div>
-</section>
+    <!-- Main Content Tab -->
+    <div class="flex-grow min-w-0">
+        <!-- Sub-Tabs -->
+<div class="mb-8 border-b border-outline-variant flex items-center gap-8">
+<button class="pb-3 border-b-2 border-primary text-primary font-label-md text-label-md transition-all active-tab-trigger" data-target="tab-identitas">Identitas</button>
+<button class="pb-3 border-b-2 border-transparent text-on-surface-variant hover:text-primary font-label-md text-label-md transition-all active-tab-trigger" data-target="tab-bobot">Bobot Kriteria</button>
+<button class="pb-3 border-b-2 border-transparent text-on-surface-variant hover:text-primary font-label-md text-label-md transition-all active-tab-trigger" data-target="tab-penilaian">Penilaian Laptop</button>
+</div>
+<div id="tab-content-container">
 
-<!-- ===== TABLE 2: BOBOT KRITERIA ===== -->
-<section class="mb-8">
-    <h3 class="text-lg font-bold text-slate-800 dark:text-white mb-4 flex items-center gap-2">
-        ⚖️ Bobot Kriteria per Responden
-        <span class="text-xs font-medium px-2 py-0.5 rounded-full bg-slate-100 dark:bg-surface-700 text-slate-500 dark:text-slate-400">Skala 1–3</span>
-    </h3>
-    <div class="bg-white dark:bg-surface-800 rounded-2xl border border-slate-200/60 dark:border-slate-700/50 shadow-sm overflow-hidden">
-        <div class="overflow-x-auto">
-            <table class="w-full text-sm" id="tabel-bobot">
-                <thead>
-                    <tr class="bg-slate-50 dark:bg-surface-700/50 text-left">
-                        <th class="px-4 py-3 text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider w-12">No</th>
-                        <th class="px-4 py-3 text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Nama</th>
-                        <th class="px-4 py-3 text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider text-center">Harga</th>
-                        <th class="px-4 py-3 text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider text-center">Berat</th>
-                        <th class="px-4 py-3 text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider text-center">RAM</th>
-                        <th class="px-4 py-3 text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider text-center">Storage</th>
-                        <th class="px-4 py-3 text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider text-center">Processor</th>
-                        <th class="px-4 py-3 text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider text-center">Baterai</th>
-                    </tr>
-                </thead>
-                <tbody id="tbody-bobot" class="divide-y divide-slate-100 dark:divide-slate-700/50">
-                </tbody>
-            </table>
-        </div>
-    </div>
-</section>
+<!-- Tab: Identitas -->
+<div class="tab-pane block" id="tab-identitas">
+<div class="grid grid-cols-1 xl:grid-cols-12 gap-gutter">
+<div class="xl:col-span-12">
+<div class="bg-surface-container-lowest rounded-xl border border-outline-variant shadow-sm overflow-hidden flex flex-col">
+<div class="p-4 border-b border-outline-variant flex justify-between items-center bg-surface-container-low">
+<h3 class="font-title-lg text-title-lg text-on-surface flex items-center gap-2">
+<span class="material-symbols-outlined text-primary" data-icon="group">group</span>
+                                    Daftar Responden
+                                </h3>
+<span class="bg-primary-container text-on-primary-container px-3 py-1 rounded-full text-label-md font-label-md">n=<?= $totalResponden ?> Total</span>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left zebra-table">
+<thead class="bg-surface-container-high border-b border-outline-variant">
+<tr>
+<th class="px-6 py-3 font-label-md text-label-md text-on-surface">No</th>
+<th class="px-6 py-3 font-label-md text-label-md text-on-surface">Nama Responden</th>
+<th class="px-6 py-3 font-label-md text-label-md text-on-surface text-center">Usia</th>
+<th class="px-6 py-3 font-label-md text-label-md text-on-surface">Status</th>
+<th class="px-6 py-3 font-label-md text-label-md text-on-surface text-right">Tanggal Input</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant">
+<?php $no=1; foreach($responden as $r): ?>
+<?php 
+    $statusColor = 'bg-primary text-on-primary';
+    if ($r['status'] == 'Profesional' || $r['status'] == 'Bekerja') $statusColor = 'bg-outline text-white';
+    if ($r['status'] == 'Gamer' || $r['status'] == 'Lainnya') $statusColor = 'bg-outline-variant text-on-surface';
+?>
+<tr class="hover:bg-primary/5 transition-colors">
+<td class="px-6 py-4 text-body-sm font-mono-data"><?= str_pad($no++, 2, '0', STR_PAD_LEFT) ?></td>
+<td class="px-6 py-4 text-body-md font-semibold text-on-surface"><?= esc($r['nama']) ?></td>
+<td class="px-6 py-4 text-body-sm text-center"><?= esc($r['usia']) ?></td>
+<td class="px-6 py-4"><span class="px-2 py-1 <?= $statusColor ?> rounded-md text-[10px] font-bold uppercase tracking-wider"><?= esc($r['status']) ?></span></td>
+<td class="px-6 py-4 text-right text-body-sm text-on-surface-variant"><?= date('d M Y', strtotime($r['created_at'])) ?></td>
+</tr>
+<?php endforeach; ?>
+</tbody>
+</table>
+</div>
+<div class="p-4 border-t border-outline-variant flex items-center justify-between bg-surface-container-low">
+<span class="text-body-sm text-on-surface-variant">Menampilkan <?= count($responden) ?> dari <?= $totalResponden ?> responden</span>
+</div>
+</div>
+</div>
+</div>
+</div>
 
-<!-- ===== TABLE 3: PENILAIAN LAPTOP (LABEL VIEW) ===== -->
-<section class="mb-8" id="section-penilaian-label">
-    <h3 class="text-lg font-bold text-slate-800 dark:text-white mb-4 flex items-center gap-2">
-        💻 Penilaian Laptop oleh Responden
-        <span class="text-xs font-medium px-2 py-0.5 rounded-full bg-primary-100 dark:bg-primary-900/30 text-primary-700 dark:text-primary-400" id="badge-view-mode">Mode: Label</span>
-    </h3>
-    <div class="bg-white dark:bg-surface-800 rounded-2xl border border-slate-200/60 dark:border-slate-700/50 shadow-sm overflow-hidden">
-        <div class="overflow-x-auto">
-            <table class="w-full text-sm" id="tabel-label">
-                <thead>
-                    <tr class="bg-slate-50 dark:bg-surface-700/50 text-left">
-                        <th class="px-4 py-3 text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider w-12">No</th>
-                        <th class="px-4 py-3 text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Nama</th>
-                        <th class="px-4 py-3 text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Harga</th>
-                        <th class="px-4 py-3 text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Berat</th>
-                        <th class="px-4 py-3 text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider">RAM</th>
-                        <th class="px-4 py-3 text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Storage</th>
-                        <th class="px-4 py-3 text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Processor</th>
-                        <th class="px-4 py-3 text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Baterai</th>
-                    </tr>
-                </thead>
-                <tbody id="tbody-label" class="divide-y divide-slate-100 dark:divide-slate-700/50">
-                </tbody>
-            </table>
-        </div>
-    </div>
-</section>
+<!-- Tab: Bobot Kriteria -->
+<div class="tab-pane hidden" id="tab-bobot">
+<div class="bg-surface-container-lowest rounded-xl border border-outline-variant shadow-sm overflow-hidden">
+<div class="p-4 border-b border-outline-variant bg-surface-container-low flex justify-between items-center">
+<div class="flex flex-col">
+<h3 class="font-title-lg text-title-lg text-on-surface">Bobot Kriteria (W<sub>j</sub>)</h3>
+<p class="text-body-sm text-on-surface-variant">Nilai preferensi subjektif dari setiap responden (Dinormalisasi)</p>
+</div>
+<div class="flex gap-2">
+<a href="<?= base_url('responden/export') ?>" class="flex items-center gap-2 text-primary hover:bg-primary/10 px-4 py-2 rounded-lg font-label-md text-label-md transition-all">
+<span class="material-symbols-outlined text-[18px]">download</span> Ekspor CSV
+</a>
+</div>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left">
+<thead class="bg-surface-container-high border-b border-outline-variant">
+<tr>
+<th class="px-6 py-4 font-label-md text-label-md text-on-surface">Responden</th>
+<th class="px-6 py-4 font-label-md text-label-md text-on-surface text-center">W1 (Harga)</th>
+<th class="px-6 py-4 font-label-md text-label-md text-on-surface text-center">W2 (Berat)</th>
+<th class="px-6 py-4 font-label-md text-label-md text-on-surface text-center">W3 (RAM)</th>
+<th class="px-6 py-4 font-label-md text-label-md text-on-surface text-center">W4 (Storage)</th>
+<th class="px-6 py-4 font-label-md text-label-md text-on-surface text-center">W5 (Prosesor)</th>
+<th class="px-6 py-4 font-label-md text-label-md text-on-surface text-center">W6 (Baterai)</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant">
+<?php foreach($responden as $r): ?>
+<tr class="hover:bg-primary/5 transition-colors">
+<td class="px-6 py-4 text-body-sm font-medium"><?= esc($r['nama']) ?></td>
+<td class="px-6 py-4 text-center font-mono-data text-body-sm"><?= number_format($r['w_harga'], 3) ?></td>
+<td class="px-6 py-4 text-center font-mono-data text-body-sm"><?= number_format($r['w_berat'], 3) ?></td>
+<td class="px-6 py-4 text-center font-mono-data text-body-sm"><?= number_format($r['w_ram'], 3) ?></td>
+<td class="px-6 py-4 text-center font-mono-data text-body-sm"><?= number_format($r['w_storage'], 3) ?></td>
+<td class="px-6 py-4 text-center font-mono-data text-body-sm"><?= number_format($r['w_processor'], 3) ?></td>
+<td class="px-6 py-4 text-center font-mono-data text-body-sm"><?= number_format($r['w_baterai'], 3) ?></td>
+</tr>
+<?php endforeach; ?>
+<tr class="bg-primary/5 border-t-2 border-primary/20">
+<td class="px-6 py-4 text-body-md font-bold text-primary">Rata-rata Bobot</td>
+<td class="px-6 py-4 text-center font-mono-data text-body-md font-bold text-primary"><?= number_format($avgWeights['harga'], 3) ?></td>
+<td class="px-6 py-4 text-center font-mono-data text-body-md font-bold text-primary"><?= number_format($avgWeights['berat'], 3) ?></td>
+<td class="px-6 py-4 text-center font-mono-data text-body-md font-bold text-primary"><?= number_format($avgWeights['ram'], 3) ?></td>
+<td class="px-6 py-4 text-center font-mono-data text-body-md font-bold text-primary"><?= number_format($avgWeights['storage'], 3) ?></td>
+<td class="px-6 py-4 text-center font-mono-data text-body-md font-bold text-primary"><?= number_format($avgWeights['processor'], 3) ?></td>
+<td class="px-6 py-4 text-center font-mono-data text-body-md font-bold text-primary"><?= number_format($avgWeights['baterai'], 3) ?></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
 
-<!-- ===== TABLE 3B: PENILAIAN LAPTOP (SKOR VIEW - Hidden) ===== -->
-<section class="mb-8 hidden" id="section-penilaian-skor">
-    <h3 class="text-lg font-bold text-slate-800 dark:text-white mb-4 flex items-center gap-2">
-        💻 Penilaian Laptop oleh Responden
-        <span class="text-xs font-medium px-2 py-0.5 rounded-full bg-emerald-100 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-400">Mode: Skor</span>
-    </h3>
-    <div class="bg-white dark:bg-surface-800 rounded-2xl border border-slate-200/60 dark:border-slate-700/50 shadow-sm overflow-hidden">
-        <div class="overflow-x-auto">
-            <table class="w-full text-sm" id="tabel-skor">
-                <thead>
-                    <tr class="bg-slate-50 dark:bg-surface-700/50 text-left">
-                        <th class="px-4 py-3 text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider w-12">No</th>
-                        <th class="px-4 py-3 text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Nama</th>
-                        <th class="px-4 py-3 text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider text-center">Harga</th>
-                        <th class="px-4 py-3 text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider text-center">Berat</th>
-                        <th class="px-4 py-3 text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider text-center">RAM</th>
-                        <th class="px-4 py-3 text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider text-center">Storage</th>
-                        <th class="px-4 py-3 text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider text-center">Processor</th>
-                        <th class="px-4 py-3 text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider text-center">Baterai</th>
-                    </tr>
-                </thead>
-                <tbody id="tbody-skor" class="divide-y divide-slate-100 dark:divide-slate-700/50">
-                </tbody>
-            </table>
-        </div>
-    </div>
-</section>
+<!-- Tab: Penilaian Laptop -->
+<div class="tab-pane hidden" id="tab-penilaian">
+<div class="bg-surface-container-lowest rounded-xl border border-outline-variant shadow-sm overflow-hidden">
+<div class="p-4 border-b border-outline-variant bg-surface-container-low flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+<div class="flex flex-col">
+<div class="flex items-center gap-2">
+<h3 class="font-title-lg text-title-lg text-on-surface">Matrix Penilaian (X<sub>ij</sub>)</h3>
+<span class="material-symbols-outlined text-secondary text-[18px] cursor-help" title="Data teknis yang telah dikonversi ke skala ARAS">info</span>
+</div>
+<div class="flex gap-4 mt-1">
+<div class="flex items-center gap-1.5">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+<span class="text-[11px] font-bold text-secondary uppercase">Cost</span>
+</div>
+<div class="flex items-center gap-1.5">
+<span class="w-2 h-2 rounded-full bg-primary"></span>
+<span class="text-[11px] font-bold text-primary uppercase">Benefit</span>
+</div>
+</div>
+</div>
+<div class="flex items-center bg-surface-container-highest p-1 rounded-lg">
+<button class="px-4 py-1.5 rounded-md text-label-md font-label-md bg-surface-container-lowest text-primary shadow-sm transition-all toggle-btn" data-type="label">Label</button>
+<button class="px-4 py-1.5 rounded-md text-label-md font-label-md text-on-surface-variant hover:text-on-surface transition-all toggle-btn" data-type="score">Skor Numerik</button>
+</div>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left" id="laptop-assessment-table">
+<thead class="bg-surface-container-high border-b border-outline-variant">
+<tr>
+<th class="px-6 py-4 font-label-md text-label-md text-on-surface">Responden / Laptop</th>
+<th class="px-6 py-4 font-label-md text-label-md text-on-surface text-center">
+<div class="flex flex-col items-center">
+<span class="material-symbols-outlined text-secondary" data-icon="payments">payments</span>
+<span class="text-[10px]">C1: Harga</span>
+</div>
+</th>
+<th class="px-6 py-4 font-label-md text-label-md text-on-surface text-center">
+<div class="flex flex-col items-center">
+<span class="material-symbols-outlined text-secondary" data-icon="weight">weight</span>
+<span class="text-[10px]">C2: Berat</span>
+</div>
+</th>
+<th class="px-6 py-4 font-label-md text-label-md text-on-surface text-center">
+<div class="flex flex-col items-center">
+<span class="material-symbols-outlined text-primary" data-icon="memory">memory</span>
+<span class="text-[10px]">C3: RAM</span>
+</div>
+</th>
+<th class="px-6 py-4 font-label-md text-label-md text-on-surface text-center">
+<div class="flex flex-col items-center">
+<span class="material-symbols-outlined text-primary" data-icon="storage">storage</span>
+<span class="text-[10px]">C4: Storage</span>
+</div>
+</th>
+<th class="px-6 py-4 font-label-md text-label-md text-on-surface text-center">
+<div class="flex flex-col items-center">
+<span class="material-symbols-outlined text-primary" data-icon="developer_board">developer_board</span>
+<span class="text-[10px]">C5: Prosesor</span>
+</div>
+</th>
+<th class="px-6 py-4 font-label-md text-label-md text-on-surface text-center">
+<div class="flex flex-col items-center">
+<span class="material-symbols-outlined text-primary" data-icon="battery_full">battery_full</span>
+<span class="text-[10px]">C6: Baterai</span>
+</div>
+</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant">
+<?php foreach($responden as $r): ?>
+<tr class="hover:bg-primary/5 transition-colors">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded bg-surface-container-high flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined text-[20px]">person</span>
+</div>
+<span class="font-semibold text-body-md"><?= esc($r['nama']) ?></span>
+</div>
+</td>
+<td class="px-6 py-4 text-center">
+<span class="cell-label px-2 py-0.5 bg-secondary/10 text-secondary rounded text-[11px] font-bold"><?= esc($r['harga_label']) ?></span>
+<span class="cell-score hidden font-mono-data text-body-sm font-bold text-primary"><?= esc($r['harga_skor']) ?></span>
+</td>
+<td class="px-6 py-4 text-center">
+<span class="cell-label px-2 py-0.5 bg-secondary/10 text-secondary rounded text-[11px] font-bold"><?= esc($r['berat_label']) ?></span>
+<span class="cell-score hidden font-mono-data text-body-sm font-bold text-primary"><?= esc($r['berat_skor']) ?></span>
+</td>
+<td class="px-6 py-4 text-center">
+<span class="cell-label px-2 py-0.5 bg-primary/10 text-primary rounded text-[11px] font-bold"><?= esc($r['ram_label']) ?></span>
+<span class="cell-score hidden font-mono-data text-body-sm font-bold text-primary"><?= esc($r['ram_skor']) ?></span>
+</td>
+<td class="px-6 py-4 text-center">
+<span class="cell-label px-2 py-0.5 bg-primary/10 text-primary rounded text-[11px] font-bold"><?= esc($r['storage_label']) ?></span>
+<span class="cell-score hidden font-mono-data text-body-sm font-bold text-primary"><?= esc($r['storage_skor']) ?></span>
+</td>
+<td class="px-6 py-4 text-center">
+<span class="cell-label px-2 py-0.5 bg-primary/10 text-primary rounded text-[11px] font-bold"><?= esc($r['processor_label']) ?></span>
+<span class="cell-score hidden font-mono-data text-body-sm font-bold text-primary"><?= esc($r['processor_skor']) ?></span>
+</td>
+<td class="px-6 py-4 text-center">
+<span class="cell-label px-2 py-0.5 bg-primary/10 text-primary rounded text-[11px] font-bold"><?= esc($r['baterai_label']) ?></span>
+<span class="cell-score hidden font-mono-data text-body-sm font-bold text-primary"><?= esc($r['baterai_skor']) ?></span>
+</td>
+</tr>
+<?php endforeach; ?>
+</tbody>
+</table>
+</div>
+</div>
+</div>
 
-<!-- ===== SUMMARY STATISTICS ===== -->
-<section class="mb-4">
-    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
-        <div class="bg-white dark:bg-surface-800 rounded-2xl p-5 border border-slate-200/60 dark:border-slate-700/50 shadow-sm text-center">
-            <p class="text-xs text-slate-500 dark:text-slate-400 mb-1">Status Terbanyak</p>
-            <p class="text-lg font-bold text-primary-600 dark:text-primary-400">Mahasiswa</p>
-            <p class="text-xs text-slate-400">18 dari 26 responden (69%)</p>
-        </div>
-        <div class="bg-white dark:bg-surface-800 rounded-2xl p-5 border border-slate-200/60 dark:border-slate-700/50 shadow-sm text-center">
-            <p class="text-xs text-slate-500 dark:text-slate-400 mb-1">Rata-rata Usia</p>
-            <p class="text-lg font-bold text-emerald-600 dark:text-emerald-400">21.8 tahun</p>
-            <p class="text-xs text-slate-400">Range: 18 – 29 tahun</p>
-        </div>
-        <div class="bg-white dark:bg-surface-800 rounded-2xl p-5 border border-slate-200/60 dark:border-slate-700/50 shadow-sm text-center">
-            <p class="text-xs text-slate-500 dark:text-slate-400 mb-1">Kriteria Prioritas Tertinggi</p>
-            <p class="text-lg font-bold text-violet-600 dark:text-violet-400">Processor</p>
-            <p class="text-xs text-slate-400">Rata-rata bobot: 2.73</p>
-        </div>
+</div>
+    <div class="mt-8 mb-4">
+        <?= $pager->links('default', 'default_full') ?>
     </div>
-</section>
+    </div> <!-- end flex-grow -->
+</div> <!-- end flex container -->
+</div>
+</main>
 
-<!-- ===== JAVASCRIPT: DATA & INTERAKTIVITAS ===== -->
 <script>
-document.addEventListener('DOMContentLoaded', function() {
-    // ===== DATA DEMO RESPONDEN =====
-    const responden = [
-        { nama: 'Ahmad Fauzan', usia: 20, status: 'Mahasiswa', bobot: [3,2,3,2,3,2], label: ['>25 juta','2-2.5 kg','16GB','1TB','i7/Ryzen 7','5-7 jam'], skor: [1,3,3,3,3,3] },
-        { nama: 'Budi Santoso', usia: 22, status: 'Mahasiswa', bobot: [2,1,3,2,3,3], label: ['20-25 juta','2.5-3 kg','8GB','512GB','i5/Ryzen 5','3-5 jam'], skor: [2,2,2,2,2,2] },
-        { nama: 'Citra Dewi', usia: 21, status: 'Mahasiswa', bobot: [3,3,2,2,3,1], label: ['15-20 juta','>3 kg','16GB','512GB','i7/Ryzen 7','5-7 jam'], skor: [3,1,3,2,3,3] },
-        { nama: 'Dimas Pratama', usia: 23, status: 'Bekerja', bobot: [1,2,3,3,3,2], label: ['10-15 juta','1.5-2 kg','32GB','1TB','i9/Ryzen 9','7-9 jam'], skor: [4,4,4,3,4,4] },
-        { nama: 'Eka Putri', usia: 19, status: 'Mahasiswa', bobot: [3,2,2,1,3,2], label: ['>25 juta','2-2.5 kg','8GB','512GB','i7/Ryzen 7','3-5 jam'], skor: [1,3,2,2,3,2] },
-        { nama: 'Fajar Hidayat', usia: 24, status: 'Bekerja', bobot: [2,1,3,3,2,3], label: ['15-20 juta','2.5-3 kg','16GB','1TB','i5/Ryzen 5','7-9 jam'], skor: [3,2,3,3,2,4] },
-        { nama: 'Gita Rahmawati', usia: 20, status: 'Mahasiswa', bobot: [2,3,2,2,3,1], label: ['20-25 juta','1.5-2 kg','16GB','512GB','i7/Ryzen 7','3-5 jam'], skor: [2,4,3,2,3,2] },
-        { nama: 'Hendra Wijaya', usia: 21, status: 'Mahasiswa', bobot: [3,1,3,2,3,2], label: ['>25 juta','2-2.5 kg','32GB','1TB','i9/Ryzen 9','5-7 jam'], skor: [1,3,4,3,4,3] },
-        { nama: 'Indah Sari', usia: 22, status: 'Mahasiswa', bobot: [2,2,2,3,2,3], label: ['15-20 juta','2-2.5 kg','8GB','1TB','i5/Ryzen 5','7-9 jam'], skor: [3,3,2,3,2,4] },
-        { nama: 'Joko Susilo', usia: 26, status: 'Bekerja', bobot: [1,2,3,3,3,2], label: ['10-15 juta','1.5-2 kg','32GB','1.5TB','i9/Ryzen 9','5-7 jam'], skor: [4,4,4,4,4,3] },
-        { nama: 'Kartika Ayu', usia: 19, status: 'Mahasiswa', bobot: [3,2,2,1,3,2], label: ['20-25 juta','2.5-3 kg','16GB','512GB','i7/Ryzen 7','3-5 jam'], skor: [2,2,3,2,3,2] },
-        { nama: 'Lukman Hakim', usia: 21, status: 'Mahasiswa', bobot: [2,1,3,2,3,3], label: ['15-20 juta','2-2.5 kg','16GB','1TB','i7/Ryzen 7','7-9 jam'], skor: [3,3,3,3,3,4] },
-        { nama: 'Maya Anggraini', usia: 20, status: 'Mahasiswa', bobot: [3,3,1,2,3,1], label: ['>25 juta','1.5-2 kg','8GB','512GB','i5/Ryzen 5','3-5 jam'], skor: [1,4,2,2,2,2] },
-        { nama: 'Nur Fadilah', usia: 23, status: 'Mahasiswa', bobot: [2,2,3,3,2,2], label: ['20-25 juta','2-2.5 kg','16GB','1TB','i7/Ryzen 7','5-7 jam'], skor: [2,3,3,3,3,3] },
-        { nama: 'Oscar Ramadhan', usia: 25, status: 'Bekerja', bobot: [1,1,3,3,3,3], label: ['10-15 juta','2.5-3 kg','32GB','1.5TB','i9/Ryzen 9','7-9 jam'], skor: [4,2,4,4,4,4] },
-        { nama: 'Putri Wulandari', usia: 20, status: 'Mahasiswa', bobot: [3,2,2,2,3,2], label: ['15-20 juta','2-2.5 kg','16GB','512GB','i7/Ryzen 7','5-7 jam'], skor: [3,3,3,2,3,3] },
-        { nama: 'Qori Ananda', usia: 21, status: 'Mahasiswa', bobot: [2,3,3,1,2,2], label: ['20-25 juta','1.5-2 kg','8GB','1TB','i5/Ryzen 5','5-7 jam'], skor: [2,4,2,3,2,3] },
-        { nama: 'Reza Firmansyah', usia: 22, status: 'Mahasiswa', bobot: [3,1,3,2,3,1], label: ['>25 juta','2.5-3 kg','16GB','1TB','i7/Ryzen 7','3-5 jam'], skor: [1,2,3,3,3,2] },
-        { nama: 'Sinta Maharani', usia: 27, status: 'Bekerja', bobot: [1,2,3,3,3,3], label: ['10-15 juta','2-2.5 kg','32GB','1.5TB','i9/Ryzen 9','>9 jam'], skor: [4,3,4,4,4,5] },
-        { nama: 'Taufik Hidayat', usia: 20, status: 'Mahasiswa', bobot: [2,2,2,2,3,2], label: ['15-20 juta','2-2.5 kg','16GB','512GB','i7/Ryzen 7','5-7 jam'], skor: [3,3,3,2,3,3] },
-        { nama: 'Umar Bakri', usia: 21, status: 'Mahasiswa', bobot: [3,1,3,2,3,2], label: ['20-25 juta','2.5-3 kg','16GB','1TB','i5/Ryzen 5','5-7 jam'], skor: [2,2,3,3,2,3] },
-        { nama: 'Vera Oktaviani', usia: 19, status: 'Mahasiswa', bobot: [2,3,2,1,3,2], label: ['15-20 juta','1.5-2 kg','8GB','512GB','i7/Ryzen 7','3-5 jam'], skor: [3,4,2,2,3,2] },
-        { nama: 'Wahyu Setiawan', usia: 24, status: 'Bekerja', bobot: [1,1,3,3,3,3], label: ['<10 juta','2-2.5 kg','32GB','2TB','i9/Ryzen 9','>9 jam'], skor: [5,3,4,5,4,5] },
-        { nama: 'Xena Permata', usia: 20, status: 'Mahasiswa', bobot: [3,2,2,2,2,2], label: ['20-25 juta','2-2.5 kg','16GB','512GB','i5/Ryzen 5','5-7 jam'], skor: [2,3,3,2,2,3] },
-        { nama: 'Yoga Pratama', usia: 29, status: 'Lainnya', bobot: [2,2,3,3,3,2], label: ['15-20 juta','2.5-3 kg','16GB','1TB','i7/Ryzen 7','5-7 jam'], skor: [3,2,3,3,3,3] },
-        { nama: 'Zahra Safitri', usia: 18, status: 'Lainnya', bobot: [3,3,1,1,3,1], label: ['>25 juta','1.5-2 kg','8GB','256GB','i5/Ryzen 5','<3 jam'], skor: [1,4,2,1,2,1] },
-    ];
+    // Tab switching logic
+    const tabs = document.querySelectorAll('.active-tab-trigger');
+    const panes = document.querySelectorAll('.tab-pane');
 
-    const statusColors = { 'Mahasiswa': 'bg-indigo-100 dark:bg-indigo-900/40 text-indigo-700 dark:text-indigo-400', 'Bekerja': 'bg-emerald-100 dark:bg-emerald-900/40 text-emerald-700 dark:text-emerald-400', 'Lainnya': 'bg-amber-100 dark:bg-amber-900/40 text-amber-700 dark:text-amber-400' };
-    const bobotColors = { 1: 'bg-red-100 dark:bg-red-900/40 text-red-700 dark:text-red-400', 2: 'bg-amber-100 dark:bg-amber-900/40 text-amber-700 dark:text-amber-400', 3: 'bg-emerald-100 dark:bg-emerald-900/40 text-emerald-700 dark:text-emerald-400' };
-    const kriteria = ['Harga', 'Berat', 'RAM', 'Storage', 'Processor', 'Baterai'];
+    tabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+            const target = tab.getAttribute('data-target');
+            
+            tabs.forEach(t => {
+                t.classList.remove('border-primary', 'text-primary');
+                t.classList.add('border-transparent', 'text-on-surface-variant');
+            });
+            tab.classList.remove('border-transparent', 'text-on-surface-variant');
+            tab.classList.add('border-primary', 'text-primary');
 
-    // ===== RENDER FUNCTIONS =====
-    function renderIdentitas(data) {
-        const tbody = document.getElementById('tbody-identitas');
-        tbody.innerHTML = data.map((r, i) => `
-            <tr class="hover:bg-slate-50 dark:hover:bg-surface-700/30 transition-colors" data-nama="${r.nama.toLowerCase()}" data-status="${r.status}" data-usia="${r.usia}">
-                <td class="px-4 py-3 text-slate-500 dark:text-slate-400 font-medium">${i + 1}</td>
-                <td class="px-4 py-3 font-semibold text-slate-800 dark:text-white">${r.nama}</td>
-                <td class="px-4 py-3 text-slate-600 dark:text-slate-300">${r.usia}</td>
-                <td class="px-4 py-3"><span class="px-2.5 py-1 rounded-full text-xs font-semibold ${statusColors[r.status]}">${r.status}</span></td>
-            </tr>
-        `).join('');
-    }
-
-    function renderBobot(data) {
-        const tbody = document.getElementById('tbody-bobot');
-        tbody.innerHTML = data.map((r, i) => `
-            <tr class="hover:bg-slate-50 dark:hover:bg-surface-700/30 transition-colors">
-                <td class="px-4 py-3 text-slate-500 dark:text-slate-400 font-medium">${i + 1}</td>
-                <td class="px-4 py-3 font-semibold text-slate-800 dark:text-white">${r.nama}</td>
-                ${r.bobot.map(b => `<td class="px-4 py-3 text-center"><span class="inline-flex w-8 h-8 items-center justify-center rounded-lg text-xs font-bold ${bobotColors[b]}">${b}</span></td>`).join('')}
-            </tr>
-        `).join('');
-    }
-
-    function renderLabel(data) {
-        const tbody = document.getElementById('tbody-label');
-        tbody.innerHTML = data.map((r, i) => `
-            <tr class="hover:bg-slate-50 dark:hover:bg-surface-700/30 transition-colors">
-                <td class="px-4 py-3 text-slate-500 dark:text-slate-400 font-medium">${i + 1}</td>
-                <td class="px-4 py-3 font-semibold text-slate-800 dark:text-white">${r.nama}</td>
-                ${r.label.map(l => `<td class="px-4 py-3 text-xs text-slate-600 dark:text-slate-300">${l}</td>`).join('')}
-            </tr>
-        `).join('');
-    }
-
-    function renderSkor(data) {
-        const tbody = document.getElementById('tbody-skor');
-        const skorColors = { 1: 'bg-red-100 dark:bg-red-900/40 text-red-700 dark:text-red-400', 2: 'bg-orange-100 dark:bg-orange-900/40 text-orange-700 dark:text-orange-400', 3: 'bg-amber-100 dark:bg-amber-900/40 text-amber-700 dark:text-amber-400', 4: 'bg-lime-100 dark:bg-lime-900/40 text-lime-700 dark:text-lime-400', 5: 'bg-emerald-100 dark:bg-emerald-900/40 text-emerald-700 dark:text-emerald-400' };
-        tbody.innerHTML = data.map((r, i) => `
-            <tr class="hover:bg-slate-50 dark:hover:bg-surface-700/30 transition-colors">
-                <td class="px-4 py-3 text-slate-500 dark:text-slate-400 font-medium">${i + 1}</td>
-                <td class="px-4 py-3 font-semibold text-slate-800 dark:text-white">${r.nama}</td>
-                ${r.skor.map(s => `<td class="px-4 py-3 text-center"><span class="inline-flex w-8 h-8 items-center justify-center rounded-lg text-xs font-bold ${skorColors[s]}">${s}</span></td>`).join('')}
-            </tr>
-        `).join('');
-    }
-
-    // Initial render
-    renderIdentitas(responden);
-    renderBobot(responden);
-    renderLabel(responden);
-    renderSkor(responden);
-
-    // ===== FILTER & SEARCH =====
-    function filterData() {
-        const search = document.getElementById('search-nama').value.toLowerCase();
-        const status = document.getElementById('filter-status').value;
-        const usia = document.getElementById('filter-usia').value;
-
-        let filtered = responden.filter(r => {
-            if (search && !r.nama.toLowerCase().includes(search)) return false;
-            if (status && r.status !== status) return false;
-            if (usia === '18-21' && (r.usia < 18 || r.usia > 21)) return false;
-            if (usia === '22-25' && (r.usia < 22 || r.usia > 25)) return false;
-            if (usia === '26+' && r.usia < 26) return false;
-            return true;
+            panes.forEach(pane => {
+                if (pane.id === target) {
+                    pane.classList.remove('hidden');
+                    pane.classList.add('block');
+                } else {
+                    pane.classList.remove('block');
+                    pane.classList.add('hidden');
+                }
+            });
         });
-
-        renderIdentitas(filtered);
-        renderBobot(filtered);
-        renderLabel(filtered);
-        renderSkor(filtered);
-    }
-
-    document.getElementById('search-nama').addEventListener('input', filterData);
-    document.getElementById('filter-status').addEventListener('change', filterData);
-    document.getElementById('filter-usia').addEventListener('change', filterData);
-
-    // ===== TOGGLE LABEL/SKOR =====
-    let showSkor = false;
-    document.getElementById('toggle-label-skor').addEventListener('click', function() {
-        showSkor = !showSkor;
-        const knob = document.getElementById('toggle-knob');
-        const labelSection = document.getElementById('section-penilaian-label');
-        const skorSection = document.getElementById('section-penilaian-skor');
-        const labelText = document.getElementById('label-mode-text');
-        const skorText = document.getElementById('skor-mode-text');
-
-        if (showSkor) {
-            knob.style.transform = 'translateX(1.25rem)';
-            labelSection.classList.add('hidden');
-            skorSection.classList.remove('hidden');
-            labelText.classList.remove('text-primary-600', 'dark:text-primary-400', 'font-semibold');
-            labelText.classList.add('text-slate-400', 'font-medium');
-            skorText.classList.remove('text-slate-400', 'font-medium');
-            skorText.classList.add('text-emerald-600', 'dark:text-emerald-400', 'font-semibold');
-        } else {
-            knob.style.transform = 'translateX(0)';
-            labelSection.classList.remove('hidden');
-            skorSection.classList.add('hidden');
-            skorText.classList.remove('text-emerald-600', 'dark:text-emerald-400', 'font-semibold');
-            skorText.classList.add('text-slate-400', 'font-medium');
-            labelText.classList.remove('text-slate-400', 'font-medium');
-            labelText.classList.add('text-primary-600', 'dark:text-primary-400', 'font-semibold');
-        }
     });
-});
+
+    // Toggle Label/Score
+    const toggleBtns = document.querySelectorAll('.toggle-btn');
+    const labels = document.querySelectorAll('.cell-label');
+    const scores = document.querySelectorAll('.cell-score');
+
+    toggleBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const type = btn.getAttribute('data-type');
+            
+            toggleBtns.forEach(b => {
+                b.classList.remove('bg-surface-container-lowest', 'text-primary', 'shadow-sm');
+                b.classList.add('text-on-surface-variant');
+            });
+            btn.classList.add('bg-surface-container-lowest', 'text-primary', 'shadow-sm');
+            btn.classList.remove('text-on-surface-variant');
+
+            if (type === 'label') {
+                labels.forEach(l => l.classList.remove('hidden'));
+                scores.forEach(s => s.classList.add('hidden'));
+            } else {
+                labels.forEach(l => l.classList.add('hidden'));
+                scores.forEach(s => s.classList.remove('hidden'));
+            }
+        });
+    });
 </script>
+<?= $this->endSection() ?>

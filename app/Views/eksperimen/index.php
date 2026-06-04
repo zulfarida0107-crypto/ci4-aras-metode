@@ -6,6 +6,9 @@
      ============================================ -->
 
 <!-- ===== PAGE HEADER ===== -->
+<?= $this->extend('layout/main') ?>
+<?= $this->section('content') ?>
+<main class="flex-1 overflow-y-auto bg-background p-6">
 <section class="mb-6 animate-fade-in">
     <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4">
         <div>
@@ -259,3 +262,5 @@
 
 <!-- Toast Notification Container -->
 <div id="toast-container" class="fixed bottom-6 right-6 z-50 flex flex-col gap-2"></div>
+</main>
+<?= $this->endSection() ?>

@@ -16,29 +16,40 @@ class RespondenController extends BaseController
         $status = $this->request->getGet('status'); // array
         $usia = $this->request->getGet('usia');
 
-        $vRespondenModel->select('v_responden_lengkap.*, responden.created_at');
-        $vRespondenModel->join('responden', 'responden.id = v_responden_lengkap.id');
-        
-        if (!empty($search)) {
-            $vRespondenModel->like('v_responden_lengkap.nama', $search);
-        }
-        if (!empty($status) && is_array($status)) {
-            $vRespondenModel->whereIn('v_responden_lengkap.status', $status);
-        }
-        if (!empty($usia)) {
-            if ($usia == '18-22') {
-                $vRespondenModel->where('v_responden_lengkap.usia >=', 18)->where('v_responden_lengkap.usia <=', 22);
-            } elseif ($usia == '23-30') {
-                $vRespondenModel->where('v_responden_lengkap.usia >=', 23)->where('v_responden_lengkap.usia <=', 30);
-            } elseif ($usia == '>30') {
-                $vRespondenModel->where('v_responden_lengkap.usia >', 30);
+        $buildQuery = function() use ($search, $status, $usia) {
+            $model = new \App\Models\VRespondenLengkapModel();
+            $model->select('v_responden_lengkap.*, responden.created_at');
+            $model->join('responden', 'responden.id = v_responden_lengkap.id');
+            
+            if (!empty($search)) {
+                $model->like('v_responden_lengkap.nama', $search);
             }
-        }
-        $vRespondenModel->orderBy('v_responden_lengkap.id', 'ASC');
+            if (!empty($status) && is_array($status)) {
+                $model->whereIn('v_responden_lengkap.status', $status);
+            }
+            if (!empty($usia)) {
+                if ($usia == '18-22') {
+                    $model->where('v_responden_lengkap.usia >=', 18)->where('v_responden_lengkap.usia <=', 22);
+                } elseif ($usia == '23-30') {
+                    $model->where('v_responden_lengkap.usia >=', 23)->where('v_responden_lengkap.usia <=', 30);
+                } elseif ($usia == '>30') {
+                    $model->where('v_responden_lengkap.usia >', 30);
+                }
+            }
+            $model->orderBy('v_responden_lengkap.id', 'ASC');
+            return $model;
+        };
+
+        $modelIdentitas = $buildQuery();
+        $modelBobot = $buildQuery();
+        $modelPenilaian = $buildQuery();
 
         // Paginate
-        $responden = $vRespondenModel->paginate(10);
-        $pager = $vRespondenModel->pager;
+        $respondenIdentitas = $modelIdentitas->paginate(10, 'identitas');
+        $respondenBobot = $modelBobot->paginate(10, 'bobot');
+        $respondenPenilaian = $modelPenilaian->paginate(10, 'penilaian');
+        
+        $pager = \Config\Services::pager();
 
         // 2. Global averages for all data (not just paginated)
         $allBobot = $bobotModel->findAll();
@@ -63,21 +74,33 @@ class RespondenController extends BaseController
         }
         
         // Normalize each respondent's individual weights for view
-        foreach ($responden as &$r) {
-            $r_sum = $r['harga'] + $r['berat'] + $r['ram'] + $r['storage'] + $r['processor'] + $r['baterai'];
-            $r['w_harga'] = $r_sum > 0 ? ($r['harga'] / $r_sum) : 0;
-            $r['w_berat'] = $r_sum > 0 ? ($r['berat'] / $r_sum) : 0;
-            $r['w_ram'] = $r_sum > 0 ? ($r['ram'] / $r_sum) : 0;
-            $r['w_storage'] = $r_sum > 0 ? ($r['storage'] / $r_sum) : 0;
-            $r['w_processor'] = $r_sum > 0 ? ($r['processor'] / $r_sum) : 0;
-            $r['w_baterai'] = $r_sum > 0 ? ($r['baterai'] / $r_sum) : 0;
-        }
+        $normalizeWeights = function(&$array) {
+            foreach ($array as &$r) {
+                $r_sum = $r['harga'] + $r['berat'] + $r['ram'] + $r['storage'] + $r['processor'] + $r['baterai'];
+                $r['w_harga'] = $r_sum > 0 ? ($r['harga'] / $r_sum) : 0;
+                $r['w_berat'] = $r_sum > 0 ? ($r['berat'] / $r_sum) : 0;
+                $r['w_ram'] = $r_sum > 0 ? ($r['ram'] / $r_sum) : 0;
+                $r['w_storage'] = $r_sum > 0 ? ($r['storage'] / $r_sum) : 0;
+                $r['w_processor'] = $r_sum > 0 ? ($r['processor'] / $r_sum) : 0;
+                $r['w_baterai'] = $r_sum > 0 ? ($r['baterai'] / $r_sum) : 0;
+            }
+        };
+
+        $normalizeWeights($respondenIdentitas);
+        $normalizeWeights($respondenBobot);
+        $normalizeWeights($respondenPenilaian);
 
         $data = [
             'activeTab' => 'responden',
             'pageTitle' => 'Data Responden',
-            'responden' => $responden,
+            'respondenIdentitas' => $respondenIdentitas,
+            'respondenBobot' => $respondenBobot,
+            'respondenPenilaian' => $respondenPenilaian,
             'pager'     => $pager,
+            'currentPageIdentitas' => $pager->getCurrentPage('identitas'),
+            'currentPageBobot' => $pager->getCurrentPage('bobot'),
+            'currentPagePenilaian' => $pager->getCurrentPage('penilaian'),
+            'perPage'   => 10,
             'avgWeights' => $avgWeights,
             'totalResponden' => $totalRespondenAll
         ];

@@ -1,28 +1,6 @@
 # Data Hasil Survei Laptop Gaming
 
-Total Responden: 26 orang
-
-### Responden 1: h (d, 7 tahun)
-**Tingkat Kepentingan Fitur (Skala 1-3):**
-- Harga: 2 | Berat: 3 | RAM: 3 | Penyimpanan: 3 | Prosesor: 1 | Baterai: 2
-**Spesifikasi Laptop Yang Dipilih/Dimiliki:**
-- Harga: >25 juta
-- Berat: ≤2 kg
-- RAM: ≤ 8 GB
-- Penyimpanan: 512 GB
-- Prosesor: Core i5, Ryzen 5
-- Baterai: ≥ 6 jam
-
-### Responden 2: u (s, x tahun)
-**Tingkat Kepentingan Fitur (Skala 1-3):**
-- Harga: 1 | Berat: 2 | RAM: 3 | Penyimpanan: 1 | Prosesor: 1 | Baterai: 1
-**Spesifikasi Laptop Yang Dipilih/Dimiliki:**
-- Harga: >25 juta
-- Berat: >2,5 kg
-- RAM: ≤ 8 GB
-- Penyimpanan: ≥ 1 TB
-- Prosesor: Core i9, Ryzen 9
-- Baterai: 3 – 5 jam
+Total Responden: 24 orang
 
 ### Responden 3: Raihan Noor Abimanyu  (Mahasiswa, 20 tahun)
 **Tingkat Kepentingan Fitur (Skala 1-3):**

@@ -1,5 +1,8 @@
+<!-- Mobile Overlay -->
+<div id="sidebar-overlay" class="fixed inset-0 bg-on-background/50 z-30 hidden lg:hidden transition-opacity opacity-0"></div>
+
 <!-- Global Sidebar (240px, fixed) -->
-<aside class="fixed left-0 top-[68px] bottom-0 w-[240px] bg-white border-r border-outline-variant hidden lg:flex flex-col py-6 z-40">
+<aside id="main-sidebar" class="fixed left-0 top-[68px] bottom-0 w-[240px] bg-white border-r border-outline-variant flex flex-col py-6 z-40 transform -translate-x-full lg:translate-x-0 transition-transform duration-300 ease-in-out">
 <div class="px-6 mb-8"><div class="flex items-center gap-3">
     <div class="w-8 h-8 bg-primary rounded-lg flex items-center justify-center text-white">
         <span class="material-symbols-outlined text-xl">query_stats</span>

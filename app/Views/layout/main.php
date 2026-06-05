@@ -91,7 +91,7 @@
     <?= $this->include('layout/sidebar') ?>
 
     <!-- Main Content Area -->
-    <div class="flex-grow pt-[68px] pb-[52px] lg:ml-[240px] flex flex-col h-screen">
+    <div class="flex-grow pt-[68px] pb-[52px] lg:ml-[240px] flex flex-col min-h-screen">
         <?= $this->renderSection('content') ?>
     </div>
 
@@ -100,6 +100,30 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
+            // Sidebar Mobile Toggle
+            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+            const sidebar = document.getElementById('main-sidebar');
+            const overlay = document.getElementById('sidebar-overlay');
+
+            if (mobileMenuBtn && sidebar && overlay) {
+                function toggleSidebar() {
+                    const isClosed = sidebar.classList.contains('-translate-x-full');
+                    if (isClosed) {
+                        sidebar.classList.remove('-translate-x-full');
+                        overlay.classList.remove('hidden');
+                        // Small delay for transition
+                        setTimeout(() => overlay.classList.remove('opacity-0'), 10);
+                    } else {
+                        sidebar.classList.add('-translate-x-full');
+                        overlay.classList.add('opacity-0');
+                        setTimeout(() => overlay.classList.add('hidden'), 300);
+                    }
+                }
+
+                mobileMenuBtn.addEventListener('click', toggleSidebar);
+                overlay.addEventListener('click', toggleSidebar);
+            }
+
             const bars = document.querySelectorAll('.ki-progress-gradient, .bg-benefit, .bg-cost, .bg-outline, .bg-outline-variant');
             bars.forEach(bar => {
                 const finalWidth = bar.style.width;

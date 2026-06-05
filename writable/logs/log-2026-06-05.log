@@ -26,3 +26,16 @@ in SYSTEMPATH\Database\MySQLi\Connection.php on line 300.
 10 SYSTEMPATH\Boot.php(442): CodeIgniter\CLI\Console->run()
 11 SYSTEMPATH\Boot.php(166): CodeIgniter\Boot::runCommand(Object(CodeIgniter\CLI\Console))
 12 ROOTPATH\spark(87): CodeIgniter\Boot::bootSpark(Object(Config\Paths))
+CRITICAL - 2026-06-05 02:47:10 --> CodeIgniter\View\Exceptions\ViewException: Invalid file: "aras/index.php"
+[Method: GET, Route: aras]
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 39.
+ 1 SYSTEMPATH\View\View.php(228): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('aras/index.php')
+ 2 SYSTEMPATH\Common.php(1254): CodeIgniter\View\View->render('aras/index', [], true)
+ 3 APPPATH\Controllers\ArasController.php(16): view('aras/index', [...])
+ 4 SYSTEMPATH\CodeIgniter.php(974): App\Controllers\ArasController->index()
+ 5 SYSTEMPATH\CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\ArasController))
+ 6 SYSTEMPATH\CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 9 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+10 SYSTEMPATH\rewrite.php(44): require_once('C:\\xampp\\htdocs\\ci4-aras-metode\\public\\index.php')

@@ -10,8 +10,8 @@
 </header>
 <div class="flex flex-col lg:flex-row gap-8">
     <!-- Filter Sidebar -->
-    <aside class="w-full lg:w-72 flex-shrink-0">
-        <div class="bg-surface-container-low border border-outline-variant rounded-2xl p-6 sticky top-24">
+    <aside class="w-full lg:w-72 flex-shrink-0 self-start sticky top-[92px]">
+        <div class="bg-surface-container-low border border-outline-variant rounded-2xl p-6 max-h-[calc(100vh-120px)] overflow-y-auto">
             <div class="flex items-center justify-between mb-6">
                 <h3 class="font-bold text-on-surface text-lg">Filter Data</h3>
                 <span class="material-symbols-outlined text-primary">filter_list</span>
@@ -104,7 +104,7 @@
 </tr>
 </thead>
 <tbody class="divide-y divide-outline-variant">
-<?php $no=1; foreach($responden as $r): ?>
+<?php $no = 1 + ($currentPageIdentitas - 1) * $perPage; foreach($respondenIdentitas as $r): ?>
 <?php 
     $statusColor = 'bg-primary text-on-primary';
     if ($r['status'] == 'Profesional' || $r['status'] == 'Bekerja') $statusColor = 'bg-outline text-white';
@@ -121,8 +121,9 @@
 </tbody>
 </table>
 </div>
-<div class="p-4 border-t border-outline-variant flex items-center justify-between bg-surface-container-low">
-<span class="text-body-sm text-on-surface-variant">Menampilkan <?= count($responden) ?> dari <?= $totalResponden ?> responden</span>
+<div class="p-4 border-t border-outline-variant bg-surface-container-low flex flex-col sm:flex-row items-center justify-between gap-4">
+    <span class="text-sm font-medium text-on-surface-variant">Menampilkan <?= count($respondenIdentitas) ?> dari <?= $totalResponden ?> responden</span>
+    <?= $pager->links('identitas', 'custom_pager') ?>
 </div>
 </div>
 </div>
@@ -157,7 +158,7 @@
 </tr>
 </thead>
 <tbody class="divide-y divide-outline-variant">
-<?php foreach($responden as $r): ?>
+<?php foreach($respondenBobot as $r): ?>
 <tr class="hover:bg-primary/5 transition-colors">
 <td class="px-6 py-4 text-body-sm font-medium"><?= esc($r['nama']) ?></td>
 <td class="px-6 py-4 text-center font-mono-data text-body-sm"><?= number_format($r['w_harga'], 3) ?></td>
@@ -180,6 +181,10 @@
 </tbody>
 </table>
 </div>
+<div class="p-4 border-t border-outline-variant bg-surface-container-low flex flex-col sm:flex-row items-center justify-between gap-4">
+    <span class="text-sm font-medium text-on-surface-variant">Menampilkan <?= count($respondenBobot) ?> dari <?= $totalResponden ?> responden</span>
+    <?= $pager->links('bobot', 'custom_pager') ?>
+</div>
 </div>
 </div>
 
@@ -192,16 +197,7 @@
 <h3 class="font-title-lg text-title-lg text-on-surface">Matrix Penilaian (X<sub>ij</sub>)</h3>
 <span class="material-symbols-outlined text-secondary text-[18px] cursor-help" title="Data teknis yang telah dikonversi ke skala ARAS">info</span>
 </div>
-<div class="flex gap-4 mt-1">
-<div class="flex items-center gap-1.5">
-<span class="w-2 h-2 rounded-full bg-secondary"></span>
-<span class="text-[11px] font-bold text-secondary uppercase">Cost</span>
-</div>
-<div class="flex items-center gap-1.5">
-<span class="w-2 h-2 rounded-full bg-primary"></span>
-<span class="text-[11px] font-bold text-primary uppercase">Benefit</span>
-</div>
-</div>
+<!-- Removed legend -->
 </div>
 <div class="flex items-center bg-surface-container-highest p-1 rounded-lg">
 <button class="px-4 py-1.5 rounded-md text-label-md font-label-md bg-surface-container-lowest text-primary shadow-sm transition-all toggle-btn" data-type="label">Label</button>
@@ -215,13 +211,13 @@
 <th class="px-6 py-4 font-label-md text-label-md text-on-surface">Responden / Laptop</th>
 <th class="px-6 py-4 font-label-md text-label-md text-on-surface text-center">
 <div class="flex flex-col items-center">
-<span class="material-symbols-outlined text-secondary" data-icon="payments">payments</span>
+<span class="material-symbols-outlined text-primary" data-icon="payments">payments</span>
 <span class="text-[10px]">C1: Harga</span>
 </div>
 </th>
 <th class="px-6 py-4 font-label-md text-label-md text-on-surface text-center">
 <div class="flex flex-col items-center">
-<span class="material-symbols-outlined text-secondary" data-icon="weight">weight</span>
+<span class="material-symbols-outlined text-primary" data-icon="weight">weight</span>
 <span class="text-[10px]">C2: Berat</span>
 </div>
 </th>
@@ -252,7 +248,7 @@
 </tr>
 </thead>
 <tbody class="divide-y divide-outline-variant">
-<?php foreach($responden as $r): ?>
+<?php foreach($respondenPenilaian as $r): ?>
 <tr class="hover:bg-primary/5 transition-colors">
 <td class="px-6 py-4">
 <div class="flex items-center gap-3">
@@ -263,11 +259,11 @@
 </div>
 </td>
 <td class="px-6 py-4 text-center">
-<span class="cell-label px-2 py-0.5 bg-secondary/10 text-secondary rounded text-[11px] font-bold"><?= esc($r['harga_label']) ?></span>
+<span class="cell-label px-2 py-0.5 bg-primary/10 text-primary rounded text-[11px] font-bold"><?= esc($r['harga_label']) ?></span>
 <span class="cell-score hidden font-mono-data text-body-sm font-bold text-primary"><?= esc($r['harga_skor']) ?></span>
 </td>
 <td class="px-6 py-4 text-center">
-<span class="cell-label px-2 py-0.5 bg-secondary/10 text-secondary rounded text-[11px] font-bold"><?= esc($r['berat_label']) ?></span>
+<span class="cell-label px-2 py-0.5 bg-primary/10 text-primary rounded text-[11px] font-bold"><?= esc($r['berat_label']) ?></span>
 <span class="cell-score hidden font-mono-data text-body-sm font-bold text-primary"><?= esc($r['berat_skor']) ?></span>
 </td>
 <td class="px-6 py-4 text-center">
@@ -291,13 +287,14 @@
 </tbody>
 </table>
 </div>
+<div class="p-4 border-t border-outline-variant bg-surface-container-low flex flex-col sm:flex-row items-center justify-between gap-4">
+    <span class="text-sm font-medium text-on-surface-variant">Menampilkan <?= count($respondenPenilaian) ?> dari <?= $totalResponden ?> responden</span>
+    <?= $pager->links('penilaian', 'custom_pager') ?>
+</div>
 </div>
 </div>
 
 </div>
-    <div class="mt-8 mb-4">
-        <?= $pager->links('default', 'default_full') ?>
-    </div>
     </div> <!-- end flex-grow -->
 </div> <!-- end flex container -->
 </div>
@@ -308,10 +305,37 @@
     const tabs = document.querySelectorAll('.active-tab-trigger');
     const panes = document.querySelectorAll('.tab-pane');
 
+    // Restore active tab from sessionStorage if available
+    const activeTabId = sessionStorage.getItem('activeRespondenTab');
+    if (activeTabId) {
+        tabs.forEach(t => {
+            if (t.getAttribute('data-target') === activeTabId) {
+                t.classList.remove('border-transparent', 'text-on-surface-variant');
+                t.classList.add('border-primary', 'text-primary');
+            } else {
+                t.classList.add('border-transparent', 'text-on-surface-variant');
+                t.classList.remove('border-primary', 'text-primary');
+            }
+        });
+        panes.forEach(p => {
+            if (p.id === activeTabId) {
+                p.classList.add('block');
+                p.classList.remove('hidden');
+            } else {
+                p.classList.add('hidden');
+                p.classList.remove('block');
+            }
+        });
+    }
+
     tabs.forEach(tab => {
         tab.addEventListener('click', () => {
             const target = tab.getAttribute('data-target');
             
+            // Save to sessionStorage
+            sessionStorage.setItem('activeRespondenTab', target);
+
+            // Update tab styles
             tabs.forEach(t => {
                 t.classList.remove('border-primary', 'text-primary');
                 t.classList.add('border-transparent', 'text-on-surface-variant');

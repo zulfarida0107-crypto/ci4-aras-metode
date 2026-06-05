@@ -1,7 +1,12 @@
 <!-- Global Header (68px, fixed) -->
 <header class="fixed top-0 left-0 right-0 z-50 h-[68px] bg-white border-b border-outline-variant px-8 flex items-center justify-between">
+<div class="flex items-center gap-4">
+<button id="mobile-menu-btn" class="lg:hidden text-on-surface-variant hover:text-primary transition-colors flex items-center">
+<span class="material-symbols-outlined text-2xl">menu</span>
+</button>
 <div class="flex items-center gap-10">
 <span class="text-xl font-extrabold text-primary tracking-tight">SPK ARAS Laptop Gaming</span>
+</div>
 </div>
 <div class="flex items-center gap-5">
 <button class="text-on-surface-variant hover:text-primary transition-colors flex items-center">

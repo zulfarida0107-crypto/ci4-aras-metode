@@ -122,7 +122,7 @@ endforeach;
 </div>
 <!-- ARAS Flow: 8-stage horizontal infographic -->
 <div class="bg-white p-6 rounded-2xl border border-outline-variant shadow-sm mb-6 overflow-x-auto">
-<h3 class="text-sm font-bold text-on-surface-variant uppercase tracking-wider mb-8 text-center">ARAS Decision Matrix Lifecycle</h3>
+<h3 class="text-sm font-bold text-on-surface-variant uppercase tracking-wider mb-8 text-center">Siklus Hidup Matriks Keputusan ARAS</h3>
 <div class="flex items-center justify-between min-w-[800px] px-4 relative">
 <div class="absolute top-6 left-10 right-10 h-0.5 bg-outline-variant/30 -z-10"></div>
 <!-- Step 1 -->
@@ -130,63 +130,63 @@ endforeach;
 <div class="w-12 h-12 rounded-full bg-surface-container flex items-center justify-center text-primary border-2 border-white shadow-sm">
 <span class="material-symbols-outlined text-lg">data_table</span>
 </div>
-<span class="text-[10px] font-bold text-on-surface text-center">Decision Matrix</span>
+<span class="text-[10px] font-bold text-on-surface text-center">Matriks Keputusan</span>
 </div>
 <!-- Step 2 -->
 <div class="flex flex-col items-center gap-3">
 <div class="w-12 h-12 rounded-full bg-surface-container flex items-center justify-center text-primary border-2 border-white shadow-sm">
 <span class="material-symbols-outlined text-lg">grade</span>
 </div>
-<span class="text-[10px] font-bold text-on-surface text-center">Optimal Solution</span>
+<span class="text-[10px] font-bold text-on-surface text-center">Solusi Optimal</span>
 </div>
 <!-- Step 3 -->
 <div class="flex flex-col items-center gap-3">
 <div class="w-12 h-12 rounded-full bg-surface-container flex items-center justify-center text-primary border-2 border-white shadow-sm">
 <span class="material-symbols-outlined text-lg">rule</span>
 </div>
-<span class="text-[10px] font-bold text-on-surface text-center">Normalization</span>
+<span class="text-[10px] font-bold text-on-surface text-center">Normalisasi</span>
 </div>
 <!-- Step 4 -->
 <div class="flex flex-col items-center gap-3">
 <div class="w-12 h-12 rounded-full bg-surface-container flex items-center justify-center text-primary border-2 border-white shadow-sm">
 <span class="material-symbols-outlined text-lg">balance</span>
 </div>
-<span class="text-[10px] font-bold text-on-surface text-center">Weighting</span>
+<span class="text-[10px] font-bold text-on-surface text-center">Pembobotan</span>
 </div>
 <!-- Step 5 -->
 <div class="flex flex-col items-center gap-3">
 <div class="w-12 h-12 rounded-full bg-surface-container flex items-center justify-center text-primary border-2 border-white shadow-sm">
 <span class="material-symbols-outlined text-lg">functions</span>
 </div>
-<span class="text-[10px] font-bold text-on-surface text-center">Optimality Fn</span>
+<span class="text-[10px] font-bold text-on-surface text-center">Fungsi Optimalitas</span>
 </div>
 <!-- Step 6 -->
 <div class="flex flex-col items-center gap-3">
 <div class="w-12 h-12 rounded-full bg-surface-container flex items-center justify-center text-primary border-2 border-white shadow-sm">
 <span class="material-symbols-outlined text-lg">analytics</span>
 </div>
-<span class="text-[10px] font-bold text-on-surface text-center">Degree of Utility</span>
+<span class="text-[10px] font-bold text-on-surface text-center">Tingkat Utilitas</span>
 </div>
 <!-- Step 7 -->
 <div class="flex flex-col items-center gap-3">
 <div class="w-12 h-12 rounded-full bg-surface-container flex items-center justify-center text-primary border-2 border-white shadow-sm">
 <span class="material-symbols-outlined text-lg">format_list_numbered</span>
 </div>
-<span class="text-[10px] font-bold text-on-surface text-center">Final Ranking</span>
+<span class="text-[10px] font-bold text-on-surface text-center">Peringkat Akhir</span>
 </div>
 <!-- Step 8 -->
 <div class="flex flex-col items-center gap-3">
 <div class="w-12 h-12 rounded-full bg-benefit/20 flex items-center justify-center text-benefit border-2 border-benefit/20 shadow-sm">
 <span class="material-symbols-outlined text-lg">verified</span>
 </div>
-<span class="text-[10px] font-bold text-benefit text-center">Best Selection</span>
+<span class="text-[10px] font-bold text-benefit text-center">Pilihan Terbaik</span>
 </div>
 </div>
 </div>
 <!-- Top 3 Ranking Section -->
 <div class="mb-8">
 <div class="flex items-center justify-between mb-6">
-<h3 class="text-xl font-extrabold text-on-surface">Top 3 Peringkat (ARAS)</h3>
+<h3 class="text-xl font-extrabold text-on-surface">3 Peringkat Teratas (ARAS)</h3>
 <a class="text-sm font-bold text-primary hover:underline flex items-center gap-1" href="<?= base_url('aras') ?>">
                     Lihat Hasil Lengkap <span class="material-symbols-outlined text-base">chevron_right</span>
 </a>
@@ -199,7 +199,7 @@ endforeach;
 <div class="flex items-center gap-3 mb-1">
 <h4 class="text-lg font-bold text-on-surface"><?= esc($laptop['nama']) ?></h4>
 <?php if($laptop['is_optimal']): ?>
-<span class="bg-benefit/10 text-benefit text-[10px] font-black px-2 py-0.5 rounded-full uppercase">Optimal Selection</span>
+<span class="bg-benefit/10 text-benefit text-[10px] font-black px-2 py-0.5 rounded-full uppercase">Pilihan Optimal</span>
 <?php endif; ?>
 </div>
 <p class="text-on-surface-variant text-sm mb-4"><?= esc($laptop['spek']) ?></p>

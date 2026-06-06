@@ -1,14 +1,12 @@
-<!-- Global Footer (52px, fixed) -->
-<footer class="fixed bottom-0 left-0 lg:left-[240px] right-0 h-[52px] bg-surface-container border-t border-outline-variant flex items-center justify-between px-8 z-40">
-<div class="flex items-center gap-2">
-<span class="text-xs font-extrabold text-on-surface">SPK ARAS Laptop Gaming</span>
-<span class="text-[10px] text-on-surface-variant font-medium border-l border-outline-variant/30 pl-2">© <?= date('Y') ?> SQA-v1.0 • ARAS Analytical Framework</span>
+<!-- Footer -->
+<footer class="flex flex-col md:flex-row justify-between items-center px-gutter py-stack-md ml-0 bg-surface-container-lowest border-t border-outline-variant md:ml-[240px]">
+<div class="flex flex-col items-start gap-1">
+<span class="font-label-md text-label-md font-bold text-primary">LaptopARAS</span>
+<p class="font-body-sm text-body-sm text-secondary">© <?= date('Y') ?> Gaming Laptop DSS - MCDM Analytical Framework</p>
 </div>
-<div class="flex items-center gap-6">
-<span class="text-[10px] text-on-surface-variant font-bold uppercase tracking-tighter hidden md:block">SQA Disclaimer: Algoritma telah divalidasi sesuai standar metodologi ARAS.</span>
-<nav class="flex gap-4">
-<a class="text-[10px] font-bold text-on-surface-variant hover:text-primary uppercase tracking-tighter" href="#">Privacy</a>
-<a class="text-[10px] font-bold text-on-surface-variant hover:text-primary uppercase tracking-tighter" href="#">Methodology</a>
-</nav>
+<div class="flex items-center gap-6 mt-4 md:mt-0">
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors" href="#">Privacy Policy</a>
+<a class="font-body-sm text-body-sm text-primary underline" href="<?= base_url('panduan') ?>">Methodology</a>
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors" href="#">API Reference</a>
 </div>
 </footer>

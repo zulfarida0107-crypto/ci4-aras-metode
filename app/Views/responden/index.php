@@ -152,7 +152,7 @@
 <th class="px-6 py-4 font-label-md text-label-md text-on-surface text-center">W1 (Harga)</th>
 <th class="px-6 py-4 font-label-md text-label-md text-on-surface text-center">W2 (Berat)</th>
 <th class="px-6 py-4 font-label-md text-label-md text-on-surface text-center">W3 (RAM)</th>
-<th class="px-6 py-4 font-label-md text-label-md text-on-surface text-center">W4 (Storage)</th>
+<th class="px-6 py-4 font-label-md text-label-md text-on-surface text-center">W4 (Penyimpanan)</th>
 <th class="px-6 py-4 font-label-md text-label-md text-on-surface text-center">W5 (Prosesor)</th>
 <th class="px-6 py-4 font-label-md text-label-md text-on-surface text-center">W6 (Baterai)</th>
 </tr>
@@ -194,7 +194,7 @@
 <div class="p-4 border-b border-outline-variant bg-surface-container-low flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
 <div class="flex flex-col">
 <div class="flex items-center gap-2">
-<h3 class="font-title-lg text-title-lg text-on-surface">Matrix Penilaian (X<sub>ij</sub>)</h3>
+<h3 class="font-title-lg text-title-lg text-on-surface">Matriks Penilaian (X<sub>ij</sub>)</h3>
 <span class="material-symbols-outlined text-secondary text-[18px] cursor-help" title="Data teknis yang telah dikonversi ke skala ARAS">info</span>
 </div>
 <!-- Removed legend -->
@@ -230,7 +230,7 @@
 <th class="px-6 py-4 font-label-md text-label-md text-on-surface text-center">
 <div class="flex flex-col items-center">
 <span class="material-symbols-outlined text-primary" data-icon="storage">storage</span>
-<span class="text-[10px]">C4: Storage</span>
+<span class="text-[10px]">C4: Penyimpanan</span>
 </div>
 </th>
 <th class="px-6 py-4 font-label-md text-label-md text-on-surface text-center">
@@ -355,14 +355,17 @@
         });
     });
 
-    // Toggle Label/Score
-    const toggleBtns = document.querySelectorAll('.toggle-btn');
-    const labels = document.querySelectorAll('.cell-label');
-    const scores = document.querySelectorAll('.cell-score');
-
-    toggleBtns.forEach(btn => {
-        btn.addEventListener('click', () => {
+    // Toggle Label/Score & AJAX Pagination using Event Delegation
+    document.addEventListener('click', function(e) {
+        // Handle Toggle Label/Score
+        const btn = e.target.closest('.toggle-btn');
+        if (btn) {
             const type = btn.getAttribute('data-type');
+            const tabPane = btn.closest('.tab-pane');
+            
+            const toggleBtns = tabPane.querySelectorAll('.toggle-btn');
+            const labels = tabPane.querySelectorAll('.cell-label');
+            const scores = tabPane.querySelectorAll('.cell-score');
             
             toggleBtns.forEach(b => {
                 b.classList.remove('bg-surface-container-lowest', 'text-primary', 'shadow-sm');
@@ -378,7 +381,39 @@
                 labels.forEach(l => l.classList.add('hidden'));
                 scores.forEach(s => s.classList.remove('hidden'));
             }
-        });
+        }
+
+        // Handle AJAX Pagination
+        const link = e.target.closest('nav a');
+        if (link && link.closest('.tab-pane')) {
+            e.preventDefault();
+            const url = link.href;
+            
+            const activePane = link.closest('.tab-pane');
+            const paneId = activePane.id;
+            
+            activePane.style.opacity = '0.5';
+            activePane.style.pointerEvents = 'none';
+            
+            fetch(url, { headers: { 'X-Requested-With': 'XMLHttpRequest' } })
+                .then(res => res.text())
+                .then(html => {
+                    const parser = new DOMParser();
+                    const doc = parser.parseFromString(html, 'text/html');
+                    
+                    const newPane = doc.getElementById(paneId);
+                    if (newPane) {
+                        activePane.innerHTML = newPane.innerHTML;
+                    }
+                    
+                    activePane.style.opacity = '1';
+                    activePane.style.pointerEvents = 'auto';
+                    window.history.pushState({path: url}, '', url);
+                })
+                .catch(() => {
+                    window.location.href = url; // Fallback
+                });
+        }
     });
 </script>
 <?= $this->endSection() ?>

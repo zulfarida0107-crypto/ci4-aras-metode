@@ -1,313 +1,263 @@
-<!-- ============================================
-     Tab 5: Panduan Metode
-     Penjelasan ARAS, tahapan, tabel konversi skor,
-     glosarium, dan FAQ.
-     ============================================ -->
-
 <?= $this->extend('layout/main') ?>
 <?= $this->section('content') ?>
-<main class="flex-1 overflow-y-auto bg-background p-6">
-<!-- ===== PAGE HEADER ===== -->
-<section class="mb-8 animate-fade-in">
-    <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-        <div>
-            <h2 class="text-2xl font-extrabold text-slate-800 dark:text-white flex items-center gap-3">
-                <span class="w-10 h-10 rounded-xl bg-gradient-to-br from-cyan-500 to-blue-600 flex items-center justify-center shadow-lg shadow-cyan-500/25">
-                    <svg class="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25"/>
-                    </svg>
-                </span>
-                Panduan Metode ARAS
-            </h2>
-            <p class="text-sm text-slate-500 dark:text-slate-400 mt-1">Pelajari metode Additive Ratio Assessment dan cara kerja sistem ini</p>
-        </div>
-    </div>
-</section>
 
-<!-- ===== WHAT IS ARAS ===== -->
-<section class="mb-8 animate-slide-up" style="animation-delay: 100ms">
-    <div class="flex flex-col md:flex-row gap-6 bg-white dark:bg-surface-800 rounded-2xl p-6 md:p-8 border border-slate-200/60 dark:border-slate-700/50 shadow-sm relative overflow-hidden">
-        <div class="absolute left-0 top-0 bottom-0 w-1.5 bg-gradient-to-b from-primary-500 to-cyan-500"></div>
-        <div class="flex-shrink-0">
-            <div class="w-16 h-16 rounded-2xl bg-primary-50 dark:bg-primary-900/20 flex items-center justify-center">
-                <svg class="w-8 h-8 text-primary-600 dark:text-primary-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 18v-5.25m0 0a6.01 6.01 0 001.5-.189m-1.5.189a6.01 6.01 0 01-1.5-.189m3.75 7.478a12.06 12.06 0 01-4.5 0m3.75 2.383a14.406 14.406 0 01-3 0M14.25 18v-.192c0-.983.658-1.82 1.508-2.316a7.5 7.5 0 10-7.516 0c.85.496 1.508 1.333 1.508 2.316v.192m4.5 0v.192c0 .983-.658 1.82-1.508 2.316a14.406 14.406 0 01-3 0c-.85-.496-1.508-1.333-1.508-2.316v-.192"/>
-                </svg>
-            </div>
-        </div>
-        <div>
-            <h3 class="text-lg font-bold text-slate-800 dark:text-white mb-3">Apa itu Metode ARAS?</h3>
-            <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-4">
-                Metode ARAS (Additive Ratio Assessment) adalah salah satu metode pengambilan keputusan multi-kriteria (MCDM) yang dikembangkan oleh Zavadskas dan Turskis pada tahun 2010. Metode ini membandingkan setiap alternatif dengan alternatif optimal (ideal) untuk menentukan peringkat.
-            </p>
-            <div class="bg-primary-50 dark:bg-primary-900/10 rounded-xl p-4 border border-primary-100 dark:border-primary-800/30">
-                <p class="text-sm font-medium text-primary-800 dark:text-primary-300">
-                    <span class="font-bold text-primary-600 dark:text-primary-400">Prinsip Utama:</span> utility function value (nilai Ki) menentukan efisiensi relatif setiap alternatif terhadap alternatif optimal. Semakin tinggi nilai Ki, semakin baik alternatif tersebut.
+<!-- Main Content Area -->
+<main class="max-w-full px-6 py-6">
+<!-- Introduction Section -->
+<section class="mb-20 scroll-mt-24" id="intro">
+<div class="mb-8">
+<h1 class="font-headline-lg text-headline-lg text-on-surface mb-4">Pengenalan Metode ARAS</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant leading-relaxed">
+                    Additive Ratio Assessment (ARAS) adalah metode pengambilan keputusan multi-kriteria (MCDM) yang diperkenalkan oleh Zavadskas dan Turskis pada tahun 2010. Metode ini sangat efektif untuk membandingkan berbagai alternatif (laptop) berdasarkan serangkaian kriteria yang memiliki bobot berbeda, dengan tujuan menentukan pilihan yang paling optimal atau mendekati kondisi ideal.
                 </p>
-            </div>
-        </div>
-    </div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-stack-lg">
+<div class="p-6 border border-outline-variant rounded-2xl bg-white shadow-sm hover:shadow-md transition-shadow">
+<div class="flex items-center gap-3 mb-4 text-primary">
+<span class="material-symbols-outlined">analytics</span>
+<h3 class="font-title-lg text-title-lg">Kekuatan Analisis</h3>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant">ARAS mampu menangani kriteria yang bersifat kualitatif dan kuantitatif secara bersamaan melalui proses normalisasi yang presisi.</p>
+</div>
+<div class="p-6 border border-outline-variant rounded-2xl bg-white shadow-sm hover:shadow-md transition-shadow">
+<div class="flex items-center gap-3 mb-4 text-primary">
+<span class="material-symbols-outlined">track_changes</span>
+<h3 class="font-title-lg text-title-lg">Pendekatan Optimal</h3>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant">Metode ini menggunakan 'Nilai Optimal' (A0) sebagai referensi pembanding bagi setiap alternatif yang ada di dalam dataset.</p>
+</div>
+</div>
 </section>
-
-<!-- ===== 8 TAHAP ARAS ===== -->
-<section class="mb-10 animate-slide-up" style="animation-delay: 200ms">
-    <h3 class="text-xl font-bold text-slate-800 dark:text-white mb-6 flex items-center gap-2">
-        <span class="text-xl">🔢</span> 8 Tahap Perhitungan ARAS
-    </h3>
-    
-    <div class="relative pl-6 md:pl-8 border-l-2 border-slate-200 dark:border-slate-700 space-y-8">
-        <?php
-        $tahapan = [
-            ['title' => 'Membentuk Matriks Keputusan (X)', 'desc' => 'Menyusun matriks m×n dimana m = alternatif, n = kriteria', 'formula' => 'X = [xij] dimana i=0,1,...,m dan j=1,2,...,n'],
-            ['title' => 'Menentukan Nilai Optimal (A0)', 'desc' => 'Menentukan nilai terbaik untuk setiap kriteria pada baris ke-0', 'formula' => 'Benefit: max(xij), Cost: min(xij)'],
-            ['title' => 'Normalisasi Matriks (R)', 'desc' => 'Mengubah nilai ke skala yang sebanding agar bisa dijumlahkan', 'formula' => 'Benefit: rij = xij / Σxi<br>Cost: rij = (1/xij) / Σ(1/xi)'],
-            ['title' => 'Menghitung Matriks Terbobot (D)', 'desc' => 'Mengalikan matriks normalisasi dengan bobot kriteria', 'formula' => 'dij = rij × wj'],
-            ['title' => 'Menghitung Nilai Optimasi (Si)', 'desc' => 'Menjumlahkan nilai terbobot setiap alternatif', 'formula' => 'Si = Σ dij (j=1 to n)'],
-            ['title' => 'Menentukan Nilai S0', 'desc' => 'Nilai optimasi dari alternatif optimal (baris A0)', 'formula' => 'S0 = Σ d0j'],
-            ['title' => 'Menghitung Nilai Utility (Ki)', 'desc' => 'Rasio setiap alternatif terhadap alternatif optimal', 'formula' => 'Ki = Si / S0'],
-            ['title' => 'Menentukan Ranking', 'desc' => 'Mengurutkan alternatif berdasarkan nilai Ki', 'formula' => 'Ranking = Ki descending (tertinggi ke terendah)'],
-        ];
-        foreach ($tahapan as $index => $tahap): 
-            $num = $index + 1;
-        ?>
-        <div class="relative">
-            <!-- Bubble Number -->
-            <div class="absolute -left-[41px] md:-left-[49px] w-8 h-8 rounded-full bg-white dark:bg-surface-900 border-2 border-primary-500 flex items-center justify-center text-xs font-bold text-primary-600 dark:text-primary-400 shadow-sm">
-                <?= $num ?>
-            </div>
-            
-            <div class="bg-white dark:bg-surface-800 rounded-xl p-5 border border-slate-200/60 dark:border-slate-700/50 shadow-sm hover:shadow-md transition-shadow">
-                <h4 class="text-base font-bold text-slate-800 dark:text-white mb-2"><?= $tahap['title'] ?></h4>
-                <p class="text-sm text-slate-600 dark:text-slate-400 mb-3"><?= $tahap['desc'] ?></p>
-                <div class="bg-slate-50 dark:bg-surface-900 rounded-lg p-3 border border-slate-100 dark:border-slate-700">
-                    <code class="text-xs font-mono text-pink-600 dark:text-pink-400"><?= $tahap['formula'] ?></code>
-                </div>
-            </div>
-        </div>
-        <?php endforeach; ?>
-    </div>
+<!-- Relationship Section -->
+<section class="mb-20 scroll-mt-24" id="relationship">
+<div class="mb-8">
+<h2 class="font-headline-md text-headline-md text-on-surface mb-2">Hubungan Kuesioner &amp; Kriteria</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">Bagaimana preferensi subjektif Anda diterjemahkan ke dalam parameter teknis.</p>
+</div>
+<div class="p-6 border border-outline-variant rounded-2xl bg-white shadow-sm">
+<div class="grid grid-cols-1 md:grid-cols-[1fr_auto_1fr] gap-8 items-center">
+<div class="flex flex-col gap-2 p-6 bg-surface-container-low rounded-lg">
+<div class="flex items-center gap-2 text-primary font-bold mb-2">
+<span class="material-symbols-outlined text-[20px]">poll</span>
+<span class="font-title-lg text-base">Kuesioner Responden</span>
+</div>
+<p class="text-body-sm text-on-surface-variant">Mengumpulkan data subjektif mengenai kebutuhan penggunaan, preferensi merek, dan batasan anggaran.</p>
+</div>
+<div class="flex items-center justify-center">
+<span class="material-symbols-outlined text-outline-variant text-4xl hidden md:block">arrow_forward</span>
+<span class="material-symbols-outlined text-outline-variant text-4xl block md:hidden">arrow_downward</span>
+</div>
+<div class="flex flex-col gap-2 p-6 bg-surface-container-low rounded-lg">
+<div class="flex items-center gap-2 text-secondary font-bold mb-2">
+<span class="material-symbols-outlined text-[20px]">settings_input_component</span>
+<span class="font-title-lg text-base">Kriteria ARAS</span>
+</div>
+<p class="text-body-sm text-on-surface-variant">Transformasi data menjadi bobot numerik (Wj) untuk RAM, CPU, GPU, Harga, dan Daya Tahan Baterai.</p>
+</div>
+</div>
+</div>
 </section>
-
-<!-- ===== HUBUNGAN KUESIONER ===== -->
-<section class="mb-8 animate-slide-up" style="animation-delay: 300ms">
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <div class="bg-white dark:bg-surface-800 rounded-2xl p-6 border border-slate-200/60 dark:border-slate-700/50 shadow-sm">
-            <h3 class="text-lg font-bold text-slate-800 dark:text-white mb-4 flex items-center gap-2">
-                🔗 Hubungan Kuesioner dengan ARAS
-            </h3>
-            <div class="overflow-x-auto">
-                <table class="w-full text-sm text-left">
-                    <thead class="bg-slate-50 dark:bg-surface-700/50">
-                        <tr>
-                            <th class="px-4 py-3 font-semibold text-slate-700 dark:text-slate-300 rounded-tl-lg">Bagian Kuesioner</th>
-                            <th class="px-4 py-3 font-semibold text-slate-700 dark:text-slate-300">Data</th>
-                            <th class="px-4 py-3 font-semibold text-slate-700 dark:text-slate-300 rounded-tr-lg">Digunakan di Tahap</th>
-                        </tr>
-                    </thead>
-                    <tbody class="divide-y divide-slate-100 dark:divide-slate-700/50">
-                        <tr>
-                            <td class="px-4 py-3 font-medium text-slate-800 dark:text-white">1: Identitas</td>
-                            <td class="px-4 py-3 text-slate-600 dark:text-slate-400">Nama, Usia, Status</td>
-                            <td class="px-4 py-3 text-slate-500">Profil responden (visualisasi)</td>
-                        </tr>
-                        <tr>
-                            <td class="px-4 py-3 font-medium text-slate-800 dark:text-white">2: Bobot</td>
-                            <td class="px-4 py-3 text-slate-600 dark:text-slate-400">Bobot kriteria (1-3)</td>
-                            <td class="px-4 py-3 text-primary-600 dark:text-primary-400 font-medium">Tahap 4: Matriks Terbobot</td>
-                        </tr>
-                        <tr>
-                            <td class="px-4 py-3 font-medium text-slate-800 dark:text-white">3: Penilaian</td>
-                            <td class="px-4 py-3 text-slate-600 dark:text-slate-400">Skor laptop per kriteria</td>
-                            <td class="px-4 py-3 text-emerald-600 dark:text-emerald-400 font-medium">Tahap 1: Matriks Keputusan</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-
-        <!-- Cost vs Benefit -->
-        <div class="bg-white dark:bg-surface-800 rounded-2xl p-6 border border-slate-200/60 dark:border-slate-700/50 shadow-sm flex flex-col justify-center">
-            <h3 class="text-lg font-bold text-slate-800 dark:text-white mb-4 flex items-center gap-2">
-                ⚖️ Tipe Kriteria
-            </h3>
-            <div class="space-y-4">
-                <div class="bg-emerald-50 dark:bg-emerald-900/10 rounded-xl p-4 border border-emerald-200 dark:border-emerald-800/50">
-                    <div class="flex items-center gap-2 mb-2">
-                        <span class="w-6 h-6 rounded-full bg-emerald-200 dark:bg-emerald-800/50 text-emerald-700 dark:text-emerald-400 flex items-center justify-center text-sm font-bold">↑</span>
-                        <h4 class="font-bold text-emerald-800 dark:text-emerald-400">Benefit (Keuntungan)</h4>
-                    </div>
-                    <p class="text-xs text-emerald-700/80 dark:text-emerald-300/80 mb-2">Semakin tinggi nilainya, semakin baik.</p>
-                    <div class="flex gap-2 flex-wrap">
-                        <span class="px-2 py-1 rounded bg-white dark:bg-surface-800 text-xs font-medium shadow-sm">RAM</span>
-                        <span class="px-2 py-1 rounded bg-white dark:bg-surface-800 text-xs font-medium shadow-sm">Storage</span>
-                        <span class="px-2 py-1 rounded bg-white dark:bg-surface-800 text-xs font-medium shadow-sm">Processor</span>
-                        <span class="px-2 py-1 rounded bg-white dark:bg-surface-800 text-xs font-medium shadow-sm">Baterai</span>
-                    </div>
-                </div>
-
-                <div class="bg-red-50 dark:bg-red-900/10 rounded-xl p-4 border border-red-200 dark:border-red-800/50">
-                    <div class="flex items-center gap-2 mb-2">
-                        <span class="w-6 h-6 rounded-full bg-red-200 dark:bg-red-800/50 text-red-700 dark:text-red-400 flex items-center justify-center text-sm font-bold">↓</span>
-                        <h4 class="font-bold text-red-800 dark:text-red-400">Cost (Biaya)</h4>
-                    </div>
-                    <p class="text-xs text-red-700/80 dark:text-red-300/80 mb-2">Semakin rendah nilainya, semakin baik.</p>
-                    <div class="flex gap-2 flex-wrap">
-                        <span class="px-2 py-1 rounded bg-white dark:bg-surface-800 text-xs font-medium shadow-sm">Harga</span>
-                        <span class="px-2 py-1 rounded bg-white dark:bg-surface-800 text-xs font-medium shadow-sm">Berat</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+<!-- Visual Stepper Section -->
+<section class="mb-20 scroll-mt-24" id="stepper">
+<div class="mb-12">
+<h2 class="font-headline-md text-headline-md text-on-surface mb-2">8 Langkah Visual Analisis ARAS</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">Ikuti alur kerja algoritmik untuk mencapai keputusan akhir yang presisi.</p>
+</div>
+<div class="relative space-y-12 pl-8">
+<div class="absolute left-[15px] top-4 bottom-4 w-[2px] stepper-line"></div>
+<div class="relative group cursor-default">
+<div class="absolute -left-[33px] w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center font-bold text-sm ring-4 ring-background transition-all group-hover:scale-110">1</div>
+<div>
+<h4 class="font-title-lg text-title-lg text-primary mb-2 transition-colors group-hover:text-primary-container">Pembentukan Matriks Keputusan (X)</h4>
+<p class="text-on-surface-variant max-w-2xl mb-3">Susun data laptop ke dalam tabel di mana baris mewakili alternatif dan kolom mewakili kriteria penilaian.</p>
+<div class="inline-block p-2 px-4 bg-surface-container rounded-lg border border-outline-variant font-mono-data text-sm text-on-surface">
+X = [x<sub>ij</sub>]<sub>m×n</sub>
+</div>
+</div>
+</div>
+<div class="relative group cursor-default">
+<div class="absolute -left-[33px] w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center font-bold text-sm ring-4 ring-background transition-all group-hover:scale-110">2</div>
+<div>
+<h4 class="font-title-lg text-title-lg text-primary mb-2 transition-colors group-hover:text-primary-container">Menentukan Alternatif Optimal (A0)</h4>
+<p class="text-on-surface-variant max-w-2xl mb-3">Tentukan nilai terbaik untuk setiap kriteria (Max untuk benefit, Min untuk cost) sebagai referensi pembanding ideal.</p>
+<div class="inline-block p-2 px-4 bg-surface-container rounded-lg border border-outline-variant font-mono-data text-sm text-on-surface">
+x<sub>0j</sub> = max<sub>i</sub> x<sub>ij</sub> (Benefit) &nbsp;|&nbsp; x<sub>0j</sub> = min<sub>i</sub> x<sub>ij</sub> (Cost)
+</div>
+</div>
+</div>
+<div class="relative group cursor-default">
+<div class="absolute -left-[33px] w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center font-bold text-sm ring-4 ring-background transition-all group-hover:scale-110">3</div>
+<div>
+<h4 class="font-title-lg text-title-lg text-primary mb-2 transition-colors group-hover:text-primary-container">Normalisasi Matriks Keputusan (R)</h4>
+<div class="text-on-surface-variant max-w-2xl space-y-1 mb-3">
+<p>Transformasikan semua nilai ke dalam skala 0-1 agar kriteria dengan satuan berbeda dapat dibandingkan secara adil.</p>
+<ul class="list-disc pl-5 mt-2">
+<li><strong>Benefit:</strong> dibagi dengan total nilai pada kolom</li>
+<li><strong>Cost:</strong> menggunakan invers (1/x) kemudian dinormalisasi</li>
+</ul>
+</div>
+<div class="inline-block p-2 px-4 bg-surface-container rounded-lg border border-outline-variant font-mono-data text-sm text-on-surface">
+r<sub>ij</sub> = x<sub>ij</sub> / &sum; x<sub>ij</sub> (Benefit) &nbsp;|&nbsp; r<sub>ij</sub> = (1/x<sub>ij</sub>) / &sum; (1/x<sub>ij</sub>) (Cost)
+</div>
+</div>
+</div>
+<div class="relative group cursor-default">
+<div class="absolute -left-[33px] w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center font-bold text-sm ring-4 ring-background transition-all group-hover:scale-110">4</div>
+<div>
+<h4 class="font-title-lg text-title-lg text-primary mb-2 transition-colors group-hover:text-primary-container">Menghitung Matriks Ternormalisasi Terbobot (D)</h4>
+<p class="text-on-surface-variant max-w-2xl mb-3">Kalikan nilai yang sudah dinormalisasi dengan bobot kriteria yang telah ditentukan pada langkah awal.</p>
+<div class="inline-block p-2 px-4 bg-surface-container rounded-lg border border-outline-variant font-mono-data text-sm text-on-surface">
+d<sub>ij</sub> = r<sub>ij</sub> &times; w<sub>j</sub>
+</div>
+</div>
+</div>
+<div class="relative group cursor-default">
+<div class="absolute -left-[33px] w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center font-bold text-sm ring-4 ring-background transition-all group-hover:scale-110">5</div>
+<div>
+<h4 class="font-title-lg text-title-lg text-primary mb-2 transition-colors group-hover:text-primary-container">Menentukan Nilai Fungsi Optimalitas (Si)</h4>
+<p class="text-on-surface-variant max-w-2xl mb-3">Jumlahkan seluruh nilai terbobot untuk setiap alternatif guna mendapatkan skor optimasi mentah.</p>
+<div class="inline-block p-2 px-4 bg-surface-container rounded-lg border border-outline-variant font-mono-data text-sm text-on-surface">
+S<sub>i</sub> = &sum; d<sub>ij</sub>
+</div>
+</div>
+</div>
+<div class="relative group cursor-default">
+<div class="absolute -left-[33px] w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center font-bold text-sm ring-4 ring-background transition-all group-hover:scale-110">6</div>
+<div>
+<h4 class="font-title-lg text-title-lg text-primary mb-2 transition-colors group-hover:text-primary-container">Menentukan Nilai Fungsi Alternatif Optimal (S0)</h4>
+<p class="text-on-surface-variant max-w-2xl mb-3">Hitung skor optimasi mentah dari alternatif optimal (A0).</p>
+<div class="inline-block p-2 px-4 bg-surface-container rounded-lg border border-outline-variant font-mono-data text-sm text-on-surface">
+S<sub>0</sub> = &sum; d<sub>0j</sub>
+</div>
+</div>
+</div>
+<div class="relative group cursor-default">
+<div class="absolute -left-[33px] w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center font-bold text-sm ring-4 ring-background transition-all group-hover:scale-110">7</div>
+<div>
+<h4 class="font-title-lg text-title-lg text-primary mb-2 transition-colors group-hover:text-primary-container">Menghitung Tingkat Utilitas (Ki)</h4>
+<p class="text-on-surface-variant max-w-2xl mb-3">Bandingkan skor Si dari setiap alternatif dengan nilai optimasi dari alternatif ideal (S0) untuk mendapatkan persentase kedekatan.</p>
+<div class="inline-block p-2 px-4 bg-surface-container rounded-lg border border-outline-variant font-mono-data text-sm text-on-surface">
+K<sub>i</sub> = S<sub>i</sub> / S<sub>0</sub>
+</div>
+</div>
+</div>
+<div class="relative group cursor-default">
+<div class="absolute -left-[33px] w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center font-bold text-sm ring-4 ring-background transition-all group-hover:scale-110">8</div>
+<div>
+<h4 class="font-title-lg text-title-lg text-primary mb-2 transition-colors group-hover:text-primary-container">Menentukan Ranking</h4>
+<p class="text-on-surface-variant max-w-2xl mb-3">Urutkan alternatif berdasarkan nilai Ki tertinggi. Laptop dengan nilai Ki mendekati 1.0 adalah pilihan terbaik.</p>
+<div class="inline-block p-2 px-4 bg-surface-container rounded-lg border border-outline-variant font-mono-data text-sm text-on-surface">
+K<sub>1</sub> &gt; K<sub>2</sub> &gt; ... &gt; K<sub>m</sub>
+</div>
+</div>
+</div>
+</div>
 </section>
-
-<!-- ===== TABEL KONVERSI ===== -->
-<section class="mb-8 animate-slide-up" style="animation-delay: 400ms">
-    <div class="bg-white dark:bg-surface-800 rounded-2xl border border-slate-200/60 dark:border-slate-700/50 shadow-sm overflow-hidden">
-        <div class="px-6 py-4 border-b border-slate-100 dark:border-slate-700/50">
-            <h3 class="text-lg font-bold text-slate-800 dark:text-white flex items-center gap-2">
-                🔄 Tabel Konversi Label ke Skor
-            </h3>
-        </div>
-        <div class="overflow-x-auto p-0">
-            <table class="w-full text-sm text-left">
-                <thead class="bg-slate-50 dark:bg-surface-700/50">
-                    <tr>
-                        <th class="px-6 py-3 font-semibold text-slate-700 dark:text-slate-300">Kriteria</th>
-                        <th class="px-6 py-3 font-semibold text-slate-700 dark:text-slate-300">Skor 1 (Terburuk)</th>
-                        <th class="px-6 py-3 font-semibold text-slate-700 dark:text-slate-300">Skor 2</th>
-                        <th class="px-6 py-3 font-semibold text-slate-700 dark:text-slate-300">Skor 3</th>
-                        <th class="px-6 py-3 font-semibold text-slate-700 dark:text-slate-300">Skor 4</th>
-                        <th class="px-6 py-3 font-semibold text-slate-700 dark:text-slate-300">Skor 5 (Terbaik)</th>
-                    </tr>
-                </thead>
-                <tbody class="divide-y divide-slate-100 dark:divide-slate-700/50">
-                    <!-- Cost -->
-                    <tr class="hover:bg-slate-50 dark:hover:bg-surface-700/30">
-                        <td class="px-6 py-4 font-bold text-slate-800 dark:text-white">Harga (Cost)</td>
-                        <td class="px-6 py-4 text-slate-600 dark:text-slate-400">> 25 Juta</td>
-                        <td class="px-6 py-4 text-slate-600 dark:text-slate-400">20 - 25 Juta</td>
-                        <td class="px-6 py-4 text-slate-600 dark:text-slate-400">15 - 20 Juta</td>
-                        <td class="px-6 py-4 text-slate-600 dark:text-slate-400">10 - 15 Juta</td>
-                        <td class="px-6 py-4 text-slate-600 dark:text-slate-400">< 10 Juta</td>
-                    </tr>
-                    <tr class="hover:bg-slate-50 dark:hover:bg-surface-700/30">
-                        <td class="px-6 py-4 font-bold text-slate-800 dark:text-white">Berat (Cost)</td>
-                        <td class="px-6 py-4 text-slate-600 dark:text-slate-400">> 3 kg</td>
-                        <td class="px-6 py-4 text-slate-600 dark:text-slate-400">2.5 - 3 kg</td>
-                        <td class="px-6 py-4 text-slate-600 dark:text-slate-400">2 - 2.5 kg</td>
-                        <td class="px-6 py-4 text-slate-600 dark:text-slate-400">1.5 - 2 kg</td>
-                        <td class="px-6 py-4 text-slate-600 dark:text-slate-400">< 1.5 kg</td>
-                    </tr>
-                    <!-- Benefit -->
-                    <tr class="hover:bg-slate-50 dark:hover:bg-surface-700/30">
-                        <td class="px-6 py-4 font-bold text-slate-800 dark:text-white">RAM (Benefit)</td>
-                        <td class="px-6 py-4 text-slate-600 dark:text-slate-400">4GB</td>
-                        <td class="px-6 py-4 text-slate-600 dark:text-slate-400">8GB</td>
-                        <td class="px-6 py-4 text-slate-600 dark:text-slate-400">16GB</td>
-                        <td class="px-6 py-4 text-slate-600 dark:text-slate-400">32GB</td>
-                        <td class="px-6 py-4 text-slate-600 dark:text-slate-400">64GB</td>
-                    </tr>
-                    <tr class="hover:bg-slate-50 dark:hover:bg-surface-700/30">
-                        <td class="px-6 py-4 font-bold text-slate-800 dark:text-white">Storage (Benefit)</td>
-                        <td class="px-6 py-4 text-slate-600 dark:text-slate-400">256GB</td>
-                        <td class="px-6 py-4 text-slate-600 dark:text-slate-400">512GB</td>
-                        <td class="px-6 py-4 text-slate-600 dark:text-slate-400">1TB</td>
-                        <td class="px-6 py-4 text-slate-600 dark:text-slate-400">1.5TB</td>
-                        <td class="px-6 py-4 text-slate-600 dark:text-slate-400">2TB</td>
-                    </tr>
-                    <tr class="hover:bg-slate-50 dark:hover:bg-surface-700/30">
-                        <td class="px-6 py-4 font-bold text-slate-800 dark:text-white">Processor (Benefit)</td>
-                        <td class="px-6 py-4 text-slate-600 dark:text-slate-400">i3 / Ryzen 3</td>
-                        <td class="px-6 py-4 text-slate-600 dark:text-slate-400">i5 / Ryzen 5</td>
-                        <td class="px-6 py-4 text-slate-600 dark:text-slate-400">i7 / Ryzen 7</td>
-                        <td class="px-6 py-4 text-slate-600 dark:text-slate-400">i9 / Ryzen 9</td>
-                        <td class="px-6 py-4 text-slate-600 dark:text-slate-400">Ultra / Threadripper</td>
-                    </tr>
-                    <tr class="hover:bg-slate-50 dark:hover:bg-surface-700/30">
-                        <td class="px-6 py-4 font-bold text-slate-800 dark:text-white">Baterai (Benefit)</td>
-                        <td class="px-6 py-4 text-slate-600 dark:text-slate-400">< 3 jam</td>
-                        <td class="px-6 py-4 text-slate-600 dark:text-slate-400">3 - 5 jam</td>
-                        <td class="px-6 py-4 text-slate-600 dark:text-slate-400">5 - 7 jam</td>
-                        <td class="px-6 py-4 text-slate-600 dark:text-slate-400">7 - 9 jam</td>
-                        <td class="px-6 py-4 text-slate-600 dark:text-slate-400">> 9 jam</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </div>
+<!-- Conversion Table Section -->
+<section class="mb-20 scroll-mt-24" id="conversion">
+<div class="mb-8">
+<h2 class="font-headline-md text-headline-md text-on-surface mb-2">Tabel Konversi Skor Kriteria</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">Standarisasi nilai kualitatif menjadi angka kuantitatif untuk perhitungan algoritma.</p>
+</div>
+<div class="overflow-hidden border border-outline-variant rounded-2xl bg-white shadow-sm">
+<table class="w-full text-left border-collapse">
+<thead class="bg-surface-container">
+<tr>
+<th class="px-6 py-4 font-label-md text-label-md text-on-surface uppercase tracking-wider">Tingkat Penilaian</th>
+<th class="px-6 py-4 font-label-md text-label-md text-on-surface uppercase tracking-wider text-center">Skor</th>
+<th class="px-6 py-4 font-label-md text-label-md text-on-surface uppercase tracking-wider">Alasan / Logika</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant">
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="px-6 py-4 font-semibold text-on-surface">Baik</td>
+<td class="px-6 py-4 text-center">
+<span class="inline-flex items-center justify-center w-8 h-8 bg-emerald-100 text-emerald-800 rounded-full font-mono-data text-xs border border-emerald-200">3</span>
+</td>
+<td class="px-6 py-4 text-on-surface-variant font-body-sm">Spesifikasi di atas rata-rata pasar saat ini, memberikan performa tanpa kompromi.</td>
+</tr>
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="px-6 py-4 font-semibold text-on-surface">Cukup</td>
+<td class="px-6 py-4 text-center">
+<span class="inline-flex items-center justify-center w-8 h-8 bg-amber-100 text-amber-800 rounded-full font-mono-data text-xs border border-amber-200">2</span>
+</td>
+<td class="px-6 py-4 text-on-surface-variant font-body-sm">Standar industri untuk pekerjaan umum tanpa kebutuhan spesifik tinggi.</td>
+</tr>
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="px-6 py-4 font-semibold text-on-surface">Kurang</td>
+<td class="px-6 py-4 text-center">
+<span class="inline-flex items-center justify-center w-8 h-8 bg-red-100 text-red-800 rounded-full font-mono-data text-xs border border-red-200">1</span>
+</td>
+<td class="px-6 py-4 text-on-surface-variant font-body-sm">Di bawah spesifikasi standar, berisiko bottleneck pada penggunaan harian.</td>
+</tr>
+</tbody>
+</table>
+</div>
 </section>
-
-<!-- ===== FAQ ===== -->
-<section class="animate-slide-up" style="animation-delay: 500ms">
-    <div class="bg-white dark:bg-surface-800 rounded-2xl p-6 md:p-8 border border-slate-200/60 dark:border-slate-700/50 shadow-sm">
-        <h3 class="text-xl font-bold text-slate-800 dark:text-white mb-6 flex items-center gap-2">
-            ❓ Frequently Asked Questions (FAQ)
-        </h3>
-        
-        <div class="space-y-3" id="faq-container">
-            <!-- FAQ 1 -->
-            <div class="border border-slate-200 dark:border-slate-700 rounded-xl overflow-hidden">
-                <button class="faq-btn w-full px-5 py-4 text-left bg-slate-50 dark:bg-surface-700/50 hover:bg-slate-100 dark:hover:bg-surface-700 transition-colors flex justify-between items-center">
-                    <span class="font-bold text-slate-800 dark:text-white text-sm">Apa bedanya Mode Survei dan Mode Eksperimen?</span>
-                    <svg class="w-5 h-5 text-slate-500 transform transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
-                </button>
-                <div class="faq-content hidden px-5 py-4 bg-white dark:bg-surface-800 text-sm text-slate-600 dark:text-slate-300">
-                    <p><strong>Mode Survei</strong> menampilkan hasil perhitungan yang sudah tetap berdasarkan data yang dikumpulkan dari 26 responden. Anda tidak bisa mengubah data ini.</p>
-                    <p class="mt-2"><strong>Mode Eksperimen</strong> (Tab 4) adalah fitur interaktif di mana Anda bisa bebas mengatur bobot, tipe kriteria, dan memasukkan spesifikasi laptop sendiri untuk melihat hasil ranking secara real-time.</p>
-                </div>
-            </div>
-
-            <!-- FAQ 2 -->
-            <div class="border border-slate-200 dark:border-slate-700 rounded-xl overflow-hidden">
-                <button class="faq-btn w-full px-5 py-4 text-left bg-slate-50 dark:bg-surface-700/50 hover:bg-slate-100 dark:hover:bg-surface-700 transition-colors flex justify-between items-center">
-                    <span class="font-bold text-slate-800 dark:text-white text-sm">Mengapa ada kriteria Cost dan Benefit?</span>
-                    <svg class="w-5 h-5 text-slate-500 transform transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
-                </button>
-                <div class="faq-content hidden px-5 py-4 bg-white dark:bg-surface-800 text-sm text-slate-600 dark:text-slate-300">
-                    <p>Karena tidak semua kriteria memiliki sifat "semakin besar nilainya semakin baik".</p>
-                    <p class="mt-2">Misalnya, untuk kriteria <strong>Harga</strong>, pembeli biasanya mencari harga termurah (semakin rendah nilainya, semakin baik → <strong>Cost</strong>). Sebaliknya, untuk <strong>RAM</strong>, pembeli mencari kapasitas terbesar (semakin besar nilainya, semakin baik → <strong>Benefit</strong>).</p>
-                </div>
-            </div>
-
-            <!-- FAQ 3 -->
-            <div class="border border-slate-200 dark:border-slate-700 rounded-xl overflow-hidden">
-                <button class="faq-btn w-full px-5 py-4 text-left bg-slate-50 dark:bg-surface-700/50 hover:bg-slate-100 dark:hover:bg-surface-700 transition-colors flex justify-between items-center">
-                    <span class="font-bold text-slate-800 dark:text-white text-sm">Bagaimana cara menginterpretasi nilai Ki (Utility)?</span>
-                    <svg class="w-5 h-5 text-slate-500 transform transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
-                </button>
-                <div class="faq-content hidden px-5 py-4 bg-white dark:bg-surface-800 text-sm text-slate-600 dark:text-slate-300">
-                    <p>Nilai Ki selalu berada di rentang 0 hingga 1. Nilai ini menunjukkan seberapa dekat suatu alternatif dengan "kondisi ideal" (alternatif optimal / A0).</p>
-                    <p class="mt-2">Jika sebuah laptop mendapat nilai Ki 0.9500, itu berarti laptop tersebut memiliki efisiensi 95% dibandingkan laptop sempurna (yang memiliki harga termurah, RAM terbesar, dll secara bersamaan).</p>
-                </div>
-            </div>
-        </div>
-    </div>
+<!-- Glossary & FAQ -->
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-stack-lg mb-20">
+<section class="scroll-mt-24" id="glossary">
+<h2 class="font-headline-md text-headline-md text-on-surface mb-6">Glosarium</h2>
+<div class="space-y-6 bg-white p-6 rounded-2xl border border-outline-variant shadow-sm">
+<div>
+<h5 class="font-bold text-primary mb-1">MCDM</h5>
+<p class="text-body-sm text-on-surface-variant">Multi-Criteria Decision Making, metode untuk mengevaluasi beberapa kriteria yang saling bertentangan dalam satu keputusan.</p>
+</div>
+<div>
+<h5 class="font-bold text-primary mb-1">Kriteria Benefit</h5>
+<p class="text-body-sm text-on-surface-variant">Kriteria di mana nilai yang lebih besar dianggap lebih baik (Contoh: Kapasitas RAM, Daya Tahan Baterai).</p>
+</div>
+<div>
+<h5 class="font-bold text-primary mb-1">Kriteria Cost</h5>
+<p class="text-body-sm text-on-surface-variant">Kriteria di mana nilai yang lebih kecil dianggap lebih baik (Contoh: Harga, Berat Laptop).</p>
+</div>
+<div>
+<h5 class="font-bold text-primary mb-1">Nilai Optimal (A0)</h5>
+<p class="text-body-sm text-on-surface-variant">Titik referensi imajiner yang menggabungkan nilai-nilai terbaik dari seluruh alternatif yang ada.</p>
+</div>
+</div>
 </section>
-
-<!-- Inline JS for FAQ -->
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-    const faqBtns = document.querySelectorAll('.faq-btn');
-    faqBtns.forEach(btn => {
-        btn.addEventListener('click', () => {
-            const content = btn.nextElementSibling;
-            const icon = btn.querySelector('svg');
-            
-            // Close all others
-            document.querySelectorAll('.faq-content').forEach(c => {
-                if (c !== content && !c.classList.contains('hidden')) {
-                    c.classList.add('hidden');
-                    c.previousElementSibling.querySelector('svg').classList.remove('rotate-180');
-                }
-            });
-
-            // Toggle current
-            content.classList.toggle('hidden');
-            icon.classList.toggle('rotate-180');
-        });
-    });
-});
-</script>
+<section class="scroll-mt-24" id="faq">
+<h2 class="font-headline-md text-headline-md text-on-surface mb-6">FAQ</h2>
+<div class="space-y-4">
+<details class="group border border-outline-variant rounded-2xl bg-white p-4 transition-all duration-300 [&amp;_summary::-webkit-details-marker]:hidden cursor-pointer shadow-sm hover:shadow-md">
+<summary class="flex items-center justify-between font-semibold text-on-surface">
+<span class="">Apakah ARAS lebih akurat dari SAW?</span>
+<span class="material-symbols-outlined transition-transform duration-300 group-open:rotate-180">expand_more</span>
+</summary>
+<div class="mt-3 text-body-sm text-on-surface-variant leading-relaxed">
+                            ARAS dianggap lebih unggul karena adanya pembanding 'Nilai Optimal' (A0), yang memberikan konteks sejauh mana alternatif mendekati kesempurnaan dibanding hanya membandingkan antar alternatif yang ada.
+                        </div>
+</details>
+<details class="group border border-outline-variant rounded-2xl bg-white p-4 transition-all duration-300 [&amp;_summary::-webkit-details-marker]:hidden cursor-pointer shadow-sm hover:shadow-md">
+<summary class="flex items-center justify-between font-semibold text-on-surface">
+<span class="">Apa arti skor Ki = 1.0?</span>
+<span class="material-symbols-outlined transition-transform duration-300 group-open:rotate-180">expand_more</span>
+</summary>
+<div class="mt-3 text-body-sm text-on-surface-variant leading-relaxed">
+                            Skor Ki 1.0 berarti alternatif tersebut identik dengan nilai ideal (A0) yang Anda inginkan. Semakin dekat ke 1.0, semakin sempurna pilihan tersebut sesuai kriteria Anda.
+                        </div>
+</details>
+<details class="group border border-outline-variant rounded-2xl bg-white p-4 transition-all duration-300 [&amp;_summary::-webkit-details-marker]:hidden cursor-pointer shadow-sm hover:shadow-md">
+<summary class="flex items-center justify-between font-semibold text-on-surface">
+<span class="">Bagaimana jika bobot kriteria berubah?</span>
+<span class="material-symbols-outlined transition-transform duration-300 group-open:rotate-180">expand_more</span>
+</summary>
+<div class="mt-3 text-body-sm text-on-surface-variant leading-relaxed">
+                            Perubahan bobot akan langsung mengubah nilai Normalisasi Terbobot, yang pada akhirnya akan mengubah peringkat akhir laptop. Sistem ini dinamis terhadap prioritas pengguna.
+                        </div>
+</details>
+</div>
+</section>
+</div>
+<!-- Visual Framework Section -->
+<div class="relative h-[400px] w-full rounded-2xl overflow-hidden mb-20 group">
+<img alt="Metodologi Kerangka Kerja" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD5cSSnn69IL9PwU09V147Ew6d8cALxM_5RGGUvCvGf25aFZNdNT-4oVzKABm9Pplz7_qC30BoKmWwff8LwMpAoerZfHU8InXVVSujvEYS1BnDXS9u7pozSVrRx0H41H2Z_NwL8sw5kuGgOxxlAtrm3JiC1wruXLGNYOOELsYB3401gazgYz33kHsSSlHNjOJkBV0Mock-LqqMVIhISLKX7uwNKMTFrPds7pBxeNI1DQo1PBvV0vW5shKHfz3ofIYUkphIlfOrasXo">
+<div class="absolute inset-0 bg-gradient-to-t from-surface-container-lowest/95 via-surface-container-lowest/50 to-transparent"></div>
+<div class="absolute bottom-8 left-8 right-8">
+<h3 class="font-headline-md text-headline-md text-on-surface mb-2">Kerangka Kerja MCDM</h3>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-2xl">Dibangun di atas dasar matematika yang kokoh untuk meminimalisir bias dalam pemilihan perangkat keras yang krusial bagi produktivitas Anda.</p>
+</div>
+</div>
 </main>
 <?= $this->endSection() ?>

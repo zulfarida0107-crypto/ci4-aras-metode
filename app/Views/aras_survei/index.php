@@ -64,7 +64,7 @@
 
 </style>
 
-<div class="p-4 md:p-8 max-w-7xl mx-auto w-full printable-container">
+<main class="max-w-full px-6 py-6 printable-container">
     <!-- Header -->
     <div class="mb-8 flex flex-col md:flex-row justify-between items-end gap-4 no-print">
         <div>
@@ -87,8 +87,8 @@
         $top = $results[0];
     ?>
     <!-- Interpretation Panel -->
-    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-10 no-print">
-        <div class="lg:col-span-2 bg-surface-container-lowest rounded-xl border border-outline-variant p-6 flex flex-col md:flex-row gap-6 relative overflow-hidden">
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-6 no-print">
+        <div class="lg:col-span-2 bg-white rounded-2xl border border-outline-variant p-6 flex flex-col md:flex-row gap-6 relative overflow-hidden shadow-sm">
             <div class="absolute top-0 right-0 p-4">
                 <span class="bg-emerald-100 text-emerald-800 text-[10px] font-black px-3 py-1 rounded-full uppercase tracking-widest border border-emerald-200">Pilihan Rekomendasi</span>
             </div>
@@ -119,7 +119,7 @@
             </div>
         </div>
 
-        <div class="bg-primary-container text-on-primary-container rounded-xl p-6 flex flex-col justify-between shadow-sm">
+        <div class="bg-primary-container text-on-primary-container rounded-2xl p-6 flex flex-col justify-between shadow-sm">
             <div>
                 <h3 class="font-bold text-lg mb-4">Ringkasan Metode</h3>
                 <p class="text-sm opacity-90 mb-6 leading-relaxed">Metode ARAS (Additive Ratio Assessment) menentukan tingkat utilitas dengan menghitung rasio optimalitas setiap alternatif terhadap solusi ideal (S0). Rumus: <b>S<sub>i</sub> = Σ (r<sub>ij</sub> × w<sub>j</sub>)</b> dan <b>K<sub>i</sub> = S<sub>i</sub> / S<sub>0</sub></b>.</p>
@@ -135,7 +135,7 @@
     <div class="space-y-8">
         
         <!-- Step 1: Matrix X -->
-        <div id="step-1" class="bg-surface-container-lowest border border-outline-variant rounded-xl overflow-hidden shadow-sm page-break-before">
+        <div id="step-1" class="bg-white border border-outline-variant rounded-2xl overflow-hidden shadow-sm page-break-before">
             <div class="p-5 border-b border-outline-variant flex justify-between items-center bg-surface-container-low no-print">
                 <div class="flex items-center gap-4">
                     <div class="w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center font-bold">1</div>
@@ -179,7 +179,7 @@
         </div>
 
         <!-- Step 2: A0 -->
-        <div id="step-2" class="bg-surface-container-lowest border border-outline-variant rounded-xl overflow-hidden shadow-sm">
+        <div id="step-2" class="bg-white border border-outline-variant rounded-2xl overflow-hidden shadow-sm">
             <div class="p-5 border-b border-outline-variant flex justify-between items-center bg-surface-container-low no-print">
                 <div class="flex items-center gap-4">
                     <div class="w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center font-bold">2</div>
@@ -218,7 +218,7 @@
         </div>
 
         <!-- Step 3: Matrix R -->
-        <div id="step-3" class="bg-surface-container-lowest border border-outline-variant rounded-xl overflow-hidden shadow-sm page-break-before">
+        <div id="step-3" class="bg-white border border-outline-variant rounded-2xl overflow-hidden shadow-sm page-break-before">
             <div class="p-5 border-b border-outline-variant flex justify-between items-center bg-surface-container-low no-print">
                 <div class="flex items-center gap-4">
                     <div class="w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center font-bold">3</div>
@@ -262,7 +262,7 @@
         </div>
 
         <!-- Step 4: Matrix D -->
-        <div id="step-4" class="bg-surface-container-lowest border border-outline-variant rounded-xl overflow-hidden shadow-sm">
+        <div id="step-4" class="bg-white border border-outline-variant rounded-2xl overflow-hidden shadow-sm">
             <div class="p-5 border-b border-outline-variant flex justify-between items-center bg-surface-container-low no-print">
                 <div class="flex items-center gap-4">
                     <div class="w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center font-bold">4</div>
@@ -306,7 +306,7 @@
         </div>
 
         <!-- Step 5: Si -->
-        <div id="step-5" class="bg-surface-container-lowest border border-outline-variant rounded-xl overflow-hidden shadow-sm">
+        <div id="step-5" class="bg-white border border-outline-variant rounded-2xl overflow-hidden shadow-sm">
             <div class="p-5 border-b border-outline-variant flex justify-between items-center bg-surface-container-low no-print">
                 <div class="flex items-center gap-4">
                     <div class="w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center font-bold">5</div>
@@ -346,7 +346,7 @@
         </div>
 
         <!-- Step 6: S0 -->
-        <div id="step-6" class="bg-surface-container-lowest border border-outline-variant rounded-xl overflow-hidden shadow-sm">
+        <div id="step-6" class="bg-white border border-outline-variant rounded-2xl overflow-hidden shadow-sm">
             <div class="p-5 border-b border-outline-variant flex justify-between items-center bg-surface-container-low no-print">
                 <div class="flex items-center gap-4">
                     <div class="w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center font-bold">6</div>
@@ -374,7 +374,7 @@
         </div>
 
         <!-- Step 7: Ki -->
-        <div id="step-7" class="bg-surface-container-lowest border border-outline-variant rounded-xl overflow-hidden shadow-sm">
+        <div id="step-7" class="bg-white border border-outline-variant rounded-2xl overflow-hidden shadow-sm">
             <div class="p-5 border-b border-outline-variant flex justify-between items-center bg-surface-container-low no-print">
                 <div class="flex items-center gap-4">
                     <div class="w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center font-bold">7</div>
@@ -418,7 +418,7 @@
         </div>
 
         <!-- Step 8: Ranking -->
-        <div id="step-8" class="bg-surface-container-lowest border border-outline-variant rounded-xl overflow-hidden shadow-sm page-break-before">
+        <div id="step-8" class="bg-white border border-outline-variant rounded-2xl overflow-hidden shadow-sm page-break-before">
             <div class="p-5 border-b border-outline-variant flex justify-between items-center bg-surface-container-low no-print">
                 <div class="flex items-center gap-4">
                     <div class="w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center font-bold">8</div>
@@ -438,7 +438,7 @@
                 <table class="w-full text-left border-collapse text-sm">
                     <thead>
                         <tr class="bg-surface-container-low text-on-surface border-b border-outline-variant">
-                            <th class="px-6 py-4 font-bold text-[11px] uppercase tracking-widest w-20">Rank</th>
+                            <th class="px-6 py-4 font-bold text-[11px] uppercase tracking-widest w-20">Peringkat</th>
                             <th class="px-6 py-4 font-bold text-[11px] uppercase tracking-widest">Alternatif</th>
                             <th class="px-6 py-4 font-bold text-[11px] uppercase tracking-widest">Utilitas (Ki)</th>
                             <th class="px-6 py-4 font-bold text-[11px] uppercase tracking-widest">Persentase</th>
@@ -482,41 +482,66 @@
 
     </div>
     <?php else: ?>
-        <div class="text-center p-12 bg-surface-container-low rounded-xl border border-outline-variant no-print">
+        <div class="text-center p-12 bg-white rounded-2xl border border-outline-variant shadow-sm no-print">
             <span class="material-symbols-outlined text-4xl text-on-surface-variant mb-4">hourglass_empty</span>
             <p class="text-on-surface-variant font-medium">Belum ada data untuk dihitung.</p>
         </div>
     <?php endif; ?>
-</div>
+</main>
 
 <script>
     document.querySelectorAll('tbody tr').forEach(row => {
         row.style.transition = 'all 0.2s ease-in-out';
     });
 
-    // Menangani pagination agar tidak loncat ke atas
-    document.querySelectorAll('.pager-wrapper').forEach(wrapper => {
-        const stepId = wrapper.getAttribute('data-step');
-        wrapper.querySelectorAll('a').forEach(link => {
-            const originalUrl = link.getAttribute('href');
-            if(originalUrl && originalUrl !== '#') {
-                const cleanUrl = originalUrl.split('#')[0];
-                link.setAttribute('href', cleanUrl + '#' + stepId);
+    // Handle AJAX Pagination for tables
+    document.addEventListener('click', function(e) {
+        const link = e.target.closest('.pager-wrapper a');
+        if (link) {
+            e.preventDefault();
+            const url = link.href;
+            
+            const wrapper = link.closest('.pager-wrapper');
+            const stepId = wrapper.getAttribute('data-step');
+            const targetContainer = document.getElementById(stepId);
+            if (!targetContainer) {
+                window.location.href = url;
+                return;
             }
-        });
-    });
-
-    // Scroll secara otomatis jika ada hash di URL setelah direload
-    window.onload = function() {
-        if(window.location.hash) {
-            const targetId = window.location.hash.substring(1);
-            const targetElement = document.getElementById(targetId);
-            if(targetElement) {
-                setTimeout(() => {
-                    targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                }, 100);
+            
+            const stepDiv = targetContainer.closest('div[id^="step-"]');
+            if (!stepDiv) {
+                window.location.href = url;
+                return;
             }
+            
+            stepDiv.style.opacity = '0.5';
+            stepDiv.style.pointerEvents = 'none';
+            
+            fetch(url, { headers: { 'X-Requested-With': 'XMLHttpRequest' } })
+                .then(res => res.text())
+                .then(html => {
+                    const parser = new DOMParser();
+                    const doc = parser.parseFromString(html, 'text/html');
+                    
+                    const newStep = doc.getElementById(stepDiv.id);
+                    if (newStep) {
+                        stepDiv.innerHTML = newStep.innerHTML;
+                        
+                        // Re-apply transitions
+                        stepDiv.querySelectorAll('tbody tr').forEach(row => {
+                            row.style.transition = 'all 0.2s ease-in-out';
+                        });
+                    }
+                    
+                    stepDiv.style.opacity = '1';
+                    stepDiv.style.pointerEvents = 'auto';
+                    window.history.pushState({path: url}, '', url);
+                })
+                .catch(() => {
+                    window.location.href = url; // Fallback
+                });
         }
-    };
+    });
 </script>
 <?= $this->endSection() ?>

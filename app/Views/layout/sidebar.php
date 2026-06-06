@@ -1,29 +1,36 @@
 <!-- Mobile Overlay -->
 <div id="sidebar-overlay" class="fixed inset-0 bg-on-background/50 z-30 hidden lg:hidden transition-opacity opacity-0"></div>
 
-<!-- Global Sidebar (240px, fixed) -->
-<aside id="main-sidebar" class="fixed left-0 top-[68px] bottom-0 w-[240px] bg-white border-r border-outline-variant flex flex-col py-6 z-40 transform -translate-x-full lg:translate-x-0 transition-transform duration-300 ease-in-out">
-<div class="px-6 mb-8"><div class="flex items-center gap-3">
-    <div class="w-8 h-8 bg-primary rounded-lg flex items-center justify-center text-white">
-        <span class="material-symbols-outlined text-xl">query_stats</span>
-    </div>
-    <h2 class="text-sm font-bold text-on-surface">SPK Laptop Gaming</h2>
-</div></div>
-<nav class="flex-grow">
-<a class="flex items-center gap-3 px-6 py-3 text-sm <?= (isset($activeTab) && $activeTab == 'dashboard') ? 'font-semibold sidebar-active' : 'font-medium text-on-surface-variant hover:bg-surface-container-low transition-colors' ?>" href="<?= base_url('dashboard') ?>">
-    <span class="material-symbols-outlined text-lg">grid_view</span> Dashboard
+<!-- SideNavBar / Table of Contents -->
+<aside id="main-sidebar" class="fixed left-0 top-16 h-[calc(100vh-64px)] w-[240px] bg-white border-r border-outline-variant p-stack-md gap-stack-sm overflow-y-auto z-40 transform -translate-x-full lg:translate-x-0 flex flex-col transition-transform duration-300 ease-in-out">
+<div class="px-4 py-4 mb-2 flex items-center gap-2 border-b border-outline-variant/30">
+<div class="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined text-white text-xl">laptop_mac</span>
+</div>
+<span class="font-bold text-on-surface text-sm">SPK Laptop Gaming</span>
+</div>
+<nav class="flex flex-col gap-1">
+<a class="px-4 py-3 flex items-center gap-3 rounded-lg <?= (isset($activeTab) && $activeTab == 'dashboard') ? 'bg-primary/10 text-primary border border-primary/20 font-semibold' : 'text-on-surface-variant hover:bg-surface-container-low' ?> transition-all duration-200" href="<?= base_url('dashboard') ?>">
+<span class="material-symbols-outlined text-[20px]">dashboard</span>
+<span class="font-label-md text-label-md">Dashboard</span>
 </a>
-<a class="flex items-center gap-3 px-6 py-3 text-sm <?= (isset($activeTab) && $activeTab == 'responden') ? 'font-semibold sidebar-active' : 'font-medium text-on-surface-variant hover:bg-surface-container-low transition-colors' ?>" href="<?= base_url('responden') ?>">
-    <span class="material-symbols-outlined text-lg">person_search</span> Data Responden
+<a class="px-4 py-3 flex items-center gap-3 rounded-lg <?= (isset($activeTab) && $activeTab == 'responden') ? 'bg-primary/10 text-primary border border-primary/20 font-semibold' : 'text-on-surface-variant hover:bg-surface-container-low' ?> transition-all duration-200" href="<?= base_url('responden') ?>">
+<span class="material-symbols-outlined text-[20px]">groups</span>
+<span class="font-label-md text-label-md">Data Responden</span>
 </a>
-<a class="flex items-center gap-3 px-6 py-3 text-sm <?= (isset($activeTab) && $activeTab == 'aras') ? 'font-semibold sidebar-active' : 'font-medium text-on-surface-variant hover:bg-surface-container-low transition-colors' ?>" href="<?= base_url('aras') ?>">
-    <span class="material-symbols-outlined text-lg">analytics</span> Hasil ARAS Survei
+<a class="px-4 py-3 flex items-center gap-3 rounded-lg <?= (isset($activeTab) && $activeTab == 'aras') ? 'bg-primary/10 text-primary border border-primary/20 font-semibold' : 'text-on-surface-variant hover:bg-surface-container-low' ?> transition-all duration-200" href="<?= base_url('aras') ?>">
+<span class="material-symbols-outlined text-[20px]">bar_chart</span>
+<span class="font-label-md text-label-md">Hasil ARAS Survei</span>
 </a>
-<a class="flex items-center gap-3 px-6 py-3 text-sm <?= (isset($activeTab) && $activeTab == 'eksperimen') ? 'font-semibold sidebar-active' : 'font-medium text-on-surface-variant hover:bg-surface-container-low transition-colors' ?>" href="<?= base_url('eksperimen') ?>">
-    <span class="material-symbols-outlined text-lg">science</span> Eksperimen Mandiri
+<a class="px-4 py-3 flex items-center gap-3 rounded-lg <?= (isset($activeTab) && $activeTab == 'eksperimen') ? 'bg-primary/10 text-primary border border-primary/20 font-semibold' : 'text-on-surface-variant hover:bg-surface-container-low' ?> transition-all duration-200" href="<?= base_url('eksperimen') ?>">
+<span class="material-symbols-outlined text-[20px]">science</span>
+<span class="font-label-md text-label-md">Eksperimen Mandiri</span>
 </a>
-<a class="flex items-center gap-3 px-6 py-3 text-sm <?= (isset($activeTab) && $activeTab == 'panduan') ? 'font-semibold sidebar-active' : 'font-medium text-on-surface-variant hover:bg-surface-container-low transition-colors' ?>" href="<?= base_url('panduan') ?>">
-    <span class="material-symbols-outlined text-lg">menu_book</span> Panduan Metode
+<a class="px-4 py-3 flex items-center gap-3 rounded-lg <?= (isset($activeTab) && $activeTab == 'panduan') ? 'bg-primary/10 text-primary border border-primary/20 font-semibold' : 'text-on-surface-variant hover:bg-surface-container-low' ?> transition-all duration-200" href="<?= base_url('panduan') ?>">
+<span class="material-symbols-outlined text-[20px]">menu_book</span>
+<span class="font-label-md text-label-md">Panduan Metode</span>
 </a>
 </nav>
+
+
 </aside>

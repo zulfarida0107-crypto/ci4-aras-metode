@@ -157,41 +157,101 @@ K<sub>1</sub> &gt; K<sub>2</sub> &gt; ... &gt; K<sub>m</sub>
 <section class="mb-20 scroll-mt-24" id="conversion">
 <div class="mb-8">
 <h2 class="font-headline-md text-headline-md text-on-surface mb-2">Tabel Konversi Skor Kriteria</h2>
-<p class="font-body-md text-body-md text-on-surface-variant">Standarisasi nilai kualitatif menjadi angka kuantitatif untuk perhitungan algoritma.</p>
+<p class="font-body-md text-body-md text-on-surface-variant">Standarisasi nilai kualitatif menjadi angka kuantitatif (1-3) untuk perhitungan algoritma berdasarkan konvensi spesifikasi laptop gaming.</p>
 </div>
-<div class="overflow-hidden border border-outline-variant rounded-2xl bg-white shadow-sm">
-<table class="w-full text-left border-collapse">
-<thead class="bg-surface-container">
-<tr>
-<th class="px-6 py-4 font-label-md text-label-md text-on-surface uppercase tracking-wider">Tingkat Penilaian</th>
-<th class="px-6 py-4 font-label-md text-label-md text-on-surface uppercase tracking-wider text-center">Skor</th>
-<th class="px-6 py-4 font-label-md text-label-md text-on-surface uppercase tracking-wider">Alasan / Logika</th>
-</tr>
-</thead>
-<tbody class="divide-y divide-outline-variant">
-<tr class="hover:bg-surface-container-low transition-colors">
-<td class="px-6 py-4 font-semibold text-on-surface">Baik</td>
-<td class="px-6 py-4 text-center">
-<span class="inline-flex items-center justify-center w-8 h-8 bg-emerald-100 text-emerald-800 rounded-full font-mono-data text-xs border border-emerald-200">3</span>
-</td>
-<td class="px-6 py-4 text-on-surface-variant font-body-sm">Spesifikasi di atas rata-rata pasar saat ini, memberikan performa tanpa kompromi.</td>
-</tr>
-<tr class="hover:bg-surface-container-low transition-colors">
-<td class="px-6 py-4 font-semibold text-on-surface">Cukup</td>
-<td class="px-6 py-4 text-center">
-<span class="inline-flex items-center justify-center w-8 h-8 bg-amber-100 text-amber-800 rounded-full font-mono-data text-xs border border-amber-200">2</span>
-</td>
-<td class="px-6 py-4 text-on-surface-variant font-body-sm">Standar industri untuk pekerjaan umum tanpa kebutuhan spesifik tinggi.</td>
-</tr>
-<tr class="hover:bg-surface-container-low transition-colors">
-<td class="px-6 py-4 font-semibold text-on-surface">Kurang</td>
-<td class="px-6 py-4 text-center">
-<span class="inline-flex items-center justify-center w-8 h-8 bg-red-100 text-red-800 rounded-full font-mono-data text-xs border border-red-200">1</span>
-</td>
-<td class="px-6 py-4 text-on-surface-variant font-body-sm">Di bawah spesifikasi standar, berisiko bottleneck pada penggunaan harian.</td>
-</tr>
-</tbody>
-</table>
+
+<div class="grid grid-cols-1 md:grid-cols-2 gap-stack-lg">
+
+    <!-- Harga -->
+    <div class="overflow-hidden border border-outline-variant rounded-2xl bg-white shadow-sm">
+        <div class="bg-surface-container px-4 py-3 border-b border-outline-variant font-title-md font-bold text-primary">Harga (C1)</div>
+        <table class="w-full text-left border-collapse text-sm">
+            <thead class="bg-surface-container-low text-on-surface-variant font-label-sm">
+                <tr><th class="px-4 py-2">Skor</th><th class="px-4 py-2">Harga Laptop Gaming</th></tr>
+            </thead>
+            <tbody class="divide-y divide-outline-variant font-body-sm text-on-surface">
+                <tr><td class="px-4 py-2 text-center font-bold text-blue-600 bg-blue-50">1</td><td class="px-4 py-2">&gt; Rp 25.000.000</td></tr>
+                <tr><td class="px-4 py-2 text-center font-bold text-blue-600 bg-blue-50">2</td><td class="px-4 py-2">Rp 15.000.001 – Rp 25.000.000</td></tr>
+                <tr><td class="px-4 py-2 text-center font-bold text-blue-600 bg-blue-50">3</td><td class="px-4 py-2">≤ Rp 15.000.000</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Berat -->
+    <div class="overflow-hidden border border-outline-variant rounded-2xl bg-white shadow-sm">
+        <div class="bg-surface-container px-4 py-3 border-b border-outline-variant font-title-md font-bold text-primary">Berat (C2)</div>
+        <table class="w-full text-left border-collapse text-sm">
+            <thead class="bg-surface-container-low text-on-surface-variant font-label-sm">
+                <tr><th class="px-4 py-2">Skor</th><th class="px-4 py-2">Berat Laptop Gaming</th></tr>
+            </thead>
+            <tbody class="divide-y divide-outline-variant font-body-sm text-on-surface">
+                <tr><td class="px-4 py-2 text-center font-bold text-blue-600 bg-blue-50">1</td><td class="px-4 py-2">&gt; 2,5 kg</td></tr>
+                <tr><td class="px-4 py-2 text-center font-bold text-blue-600 bg-blue-50">2</td><td class="px-4 py-2">2,1 – 2,5 kg</td></tr>
+                <tr><td class="px-4 py-2 text-center font-bold text-blue-600 bg-blue-50">3</td><td class="px-4 py-2">≤ 2,0 kg</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- RAM -->
+    <div class="overflow-hidden border border-outline-variant rounded-2xl bg-white shadow-sm">
+        <div class="bg-surface-container px-4 py-3 border-b border-outline-variant font-title-md font-bold text-primary">RAM (C3)</div>
+        <table class="w-full text-left border-collapse text-sm">
+            <thead class="bg-surface-container-low text-on-surface-variant font-label-sm">
+                <tr><th class="px-4 py-2">Skor</th><th class="px-4 py-2">Kapasitas RAM</th></tr>
+            </thead>
+            <tbody class="divide-y divide-outline-variant font-body-sm text-on-surface">
+                <tr><td class="px-4 py-2 text-center font-bold text-blue-600 bg-blue-50">1</td><td class="px-4 py-2">&gt; 32 GB</td></tr>
+                <tr><td class="px-4 py-2 text-center font-bold text-blue-600 bg-blue-50">2</td><td class="px-4 py-2">8 - 16 GB</td></tr>
+                <tr><td class="px-4 py-2 text-center font-bold text-blue-600 bg-blue-50">3</td><td class="px-4 py-2">≤ 8 GB</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Storage -->
+    <div class="overflow-hidden border border-outline-variant rounded-2xl bg-white shadow-sm">
+        <div class="bg-surface-container px-4 py-3 border-b border-outline-variant font-title-md font-bold text-primary">Storage (C4)</div>
+        <table class="w-full text-left border-collapse text-sm">
+            <thead class="bg-surface-container-low text-on-surface-variant font-label-sm">
+                <tr><th class="px-4 py-2">Skor</th><th class="px-4 py-2">Kapasitas Storage</th></tr>
+            </thead>
+            <tbody class="divide-y divide-outline-variant font-body-sm text-on-surface">
+                <tr><td class="px-4 py-2 text-center font-bold text-blue-600 bg-blue-50">1</td><td class="px-4 py-2">≥ 1 TB</td></tr>
+                <tr><td class="px-4 py-2 text-center font-bold text-blue-600 bg-blue-50">2</td><td class="px-4 py-2">512 GB</td></tr>
+                <tr><td class="px-4 py-2 text-center font-bold text-blue-600 bg-blue-50">3</td><td class="px-4 py-2">≤ 256 GB</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Processor -->
+    <div class="overflow-hidden border border-outline-variant rounded-2xl bg-white shadow-sm">
+        <div class="bg-surface-container px-4 py-3 border-b border-outline-variant font-title-md font-bold text-primary">Processor (C5)</div>
+        <table class="w-full text-left border-collapse text-sm">
+            <thead class="bg-surface-container-low text-on-surface-variant font-label-sm">
+                <tr><th class="px-4 py-2">Skor</th><th class="px-4 py-2">Prosesor Laptop Gaming</th></tr>
+            </thead>
+            <tbody class="divide-y divide-outline-variant font-body-sm text-on-surface">
+                <tr><td class="px-4 py-2 text-center font-bold text-blue-600 bg-blue-50">1</td><td class="px-4 py-2">Core i9, Ryzen 9</td></tr>
+                <tr><td class="px-4 py-2 text-center font-bold text-blue-600 bg-blue-50">2</td><td class="px-4 py-2">Core i7, Ryzen 7</td></tr>
+                <tr><td class="px-4 py-2 text-center font-bold text-blue-600 bg-blue-50">3</td><td class="px-4 py-2">Core i5, Ryzen 5</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Baterai -->
+    <div class="overflow-hidden border border-outline-variant rounded-2xl bg-white shadow-sm">
+        <div class="bg-surface-container px-4 py-3 border-b border-outline-variant font-title-md font-bold text-primary">Baterai (C6)</div>
+        <table class="w-full text-left border-collapse text-sm">
+            <thead class="bg-surface-container-low text-on-surface-variant font-label-sm">
+                <tr><th class="px-4 py-2">Skor</th><th class="px-4 py-2">Ketahanan Baterai</th></tr>
+            </thead>
+            <tbody class="divide-y divide-outline-variant font-body-sm text-on-surface">
+                <tr><td class="px-4 py-2 text-center font-bold text-blue-600 bg-blue-50">1</td><td class="px-4 py-2">≥ 6 jam</td></tr>
+                <tr><td class="px-4 py-2 text-center font-bold text-blue-600 bg-blue-50">2</td><td class="px-4 py-2">3 – 5 jam</td></tr>
+                <tr><td class="px-4 py-2 text-center font-bold text-blue-600 bg-blue-50">3</td><td class="px-4 py-2">≤ 2 jam</td></tr>
+            </tbody>
+        </table>
+    </div>
+
 </div>
 </section>
 <!-- Glossary & FAQ -->

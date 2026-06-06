@@ -50,12 +50,12 @@ class ArasController extends BaseController
                 'nama' => 'Laptop ' . $lap['nama'],
                 'spek' => $lap['processor_label'] . ' | ' . $lap['ram_label'],
                 'scores' => [
-                    'harga' => (float)$lap['harga_skor'],
-                    'berat' => (float)$lap['berat_skor'],
-                    'ram' => (float)$lap['ram_skor'],
-                    'storage' => (float)$lap['storage_skor'],
-                    'processor' => (float)$lap['processor_skor'],
-                    'baterai' => (float)$lap['baterai_skor']
+                    'harga' => 4 - (float)$lap['harga_skor'],
+                    'berat' => 4 - (float)$lap['berat_skor'],
+                    'ram' => 4 - (float)$lap['ram_skor'],
+                    'storage' => 4 - (float)$lap['storage_skor'],
+                    'processor' => 4 - (float)$lap['processor_skor'],
+                    'baterai' => 4 - (float)$lap['baterai_skor']
                 ],
                 'labels' => [
                     'harga' => $lap['harga_label'],

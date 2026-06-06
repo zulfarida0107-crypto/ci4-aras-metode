@@ -193,9 +193,9 @@ endforeach;
 </div>
 <div class="space-y-4">
 <?php foreach($top3 as $laptop): ?>
-<div class="bg-white p-6 rounded-2xl border <?= $laptop['is_optimal'] ? 'border-l-4 border-l-primary' : '' ?> border-outline-variant shadow-sm hover:shadow-md transition-all flex items-center gap-6 group">
+<div class="bg-white p-6 rounded-2xl border <?= $laptop['is_optimal'] ? 'border-l-4 border-l-primary' : '' ?> border-outline-variant shadow-sm hover:shadow-md transition-all flex flex-col md:flex-row items-start md:items-center gap-6 group">
 <div class="w-14 h-14 <?= $laptop['bg'] ?> <?= $laptop['text'] ?> font-black text-2xl flex items-center justify-center rounded-full shrink-0 shadow-inner"><?= $laptop['icon'] ?></div>
-<div class="flex-grow">
+<div class="flex-grow w-full">
 <div class="flex items-center gap-3 mb-1">
 <h4 class="text-lg font-bold text-on-surface"><?= esc($laptop['nama']) ?></h4>
 <?php if($laptop['is_optimal']): ?>
@@ -203,14 +203,16 @@ endforeach;
 <?php endif; ?>
 </div>
 <p class="text-on-surface-variant text-sm mb-4"><?= esc($laptop['spek']) ?></p>
-<div class="flex items-center gap-4">
+<div class="flex flex-col md:flex-row md:items-center gap-4">
+<div class="flex items-center gap-4 flex-grow w-full">
 <div class="flex-grow h-2 bg-surface-container rounded-full overflow-hidden">
 <div class="<?= $laptop['is_optimal'] ? 'ki-progress-gradient' : ($laptop['rank']==2 ? 'bg-outline' : 'bg-outline-variant') ?> h-full rounded-full" style="width: <?= $laptop['ki'] * 100 ?>%; transition: width 1.2s cubic-bezier(0.34, 1.56, 0.64, 1);"></div>
 </div>
 <span class="<?= $laptop['is_optimal'] ? 'text-primary' : 'text-on-surface-variant' ?> font-mono-data text-sm font-bold">Ki: <?= esc($laptop['ki']) ?></span>
 </div>
+<button onclick="document.getElementById('modal-<?= $laptop['id'] ?>').classList.remove('hidden');" class="w-full md:w-auto shrink-0 bg-white border border-primary text-primary hover:bg-primary hover:text-white px-6 py-2.5 rounded-xl text-sm font-bold transition-all">Detail</button>
 </div>
-<button onclick="document.getElementById('modal-<?= $laptop['id'] ?>').classList.remove('hidden');" class="bg-surface-container-low group-hover:bg-primary group-hover:text-white px-6 py-2.5 rounded-xl text-sm font-bold transition-all">Detail</button>
+</div>
 
 <div id="modal-<?= $laptop['id'] ?>" class="hidden fixed inset-0 z-[100] flex items-center justify-center bg-black/50 backdrop-blur-sm transition-all p-4">
     <div class="bg-white rounded-3xl w-full max-w-lg shadow-2xl overflow-hidden border border-outline-variant transform transition-all">

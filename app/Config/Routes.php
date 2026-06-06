@@ -8,5 +8,6 @@ $routes->get('/dashboard', 'DashboardController::index');
 $routes->get('/responden', 'RespondenController::index');
 $routes->get('/responden/export', 'RespondenController::export');
 $routes->get('/eksperimen', 'EksperimenController::index');
+$routes->post('/eksperimen/calculate', 'EksperimenController::calculate');
 $routes->get('/panduan', 'PanduanController::index');
 $routes->get('/aras', 'ArasController::index');

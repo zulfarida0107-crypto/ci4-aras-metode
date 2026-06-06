@@ -121,8 +121,7 @@
 </tbody>
 </table>
 </div>
-<div class="p-4 border-t border-outline-variant bg-surface-container-low flex flex-col sm:flex-row items-center justify-between gap-4">
-    <span class="text-sm font-medium text-on-surface-variant">Menampilkan <?= count($respondenIdentitas) ?> dari <?= $totalResponden ?> responden</span>
+<div class="p-4 border-t border-outline-variant bg-surface-container-low flex justify-end">
     <?= $pager->links('identitas', 'custom_pager') ?>
 </div>
 </div>
@@ -181,8 +180,7 @@
 </tbody>
 </table>
 </div>
-<div class="p-4 border-t border-outline-variant bg-surface-container-low flex flex-col sm:flex-row items-center justify-between gap-4">
-    <span class="text-sm font-medium text-on-surface-variant">Menampilkan <?= count($respondenBobot) ?> dari <?= $totalResponden ?> responden</span>
+<div class="p-4 border-t border-outline-variant bg-surface-container-low flex justify-end">
     <?= $pager->links('bobot', 'custom_pager') ?>
 </div>
 </div>
@@ -287,8 +285,7 @@
 </tbody>
 </table>
 </div>
-<div class="p-4 border-t border-outline-variant bg-surface-container-low flex flex-col sm:flex-row items-center justify-between gap-4">
-    <span class="text-sm font-medium text-on-surface-variant">Menampilkan <?= count($respondenPenilaian) ?> dari <?= $totalResponden ?> responden</span>
+<div class="p-4 border-t border-outline-variant bg-surface-container-low flex justify-end">
     <?= $pager->links('penilaian', 'custom_pager') ?>
 </div>
 </div>
@@ -392,6 +389,12 @@
             const activePane = link.closest('.tab-pane');
             const paneId = activePane.id;
             
+            let currentToggleType = 'label';
+            const activeToggle = activePane.querySelector('.toggle-btn.text-primary');
+            if (activeToggle) {
+                currentToggleType = activeToggle.getAttribute('data-type');
+            }
+            
             activePane.style.opacity = '0.5';
             activePane.style.pointerEvents = 'none';
             
@@ -404,6 +407,26 @@
                     const newPane = doc.getElementById(paneId);
                     if (newPane) {
                         activePane.innerHTML = newPane.innerHTML;
+                        
+                        if (paneId === 'tab-penilaian' && currentToggleType === 'score') {
+                            const toggleBtns = activePane.querySelectorAll('.toggle-btn');
+                            const labels = activePane.querySelectorAll('.cell-label');
+                            const scores = activePane.querySelectorAll('.cell-score');
+                            
+                            toggleBtns.forEach(b => {
+                                b.classList.remove('bg-surface-container-lowest', 'text-primary', 'shadow-sm');
+                                b.classList.add('text-on-surface-variant');
+                            });
+                            
+                            const scoreBtn = activePane.querySelector('.toggle-btn[data-type="score"]');
+                            if (scoreBtn) {
+                                scoreBtn.classList.add('bg-surface-container-lowest', 'text-primary', 'shadow-sm');
+                                scoreBtn.classList.remove('text-on-surface-variant');
+                            }
+                            
+                            labels.forEach(l => l.classList.add('hidden'));
+                            scores.forEach(s => s.classList.remove('hidden'));
+                        }
                     }
                     
                     activePane.style.opacity = '1';

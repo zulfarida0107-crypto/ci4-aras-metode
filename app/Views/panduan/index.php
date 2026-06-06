@@ -92,8 +92,8 @@ x<sub>0j</sub> = max<sub>i</sub> x<sub>ij</sub> (Benefit) &nbsp;|&nbsp; x<sub>0j
 <div class="text-on-surface-variant max-w-2xl space-y-1 mb-3">
 <p>Transformasikan semua nilai ke dalam skala 0-1 agar kriteria dengan satuan berbeda dapat dibandingkan secara adil.</p>
 <ul class="list-disc pl-5 mt-2">
-<li><strong>Benefit:</strong> dibagi dengan total nilai pada kolom</li>
-<li><strong>Cost:</strong> menggunakan invers (1/x) kemudian dinormalisasi</li>
+<li><strong class="text-emerald-600">Benefit:</strong> dibagi dengan total nilai pada kolom</li>
+<li><strong class="text-amber-600">Cost:</strong> menggunakan invers (1/x) kemudian dinormalisasi</li>
 </ul>
 </div>
 <div class="inline-block p-2 px-4 bg-surface-container rounded-lg border border-outline-variant font-mono-data text-sm text-on-surface">

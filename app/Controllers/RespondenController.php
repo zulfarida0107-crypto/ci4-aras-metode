@@ -11,12 +11,49 @@ class RespondenController extends BaseController
         $vRespondenModel = new \App\Models\VRespondenLengkapModel();
         $bobotModel = new \App\Models\BobotKriteriaModel();
         
-        // 1. Get Filters
         $search = $this->request->getGet('search');
         $status = $this->request->getGet('status'); // array
         $usia = $this->request->getGet('usia');
 
-        $buildQuery = function() use ($search, $status, $usia) {
+        // Get Tipe Kriteria filters
+        $typeFilters = [
+            'harga' => $this->request->getGet('type_harga'),
+            'berat' => $this->request->getGet('type_berat'),
+            'ram' => $this->request->getGet('type_ram'),
+            'storage' => $this->request->getGet('type_storage'),
+            'processor' => $this->request->getGet('type_processor'),
+            'baterai' => $this->request->getGet('type_baterai')
+        ];
+
+        // Filter valid ones (not empty)
+        $activeTypeFilters = array_filter($typeFilters, function($val) {
+            return !empty($val);
+        });
+
+        $matchingIds = null;
+        if (!empty($activeTypeFilters)) {
+            require_once APPPATH . 'Libraries/Responden2Parser.php';
+            $parsedData = \App\Libraries\Responden2Parser::parse();
+            $matchingIds = [];
+            foreach ($parsedData as $pd) {
+                $match = true;
+                foreach ($activeTypeFilters as $k => $v) {
+                    if (isset($pd['types'][$k]) && strtolower($pd['types'][$k]) !== strtolower($v)) {
+                        $match = false;
+                        break;
+                    }
+                }
+                if ($match) {
+                    $matchingIds[] = $pd['id'];
+                }
+            }
+            // Jika tidak ada yang match, kita set array [-1] agar query mengembalikan kosong
+            if (empty($matchingIds)) {
+                $matchingIds = [-1];
+            }
+        }
+
+        $buildQuery = function() use ($search, $status, $usia, $matchingIds) {
             $model = new \App\Models\VRespondenLengkapModel();
             $model->select('v_responden_lengkap.*, responden.created_at');
             $model->join('responden', 'responden.id = v_responden_lengkap.id');
@@ -35,6 +72,9 @@ class RespondenController extends BaseController
                 } elseif ($usia == '>30') {
                     $model->where('v_responden_lengkap.usia >', 30);
                 }
+            }
+            if ($matchingIds !== null) {
+                $model->whereIn('v_responden_lengkap.id', $matchingIds);
             }
             $model->orderBy('v_responden_lengkap.id', 'ASC');
             return $model;
@@ -102,7 +142,8 @@ class RespondenController extends BaseController
             'currentPagePenilaian' => $pager->getCurrentPage('penilaian'),
             'perPage'   => 10,
             'avgWeights' => $avgWeights,
-            'totalResponden' => $totalRespondenAll
+            'totalResponden' => $totalRespondenAll,
+            'typeFilters' => $typeFilters
         ];
 
         return view('responden/index', $data);

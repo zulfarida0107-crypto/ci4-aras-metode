@@ -14,7 +14,17 @@ class ArasController extends BaseController
 
         $allBobot = $bobotModel->findAll();
         
-        // 1. Hitung rata-rata bobot
+        // 0. Dinamis: Ambil dari parameter GET (jika kosong, gunakan default)
+        $types = [
+            'harga' => $this->request->getGet('type_harga') ?: 'cost',
+            'berat' => $this->request->getGet('type_berat') ?: 'cost',
+            'ram' => $this->request->getGet('type_ram') ?: 'benefit',
+            'storage' => $this->request->getGet('type_storage') ?: 'benefit',
+            'processor' => $this->request->getGet('type_processor') ?: 'benefit',
+            'baterai' => $this->request->getGet('type_baterai') ?: 'benefit'
+        ];
+
+        // 1. Hitung rata-rata bobot (dari db karena Responden2.md tidak punya bobot)
         $weights = [
             'harga' => 0, 'berat' => 0, 'ram' => 0, 'storage' => 0, 'processor' => 0, 'baterai' => 0
         ];
@@ -29,41 +39,32 @@ class ArasController extends BaseController
             }
         }
 
-        $types = [
-            'harga' => 'cost',
-            'berat' => 'cost',
-            'ram' => 'benefit',
-            'storage' => 'benefit',
-            'processor' => 'benefit',
-            'baterai' => 'benefit'
-        ];
-
-        // 2. Siapkan Alternatif
-        $skorModel->select('skor_laptop.*, responden.nama');
-        $skorModel->join('responden', 'responden.id = skor_laptop.responden_id');
-        $laptops = $skorModel->findAll();
+        // 2. Siapkan Alternatif (Gunakan data dari Responden2.md secara langsung)
+        require_once APPPATH . 'Libraries/Responden2Parser.php';
+        $parsedData = \App\Libraries\Responden2Parser::parse();
 
         $alternatives = [];
-        foreach ($laptops as $index => $lap) {
+        $i = 1;
+        foreach ($parsedData as $pd) {
             $alternatives[] = [
-                'id' => 'A' . ($index + 1),
-                'nama' => 'Laptop ' . $lap['nama'],
-                'spek' => $lap['processor_label'] . ' | ' . $lap['ram_label'],
+                'id' => 'A' . $i++,
+                'nama' => 'Laptop ' . $pd['nama'],
+                'spek' => ($pd['labels']['processor'] ?? '') . ' | ' . ($pd['labels']['ram'] ?? ''),
                 'scores' => [
-                    'harga' => 4 - (float)$lap['harga_skor'],
-                    'berat' => 4 - (float)$lap['berat_skor'],
-                    'ram' => 4 - (float)$lap['ram_skor'],
-                    'storage' => 4 - (float)$lap['storage_skor'],
-                    'processor' => 4 - (float)$lap['processor_skor'],
-                    'baterai' => 4 - (float)$lap['baterai_skor']
+                    'harga' => $pd['scores']['harga'] ?? 1,
+                    'berat' => $pd['scores']['berat'] ?? 1,
+                    'ram' => $pd['scores']['ram'] ?? 1,
+                    'storage' => $pd['scores']['storage'] ?? 1,
+                    'processor' => $pd['scores']['processor'] ?? 1,
+                    'baterai' => $pd['scores']['baterai'] ?? 1
                 ],
                 'labels' => [
-                    'harga' => $lap['harga_label'],
-                    'berat' => $lap['berat_label'],
-                    'ram' => $lap['ram_label'],
-                    'storage' => $lap['storage_label'],
-                    'processor' => $lap['processor_label'],
-                    'baterai' => $lap['baterai_label']
+                    'harga' => $pd['labels']['harga'] ?? '',
+                    'berat' => $pd['labels']['berat'] ?? '',
+                    'ram' => $pd['labels']['ram'] ?? '',
+                    'storage' => $pd['labels']['storage'] ?? '',
+                    'processor' => $pd['labels']['processor'] ?? '',
+                    'baterai' => $pd['labels']['baterai'] ?? ''
                 ]
             ];
         }
@@ -128,6 +129,9 @@ class ArasController extends BaseController
             'pagerSi' => $pager->makeLinks($pageSi, $perPage, $total, 'custom_pager', 0, 'si'),
             'pagerKi' => $pager->makeLinks($pageKi, $perPage, $total, 'custom_pager', 0, 'ki'),
             'pagerRank' => $pager->makeLinks($pageRank, $perPage, $total, 'custom_pager', 0, 'rank'),
+            
+            // Filters
+            'typeFilters' => $types,
         ];
 
         return view('aras_survei/index', $data);

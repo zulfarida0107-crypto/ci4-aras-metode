@@ -16,7 +16,7 @@
                 <h3 class="font-bold text-on-surface text-lg">Filter Data</h3>
                 <span class="material-symbols-outlined text-primary">filter_list</span>
             </div>
-            <form action="<?= base_url('responden') ?>" method="GET">
+            <form id="filterDataForm" action="<?= base_url('responden') ?>" method="GET" onsubmit="return validateFilters()">
                 <!-- Pencarian -->
                 <div class="mb-6">
                     <label class="block text-xs font-bold text-on-surface-variant mb-2 uppercase tracking-wider">Pencarian</label>
@@ -46,7 +46,7 @@
                 </div>
 
                 <!-- Rentang Usia -->
-                <div class="mb-8">
+                <div class="mb-6">
                     <label class="block text-xs font-bold text-on-surface-variant mb-2 uppercase tracking-wider">Rentang Usia</label>
                     <select name="usia" class="w-full px-4 py-2 bg-white border border-outline-variant rounded-lg text-sm focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all">
                         <option value="">Semua Usia</option>
@@ -54,6 +54,31 @@
                         <option value="23-30" <?= (isset($_GET['usia']) && $_GET['usia'] == '23-30') ? 'selected' : '' ?>>23 - 30 Tahun</option>
                         <option value=">30" <?= (isset($_GET['usia']) && $_GET['usia'] == '>30') ? 'selected' : '' ?>>Di atas 30 Tahun</option>
                     </select>
+                </div>
+
+                <!-- Tipe Kriteria (Benefit / Cost) -->
+                <div class="mb-8">
+                    <label class="block text-xs font-bold text-on-surface-variant mb-3 uppercase tracking-wider">Tipe Kriteria</label>
+                    
+                    <?php foreach(['harga', 'berat', 'ram', 'storage', 'processor', 'baterai'] as $key): ?>
+                        <input type="hidden" name="type_<?= $key ?>" id="input_<?= $key ?>" value="<?= esc($typeFilters[$key] ?? '') ?>">
+                    <?php endforeach; ?>
+
+                    <div class="grid grid-cols-2 gap-2">
+                        <?php 
+                        $kriteriaNames = ['Harga' => 'harga', 'Berat' => 'berat', 'RAM' => 'ram', 'Storage' => 'storage', 'Processor' => 'processor', 'Baterai' => 'baterai'];
+                        foreach($kriteriaNames as $label => $key): 
+                            $currentType = $typeFilters[$key] ?? '';
+                        ?>
+                        <div class="flex flex-col bg-surface-container-lowest rounded-lg border border-outline-variant/60 p-1.5 shadow-sm">
+                            <span class="text-[10px] font-bold text-on-surface mb-1 text-center"><?= $label ?></span>
+                            <div class="flex bg-surface-container-high p-1 rounded-md gap-1">
+                                <button type="button" onclick="toggleFilterType('<?= $key ?>', 'benefit')" id="btn_<?= $key ?>_benefit" class="flex-1 py-1 text-[9px] font-bold rounded <?= $currentType == 'benefit' ? 'bg-emerald-600 text-white shadow-sm' : 'text-on-surface-variant hover:bg-surface-container-highest' ?>">Benefit</button>
+                                <button type="button" onclick="toggleFilterType('<?= $key ?>', 'cost')" id="btn_<?= $key ?>_cost" class="flex-1 py-1 text-[9px] font-bold rounded <?= $currentType == 'cost' ? 'bg-amber-500 text-white shadow-sm' : 'text-on-surface-variant hover:bg-surface-container-highest' ?>">Cost</button>
+                            </div>
+                        </div>
+                        <?php endforeach; ?>
+                    </div>
                 </div>
 
                 <div class="flex flex-col gap-3">
@@ -151,7 +176,7 @@
 <th class="px-6 py-4 font-label-md text-label-md text-on-surface text-center">W1 (Harga)</th>
 <th class="px-6 py-4 font-label-md text-label-md text-on-surface text-center">W2 (Berat)</th>
 <th class="px-6 py-4 font-label-md text-label-md text-on-surface text-center">W3 (RAM)</th>
-<th class="px-6 py-4 font-label-md text-label-md text-on-surface text-center">W4 (Penyimpanan)</th>
+<th class="px-6 py-4 font-label-md text-label-md text-on-surface text-center">W4 (Storage)</th>
 <th class="px-6 py-4 font-label-md text-label-md text-on-surface text-center">W5 (Prosesor)</th>
 <th class="px-6 py-4 font-label-md text-label-md text-on-surface text-center">W6 (Baterai)</th>
 </tr>
@@ -228,7 +253,7 @@
 <th class="px-6 py-4 font-label-md text-label-md text-on-surface text-center">
 <div class="flex flex-col items-center">
 <span class="material-symbols-outlined text-primary" data-icon="storage">storage</span>
-<span class="text-[10px]">C4: Penyimpanan</span>
+<span class="text-[10px]">C4: Storage</span>
 </div>
 </th>
 <th class="px-6 py-4 font-label-md text-label-md text-on-surface text-center">
@@ -438,5 +463,46 @@
                 });
         }
     });
+
+    function toggleFilterType(key, type) {
+        const input = document.getElementById('input_' + key);
+        const btnBenefit = document.getElementById('btn_' + key + '_benefit');
+        const btnCost = document.getElementById('btn_' + key + '_cost');
+        
+        if (input.value === type) {
+            // Deselect
+            input.value = '';
+            btnBenefit.className = 'flex-1 py-1 text-[9px] font-bold rounded text-on-surface-variant hover:bg-surface-container-highest';
+            btnCost.className = 'flex-1 py-1 text-[9px] font-bold rounded text-on-surface-variant hover:bg-surface-container-highest';
+        } else {
+            // Select
+            input.value = type;
+            if (type === 'benefit') {
+                btnBenefit.className = 'flex-1 py-1 text-[9px] font-bold rounded bg-emerald-600 text-white shadow-sm';
+                btnCost.className = 'flex-1 py-1 text-[9px] font-bold rounded text-on-surface-variant hover:bg-surface-container-highest';
+            } else {
+                btnCost.className = 'flex-1 py-1 text-[9px] font-bold rounded bg-amber-500 text-white shadow-sm';
+                btnBenefit.className = 'flex-1 py-1 text-[9px] font-bold rounded text-on-surface-variant hover:bg-surface-container-highest';
+            }
+        }
+    }
+
+    function validateFilters() {
+        const keys = ['harga', 'berat', 'ram', 'storage', 'processor', 'baterai'];
+        let filledCount = 0;
+        
+        for (let key of keys) {
+            const val = document.getElementById('input_' + key).value;
+            if (val) {
+                filledCount++;
+            }
+        }
+        
+        if (filledCount > 0 && filledCount < 6) {
+            alert('Jika Anda ingin menggunakan Filter Tipe Kriteria, mohon lengkapi pilihan (Benefit/Cost) untuk keenam kriteria!');
+            return false;
+        }
+        return true;
+    }
 </script>
 <?= $this->endSection() ?>

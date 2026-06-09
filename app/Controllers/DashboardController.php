@@ -13,6 +13,16 @@ class DashboardController extends BaseController
         $respondenModel = new RespondenModel();
         $bobotModel = new BobotKriteriaModel();
 
+        // 0. Ambil tipe kriteria dinamis dari filter (atau gunakan default)
+        $dynamicTypes = [
+            'harga' => $this->request->getGet('type_harga') ?: 'cost',
+            'berat' => $this->request->getGet('type_berat') ?: 'cost',
+            'ram' => $this->request->getGet('type_ram') ?: 'benefit',
+            'storage' => $this->request->getGet('type_storage') ?: 'benefit',
+            'processor' => $this->request->getGet('type_processor') ?: 'benefit',
+            'baterai' => $this->request->getGet('type_baterai') ?: 'benefit'
+        ];
+
         // 1. Total Responden
         $totalResponden = $respondenModel->countAllResults();
         if ($totalResponden == 0) {
@@ -85,21 +95,25 @@ class DashboardController extends BaseController
 
         $bobotDisplay = [];
         $kriteriaTertinggi = ['nama' => '-', 'nilai' => 0];
+
+        // Gunakan dynamicTypes dari responden yang dipilih
         $bobotMap = [
-            'processor' => ['label' => 'Processor', 'type' => 'Benefit'],
-            'ram' => ['label' => 'RAM', 'type' => 'Benefit'],
-            'baterai' => ['label' => 'Baterai', 'type' => 'Benefit'],
-            'storage' => ['label' => 'Storage', 'type' => 'Benefit'],
-            'harga' => ['label' => 'Harga', 'type' => 'Cost'],
-            'berat' => ['label' => 'Berat', 'type' => 'Cost'],
+            'processor' => ['label' => 'Processor'],
+            'ram' => ['label' => 'RAM'],
+            'baterai' => ['label' => 'Baterai'],
+            'storage' => ['label' => 'Storage'],
+            'harga' => ['label' => 'Harga'],
+            'berat' => ['label' => 'Berat'],
         ];
 
         foreach ($avgBobot as $key => $val) {
             $persen = round(($val / $totalAvgBobot) * 100, 1);
+            $type = $dynamicTypes[$key] ?? 'benefit';
             
             $bobotDisplay[$key] = [
                 'label' => $bobotMap[$key]['label'],
-                'type' => $bobotMap[$key]['type'],
+                'type' => ucfirst($type),
+                'type_raw' => $type,
                 'persen' => $persen,
                 'width' => $persen
             ];
@@ -117,7 +131,7 @@ class DashboardController extends BaseController
             return $b['persen'] <=> $a['persen'];
         });
 
-        // 5. Dinamis Top 3 ARAS (Menggunakan data survei dan rata-rata bobot)
+        // 5. Dinamis Top 3 ARAS (Menggunakan data survei dan tipe kriteria terpilih)
         $skorModel = new \App\Models\SkorLaptopModel();
         $skorData = $skorModel->findAll();
         
@@ -160,14 +174,8 @@ class DashboardController extends BaseController
             'baterai' => $avgBobot['baterai'],
         ];
 
-        $types = [
-            'harga' => 'cost',
-            'berat' => 'cost',
-            'ram' => 'benefit',
-            'storage' => 'benefit',
-            'processor' => 'benefit',
-            'baterai' => 'benefit'
-        ];
+        // Gunakan dynamicTypes dari responden yang dipilih
+        $types = $dynamicTypes;
 
         $arasLib = new \App\Libraries\ArasLibraries();
         $fullRanking = $arasLib->calculate($alternatives, $weights, $types);
@@ -184,7 +192,9 @@ class DashboardController extends BaseController
             'statusTerbanyak' => $statusTerbanyak,
             'kriteriaTertinggi' => $kriteriaTertinggi,
             'bobotDisplay' => $bobotDisplay,
-            'top3' => $top3
+            'top3' => $top3,
+            // Filter data dinamis
+            'dynamicTypes' => $dynamicTypes,
         ];
 
         return view('dashboard/index', $data);

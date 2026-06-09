@@ -83,6 +83,50 @@
         </div>
     </div>
 
+    <!-- Filter Tipe Kriteria -->
+    <div class="mb-8 bg-white p-6 rounded-2xl border border-outline-variant shadow-sm no-print">
+        <h3 class="text-lg font-bold text-on-surface mb-4 flex items-center gap-2">
+            <span class="material-symbols-outlined text-primary">filter_alt</span>
+            Filter Tipe Kriteria (Wajib Diisi)
+        </h3>
+        <p class="text-sm text-on-surface-variant mb-6">Pilih sifat (Benefit/Cost) untuk setiap kriteria. Perhitungan ARAS akan otomatis menyesuaikan dengan pilihan Anda.</p>
+        
+        <form action="" method="get" id="formFilterAras" onsubmit="return validateFilters()">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <?php 
+                $kriteriaNames = ['Harga' => 'harga', 'Berat' => 'berat', 'RAM' => 'ram', 'Storage' => 'storage', 'Processor' => 'processor', 'Baterai' => 'baterai'];
+                foreach($kriteriaNames as $label => $key): 
+                    $currentType = $typeFilters[$key] ?? '';
+                ?>
+                <div class="flex flex-col bg-white rounded-lg border border-outline-variant p-2 shadow-sm">
+                    <span class="text-sm font-bold text-on-surface mb-2 text-center"><?= $label ?></span>
+                    <input type="hidden" name="type_<?= $key ?>" id="input_<?= $key ?>" value="<?= $currentType ?>">
+                    <div class="flex bg-surface-container-high p-1 rounded-md">
+                        <button type="button" 
+                                onclick="toggleType('<?= $key ?>', 'benefit')"
+                                id="btn_<?= $key ?>_benefit"
+                                class="flex-1 py-1.5 text-xs font-bold rounded transition-colors <?= $currentType === 'benefit' ? 'bg-emerald-600 text-white shadow-sm' : 'text-on-surface-variant hover:bg-surface-container-highest' ?>">
+                            Benefit
+                        </button>
+                        <button type="button" 
+                                onclick="toggleType('<?= $key ?>', 'cost')"
+                                id="btn_<?= $key ?>_cost"
+                                class="flex-1 py-1.5 text-xs font-bold rounded transition-colors <?= $currentType === 'cost' ? 'bg-amber-500 text-white shadow-sm' : 'text-on-surface-variant hover:bg-surface-container-highest' ?>">
+                            Cost
+                        </button>
+                    </div>
+                </div>
+                <?php endforeach; ?>
+            </div>
+            
+            <div class="mt-6 flex justify-end no-print" id="submitBtnContainer">
+                <button type="submit" class="px-6 py-2.5 bg-primary text-on-primary rounded-lg font-bold shadow-md hover:opacity-90 transition-opacity">
+                    Terapkan & Hitung
+                </button>
+            </div>
+        </form>
+    </div>
+
     <?php if(!empty($results)): 
         $top = $results[0];
     ?>
@@ -157,7 +201,7 @@
                         <tr class="bg-surface-container-low text-on-surface border-b border-outline-variant">
                             <th class="px-6 py-3 font-bold">Alternatif</th>
                             <?php foreach($types as $k => $t): ?>
-                            <th class="px-6 py-3 font-bold uppercase"><?= $k ?></th>
+                            <th class="px-6 py-3 font-bold uppercase"><?= $k ?> <br><span class="text-[10px] font-normal text-primary">(<?= ucfirst($t) ?>)</span></th>
                             <?php endforeach; ?>
                         </tr>
                     </thead>
@@ -201,7 +245,7 @@
                         <tr class="bg-amber-50 text-amber-900 border-b border-amber-200">
                             <th class="px-6 py-3 font-bold">Optimal</th>
                             <?php foreach($types as $k => $t): ?>
-                            <th class="px-6 py-3 font-bold uppercase"><?= $k ?></th>
+                            <th class="px-6 py-3 font-bold uppercase"><?= $k ?> <br><span class="text-[10px] font-normal opacity-70">(<?= ucfirst($t) ?>)</span></th>
                             <?php endforeach; ?>
                         </tr>
                     </thead>
@@ -240,7 +284,7 @@
                         <tr class="bg-emerald-50 text-emerald-900 border-b border-emerald-200">
                             <th class="px-6 py-3 font-bold">Alternatif</th>
                             <?php foreach($types as $k => $t): ?>
-                            <th class="px-6 py-3 font-bold uppercase">R (<?= substr($k, 0, 3) ?>)</th>
+                            <th class="px-6 py-3 font-bold uppercase">R (<?= $k ?>) <br><span class="text-[10px] font-normal opacity-70">(<?= ucfirst($t) ?>)</span></th>
                             <?php endforeach; ?>
                         </tr>
                     </thead>
@@ -284,7 +328,7 @@
                         <tr class="bg-surface-container-low text-on-surface border-b border-outline-variant">
                             <th class="px-6 py-3 font-bold">Alternatif</th>
                             <?php foreach($types as $k => $t): ?>
-                            <th class="px-6 py-3 font-bold uppercase text-[10px]">D (<?= $k ?>) <br><span class="font-normal text-on-surface-variant no-print">w=<?= number_format($W_norm[$k] ?? 0, 3) ?></span></th>
+                            <th class="px-6 py-3 font-bold uppercase text-[10px]">D (<?= $k ?>) <br><span class="font-normal text-primary no-print">(<?= ucfirst($t) ?>)</span><br><span class="font-normal text-on-surface-variant no-print">w=<?= number_format($W_norm[$k] ?? 0, 3) ?></span></th>
                             <?php endforeach; ?>
                         </tr>
                     </thead>
@@ -490,6 +534,36 @@
 </main>
 
 <script>
+    // Validasi form filter (harus pilih semua 6 jika mau submit)
+    function validateFilters() {
+        const keys = ['harga', 'berat', 'ram', 'storage', 'processor', 'baterai'];
+        for (let key of keys) {
+            const val = document.getElementById('input_' + key).value;
+            if (!val) {
+                alert('Pilihan Tipe Kriteria (Benefit/Cost) untuk keenam kriteria wajib diisi agar perhitungan ARAS dapat dilakukan!');
+                return false;
+            }
+        }
+        return true;
+    }
+
+    // Toggle tombol Benefit/Cost
+    function toggleType(key, type) {
+        const input = document.getElementById('input_' + key);
+        const btnBenefit = document.getElementById('btn_' + key + '_benefit');
+        const btnCost = document.getElementById('btn_' + key + '_cost');
+        
+        input.value = type;
+        
+        if (type === 'benefit') {
+            btnBenefit.className = "flex-1 py-1.5 text-xs font-bold rounded transition-colors bg-emerald-600 text-white shadow-sm";
+            btnCost.className = "flex-1 py-1.5 text-xs font-bold rounded transition-colors text-on-surface-variant hover:bg-surface-container-highest";
+        } else {
+            btnBenefit.className = "flex-1 py-1.5 text-xs font-bold rounded transition-colors text-on-surface-variant hover:bg-surface-container-highest";
+            btnCost.className = "flex-1 py-1.5 text-xs font-bold rounded transition-colors bg-amber-500 text-white shadow-sm";
+        }
+    }
+
     document.querySelectorAll('tbody tr').forEach(row => {
         row.style.transition = 'all 0.2s ease-in-out';
     });

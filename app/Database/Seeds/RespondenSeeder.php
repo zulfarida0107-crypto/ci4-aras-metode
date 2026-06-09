@@ -91,8 +91,44 @@ class RespondenSeeder extends Seeder
         $bobotData[] = ['responden_id' => 26, 'harga' => 3, 'berat' => 3, 'ram' => 3, 'storage' => 3, 'processor' => 3, 'baterai' => 3];
         $skorData[] = ['responden_id' => 26, 'harga_label' => '15 juta - 25 juta', 'berat_label' => '2,1 - 2,5 kg', 'ram_label' => '8 - 16 GB', 'storage_label' => '512 GB', 'processor_label' => 'Core i7, Ryzen 7', 'baterai_label' => '≥ 6 jam', 'harga_skor' => 2, 'berat_skor' => 2, 'ram_skor' => 2, 'storage_skor' => 2, 'processor_skor' => 3, 'baterai_skor' => 3];
 
+        // 1. Ambil parsed data dari Responden2.md
+        require_once APPPATH . 'Libraries/Responden2Parser.php';
+        $parsedData = \App\Libraries\Responden2Parser::parse();
+        
+        // Buat map ID -> data spesifikasi skor
+        $skorMap = [];
+        foreach ($parsedData as $pd) {
+            $skorMap[$pd['id']] = $pd;
+        }
+
+        // 2. Modifikasi skorData dengan nilai dari markdown
+        $newSkorData = [];
+        foreach ($skorData as $skor) {
+            $id = $skor['responden_id'];
+            if (isset($skorMap[$id])) {
+                $m = $skorMap[$id];
+                $newSkorData[] = [
+                    'responden_id' => $id,
+                    'harga_label' => $m['labels']['harga'] ?? '',
+                    'berat_label' => $m['labels']['berat'] ?? '',
+                    'ram_label' => $m['labels']['ram'] ?? '',
+                    'storage_label' => $m['labels']['storage'] ?? '',
+                    'processor_label' => $m['labels']['processor'] ?? '',
+                    'baterai_label' => $m['labels']['baterai'] ?? '',
+                    'harga_skor' => $m['scores']['harga'] ?? 1,
+                    'berat_skor' => $m['scores']['berat'] ?? 1,
+                    'ram_skor' => $m['scores']['ram'] ?? 1,
+                    'storage_skor' => $m['scores']['storage'] ?? 1,
+                    'processor_skor' => $m['scores']['processor'] ?? 1,
+                    'baterai_skor' => $m['scores']['baterai'] ?? 1,
+                ];
+            } else {
+                $newSkorData[] = $skor; // fallback ke original if not found
+            }
+        }
+
         $this->db->table('responden')->insertBatch($respondenData);
         $this->db->table('bobot_kriteria')->insertBatch($bobotData);
-        $this->db->table('skor_laptop')->insertBatch($skorData);
+        $this->db->table('skor_laptop')->insertBatch($newSkorData);
     }
 }

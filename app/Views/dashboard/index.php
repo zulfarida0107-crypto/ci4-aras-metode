@@ -56,9 +56,10 @@
 <p class="text-on-surface-variant text-xs mt-2"><?= esc($statusTerbanyak['persen']) ?>% dari total data</p>
 </div>
 </div>
+<!-- Filter moved -->
+
 <!-- Visuals Section -->
-<div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
-<div class="bg-white p-8 rounded-2xl border border-outline-variant shadow-sm">
+<div class="bg-white p-8 rounded-2xl border border-outline-variant shadow-sm mb-6">
 <div class="flex justify-between items-center mb-8">
 <h3 class="text-lg font-bold text-on-surface">Distribusi Status Responden</h3>
 <span class="material-symbols-outlined text-on-surface-variant">donut_large</span>
@@ -94,12 +95,52 @@ endforeach;
 </div>
 </div>
 </div>
-<div class="bg-white p-8 rounded-2xl border border-outline-variant shadow-sm">
-<div class="flex justify-between items-center mb-8">
+
+<div class="bg-white p-8 rounded-2xl border border-outline-variant shadow-sm flex flex-col mb-6">
+<div class="flex justify-between items-center mb-6">
 <h3 class="text-lg font-bold text-on-surface">Rata-rata Bobot Kriteria</h3>
 <span class="material-symbols-outlined text-on-surface-variant">align_horizontal_left</span>
 </div>
-<div class="space-y-5">
+
+<!-- Konfigurasi Tipe Kriteria Filter (Moved inside) -->
+<div class="mb-6 bg-surface-container-high p-3 rounded-xl border border-outline-variant shadow-sm">
+    <div class="flex items-center gap-2 mb-3">
+        <span class="material-symbols-outlined text-primary text-sm">tune</span>
+        <h4 class="font-bold text-sm text-on-surface">Filter Tipe Kriteria (Benefit / Cost)</h4>
+    </div>
+    
+    <form id="typeFilterForm" action="<?= base_url('dashboard') ?>" method="GET">
+        <?php foreach(['harga', 'berat', 'ram', 'storage', 'processor', 'baterai'] as $key): ?>
+        <input type="hidden" name="type_<?= $key ?>" id="input_<?= $key ?>" value="<?= esc($dynamicTypes[$key]) ?>">
+        <?php endforeach; ?>
+    </form>
+
+    <div class="grid grid-cols-2 xl:grid-cols-3 gap-2" id="criteria-type-container">
+        <?php 
+        $kriteriaNames = ['Harga' => 'harga', 'Berat' => 'berat', 'RAM' => 'ram', 'Storage' => 'storage', 'Processor' => 'processor', 'Baterai' => 'baterai'];
+        foreach($kriteriaNames as $label => $key): 
+        ?>
+        <div class="flex flex-col bg-surface-container-lowest rounded-lg border border-outline-variant/60 p-1.5 shadow-sm type-group">
+            <span class="text-[10px] font-bold text-on-surface mb-1.5 text-center"><?= $label ?></span>
+            <div class="flex bg-surface-container-high p-1 rounded-md">
+                <button type="button" onclick="submitTypeFilter('<?= $key ?>', 'benefit')" class="flex-1 py-1 text-[9px] font-bold rounded <?= $dynamicTypes[$key] == 'benefit' ? 'bg-emerald-600 text-white shadow-sm' : 'text-on-surface-variant hover:bg-surface-container-highest' ?>">Benefit</button>
+                <button type="button" onclick="submitTypeFilter('<?= $key ?>', 'cost')" class="flex-1 py-1 text-[9px] font-bold rounded <?= $dynamicTypes[$key] == 'cost' ? 'bg-amber-500 text-white shadow-sm' : 'text-on-surface-variant hover:bg-surface-container-highest' ?>">Cost</button>
+            </div>
+        </div>
+        <?php endforeach; ?>
+    </div>
+</div>
+
+<script>
+function submitTypeFilter(key, type) {
+    if (document.getElementById('input_' + key).value !== type) {
+        document.getElementById('input_' + key).value = type;
+        document.getElementById('typeFilterForm').submit();
+    }
+}
+</script>
+
+<div class="space-y-4 flex-grow">
 <?php 
 foreach($bobotDisplay as $key => $bk): 
     $barColor = 'bg-benefit';
@@ -107,7 +148,13 @@ foreach($bobotDisplay as $key => $bk):
 ?>
 <div class="space-y-2">
 <div class="flex justify-between text-xs font-bold text-on-surface-variant">
-<span class=""><?= esc($labelTampil) ?></span>
+<div class="flex items-center gap-2">
+    <span><?= esc($labelTampil) ?></span>
+    <?php 
+    $typeColor = ($bk['type_raw'] == 'benefit') ? 'bg-benefit/10 text-benefit' : 'bg-error/10 text-error';
+    ?>
+    <span class="px-1.5 py-0.5 rounded text-[9px] uppercase tracking-wider <?= $typeColor ?>"><?= esc($bk['type']) ?></span>
+</div>
 <span class=""><?= esc($bk['persen']) ?>%</span>
 </div>
 <div class="h-2 w-full bg-surface-container rounded-full overflow-hidden">
@@ -117,7 +164,6 @@ foreach($bobotDisplay as $key => $bk):
 <?php 
 endforeach; 
 ?>
-</div>
 </div>
 </div>
 <!-- ARAS Flow: 8-stage horizontal infographic -->
@@ -187,9 +233,11 @@ endforeach;
 <div class="mb-8">
 <div class="flex items-center justify-between mb-6">
 <h3 class="text-xl font-extrabold text-on-surface">3 Peringkat Teratas (ARAS)</h3>
-<a class="text-sm font-bold text-primary hover:underline flex items-center gap-1" href="<?= base_url('aras') ?>">
-                    Lihat Hasil Lengkap <span class="material-symbols-outlined text-base">chevron_right</span>
-</a>
+<div class="flex items-center gap-4">
+    <a class="text-sm font-bold text-primary hover:underline flex items-center gap-1" href="<?= base_url('aras') ?>">
+        Lihat Hasil Lengkap <span class="material-symbols-outlined text-base">chevron_right</span>
+    </a>
+</div>
 </div>
 <div class="space-y-4">
 <?php foreach($top3 as $laptop): ?>
@@ -229,30 +277,18 @@ endforeach;
         <div class="p-6 space-y-4">
             <p class="text-sm font-bold text-on-surface-variant uppercase tracking-wider mb-2">Spesifikasi Lengkap</p>
             <div class="grid grid-cols-2 gap-4">
+                <?php foreach(['harga'=>'Harga', 'berat'=>'Berat', 'ram'=>'RAM', 'storage'=>'Penyimpanan', 'processor'=>'Prosesor', 'baterai'=>'Baterai (Ketahanan)'] as $k => $l): 
+                    $tipe = isset($dynamicTypes[$k]) ? ucfirst($dynamicTypes[$k]) : 'Benefit';
+                    $tipeColor = strtolower($tipe) == 'benefit' ? 'text-benefit bg-benefit/10' : 'text-error bg-error/10';
+                ?>
                 <div class="bg-surface-container-lowest p-3 rounded-xl border border-outline-variant/50">
-                    <p class="text-xs text-on-surface-variant font-medium">Harga</p>
-                    <p class="text-sm font-bold text-on-surface truncate" title="<?= esc($laptop['labels']['harga']) ?>"><?= esc($laptop['labels']['harga']) ?></p>
+                    <div class="flex justify-between items-center mb-1">
+                        <p class="text-xs text-on-surface-variant font-medium"><?= $l ?></p>
+                        <span class="px-1.5 py-0.5 rounded text-[9px] uppercase tracking-wider font-bold <?= $tipeColor ?>"><?= $tipe ?></span>
+                    </div>
+                    <p class="text-sm font-bold text-on-surface truncate" title="<?= esc($laptop['labels'][$k]) ?>"><?= esc($laptop['labels'][$k]) ?></p>
                 </div>
-                <div class="bg-surface-container-lowest p-3 rounded-xl border border-outline-variant/50">
-                    <p class="text-xs text-on-surface-variant font-medium">Berat</p>
-                    <p class="text-sm font-bold text-on-surface truncate" title="<?= esc($laptop['labels']['berat']) ?>"><?= esc($laptop['labels']['berat']) ?></p>
-                </div>
-                <div class="bg-surface-container-lowest p-3 rounded-xl border border-outline-variant/50">
-                    <p class="text-xs text-on-surface-variant font-medium">RAM</p>
-                    <p class="text-sm font-bold text-on-surface truncate" title="<?= esc($laptop['labels']['ram']) ?>"><?= esc($laptop['labels']['ram']) ?></p>
-                </div>
-                <div class="bg-surface-container-lowest p-3 rounded-xl border border-outline-variant/50">
-                    <p class="text-xs text-on-surface-variant font-medium">Penyimpanan</p>
-                    <p class="text-sm font-bold text-on-surface truncate" title="<?= esc($laptop['labels']['storage']) ?>"><?= esc($laptop['labels']['storage']) ?></p>
-                </div>
-                <div class="bg-surface-container-lowest p-3 rounded-xl border border-outline-variant/50">
-                    <p class="text-xs text-on-surface-variant font-medium">Prosesor</p>
-                    <p class="text-sm font-bold text-on-surface truncate" title="<?= esc($laptop['labels']['processor']) ?>"><?= esc($laptop['labels']['processor']) ?></p>
-                </div>
-                <div class="bg-surface-container-lowest p-3 rounded-xl border border-outline-variant/50">
-                    <p class="text-xs text-on-surface-variant font-medium">Baterai (Ketahanan)</p>
-                    <p class="text-sm font-bold text-on-surface truncate" title="<?= esc($laptop['labels']['baterai']) ?>"><?= esc($laptop['labels']['baterai']) ?></p>
-                </div>
+                <?php endforeach; ?>
             </div>
             <div class="mt-4 pt-4 border-t border-outline-variant flex justify-between items-center">
                 <span class="text-sm font-bold text-on-surface-variant">Skor Optimalitas (Ki)</span>
@@ -283,9 +319,13 @@ endforeach;
                     <div>
                         <p class="text-xs font-bold text-on-surface-variant uppercase tracking-wider mb-2">2. Alternatif Optimal (A0)</p>
                         <div class="grid grid-cols-3 gap-2">
-                            <?php foreach(['harga'=>'Harga (Min)', 'berat'=>'Berat (Min)', 'ram'=>'RAM (Max)', 'storage'=>'Penyimpanan (Max)', 'processor'=>'Prosesor (Max)', 'baterai'=>'Baterai (Max)'] as $k => $l): ?>
+                            <?php foreach(['harga'=>'Harga', 'berat'=>'Berat', 'ram'=>'RAM', 'storage'=>'Penyimpanan', 'processor'=>'Prosesor', 'baterai'=>'Baterai'] as $k => $l): 
+                                $tipe = isset($dynamicTypes[$k]) ? strtolower($dynamicTypes[$k]) : 'benefit';
+                                $labelSuffix = $tipe == 'benefit' ? '(Max)' : '(Min)';
+                                $tipeColor = $tipe == 'benefit' ? 'text-benefit' : 'text-error';
+                            ?>
                             <div class="bg-surface-container-lowest p-2 rounded-xl border border-outline-variant/50 text-center">
-                                <p class="text-[10px] text-on-surface-variant font-medium"><?= $l ?></p>
+                                <p class="text-[10px] text-on-surface-variant font-medium"><?= $l ?> <span class="<?= $tipeColor ?> font-bold"><?= $labelSuffix ?></span></p>
                                 <p class="text-sm font-bold text-on-surface"><?= $laptop['A0'][$k] ?></p>
                             </div>
                             <?php endforeach; ?>

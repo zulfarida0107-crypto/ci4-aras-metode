@@ -130,6 +130,42 @@ class RespondenController extends BaseController
         $normalizeWeights($respondenBobot);
         $normalizeWeights($respondenPenilaian);
 
+        // 3. Override data from Responden2.md dynamically so UI is always in sync
+        require_once APPPATH . 'Libraries/Responden2Parser.php';
+        $parsedData = \App\Libraries\Responden2Parser::parse();
+        $skorMap = [];
+        foreach ($parsedData as $pd) {
+            $skorMap[$pd['id']] = $pd;
+        }
+
+        $syncWithMarkdown = function(&$array) use ($skorMap) {
+            foreach ($array as &$r) {
+                $id = $r['id'];
+                if (isset($skorMap[$id])) {
+                    $m = $skorMap[$id];
+                    $r['nama'] = $m['nama'];
+                    // update labels
+                    $r['harga_label'] = $m['labels']['harga'] ?? $r['harga_label'];
+                    $r['berat_label'] = $m['labels']['berat'] ?? $r['berat_label'];
+                    $r['ram_label'] = $m['labels']['ram'] ?? $r['ram_label'];
+                    $r['storage_label'] = $m['labels']['storage'] ?? $r['storage_label'];
+                    $r['processor_label'] = $m['labels']['processor'] ?? $r['processor_label'];
+                    $r['baterai_label'] = $m['labels']['baterai'] ?? $r['baterai_label'];
+                    // update scores
+                    $r['harga_skor'] = $m['scores']['harga'] ?? $r['harga_skor'];
+                    $r['berat_skor'] = $m['scores']['berat'] ?? $r['berat_skor'];
+                    $r['ram_skor'] = $m['scores']['ram'] ?? $r['ram_skor'];
+                    $r['storage_skor'] = $m['scores']['storage'] ?? $r['storage_skor'];
+                    $r['processor_skor'] = $m['scores']['processor'] ?? $r['processor_skor'];
+                    $r['baterai_skor'] = $m['scores']['baterai'] ?? $r['baterai_skor'];
+                }
+            }
+        };
+
+        $syncWithMarkdown($respondenIdentitas);
+        $syncWithMarkdown($respondenBobot);
+        $syncWithMarkdown($respondenPenilaian);
+
         $data = [
             'activeTab' => 'responden',
             'pageTitle' => 'Data Responden',

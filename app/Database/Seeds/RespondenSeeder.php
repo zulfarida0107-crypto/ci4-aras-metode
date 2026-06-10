@@ -101,6 +101,15 @@ class RespondenSeeder extends Seeder
             $skorMap[$pd['id']] = $pd;
         }
 
+        // 1.5 Modifikasi respondenData dengan nama dari markdown
+        $newRespondenData = [];
+        foreach ($respondenData as $r) {
+            if (isset($skorMap[$r['id']])) {
+                $r['nama'] = $skorMap[$r['id']]['nama'];
+            }
+            $newRespondenData[] = $r;
+        }
+
         // 2. Modifikasi skorData dengan nilai dari markdown
         $newSkorData = [];
         foreach ($skorData as $skor) {
@@ -127,7 +136,7 @@ class RespondenSeeder extends Seeder
             }
         }
 
-        $this->db->table('responden')->insertBatch($respondenData);
+        $this->db->table('responden')->insertBatch($newRespondenData);
         $this->db->table('bobot_kriteria')->insertBatch($bobotData);
         $this->db->table('skor_laptop')->insertBatch($newSkorData);
     }

@@ -1,26 +1,26 @@
-# LaptopARAS - SPK Pemilihan Laptop Gaming
+# LaptopARAS - Gaming Laptop Selection Decision Support System (DSS)
 
-Aplikasi Sistem Pendukung Keputusan (SPK) berbasis **CodeIgniter 4** yang menerapkan metode **Additive Ratio Assessment (ARAS)** untuk membantu merekomendasikan pilihan laptop *gaming* terbaik secara objektif.
+A Decision Support System (DSS) application built with **CodeIgniter 4** that implements the **Additive Ratio Assessment (ARAS)** method to help recommend the best gaming laptop choices objectively.
 
-## Fitur Utama
-1. **Eksperimen Mandiri Fleksibel**: Pengguna dapat memodifikasi jenis kriteria (menjadi *Benefit* atau *Cost*) secara dinamis sesuai kebutuhan, tanpa dikunci oleh sistem.
-2. **Kalkulasi Real-Time Algoritma ARAS**: Sistem otomatis menghitung matriks keputusan (X), menentukan alternatif optimal (A0), matriks normalisasi (R), tingkat utilitas (Ki), hingga peringkat akhir seketika.
-3. **Panduan Visual Terstruktur**: Tersedia rujukan panduan metode ARAS dalam 8 langkah yang divisualisasikan dengan desain modern untuk edukasi.
-4. **Antarmuka Modern (Tailwind CSS)**: Menggunakan desain yang mulus, responsif, dan palet warna netral sehingga tidak membuat bias saat menilai bobot spesifikasi.
+## Main Features
+1. **Flexible Independent Experimentation**: Users can dynamically modify criteria types (as either *Benefit* or *Cost*) according to their needs without being locked by the system.
+2. **Real-Time ARAS Algorithm Calculation**: The system automatically computes the decision matrix (X), determines the optimal alternative (A0), normalized matrix (R), utility degree (Ki), and final ranking instantly.
+3. **Structured Visual Guide**: Provides a reference guide for the ARAS method across 8 steps, visualized with a modern design for educational purposes.
+4. **Modern Interface (Tailwind CSS)**: Uses a smooth, responsive design with a neutral color palette to prevent bias when evaluating specification weights.
 
-## Teknologi yang Digunakan
+## Technologies Used
 - **Backend Framework**: CodeIgniter 4 (PHP 8+)
 - **Frontend / Styling**: Tailwind CSS
-- **Logika Dinamis**: Vanilla JavaScript (ES6)
-- **Metode SPK**: Additive Ratio Assessment (ARAS)
+- **Dynamic Logic**: Vanilla JavaScript (ES6)
+- **DSS Method**: Additive Ratio Assessment (ARAS)
 
-## Panduan Menjalankan Aplikasi
-Untuk melihat langkah-langkah instalasi dan eksekusi aplikasi secara lokal di komputer Anda menggunakan **XAMPP**, silakan merujuk pada dokumen [`Running.md`](./Running.md) yang ada di folder *root* proyek ini.
+## Application Execution Guide
+To view the installation and local execution steps on your computer using **XAMPP**, please refer to the [`Running.md`](./Running.md) document located in the root folder of this project.
 
-## File Inti Sistem
-- `app/Controllers/EksperimenController.php`: Jembatan pengelola *request* dari halaman web ke kalkulator metode.
-- `app/Libraries/ArasLibraries.php`: Mesin (kalkulator) utama yang menampung rumus algoritma metode ARAS seutuhnya.
-- `app/Views/eksperimen/index.php`: Tata letak antarmuka fitur Eksperimen Mandiri.
+## Core System Files
+- `app/Controllers/EksperimenController.php`: Bridge handling requests from the web page to the method calculator.
+- `app/Libraries/ArasLibraries.php`: Main engine (calculator) containing the complete ARAS method algorithm formulas.
+- `app/Views/eksperimen/index.php`: User interface layout for the Independent Experimentation feature.
 
-## Lisensi
-Proyek ini bersifat *Open-Source* dan utamanya dirancang sebagai penelitian/pendidikan mengenai implementasi metode sistem pendukung keputusan tingkat lanjut.
+## License
+This project is open-source and primarily designed for research/educational purposes regarding the implementation of advanced decision support system methods.
